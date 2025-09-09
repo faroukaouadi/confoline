@@ -3,9 +3,11 @@
 import { MessageSquareText, Laptop2 } from "lucide-react";
 import { useState } from "react";
 import ContactPopup from "./ContactPopup";
+import DemoPopup from "./DemoPopup";
 
 export default function FloatingButtons() {
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
   
 
   return (
@@ -24,12 +26,17 @@ export default function FloatingButtons() {
       <a
         href="#demo"
         className="group inline-flex items-center gap-1.5 sm:gap-2 rounded-full border-2 sm:border-4 border-white/70 bg-cyan-400 px-3.5 py-2.5 sm:px-5 sm:py-3 text-blue-950 text-sm sm:text-base shadow-xl transition-transform hover:scale-105 focus-visible:scale-105"
+        onClick={(e) => {
+          e.preventDefault();
+          setIsDemoOpen(true);
+        }}
       >
         <Laptop2 className="h-4 w-4 sm:h-5 sm:w-5" />
         <span className="font-semibold">Demo</span>
       </a>
 
       <ContactPopup open={isContactOpen} onClose={() => setIsContactOpen(false)} />
+      <DemoPopup open={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
     </div>
   );
 }
