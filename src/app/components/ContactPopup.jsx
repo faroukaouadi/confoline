@@ -63,8 +63,21 @@ export default function ContactPopup({ open, onClose }) {
     if (Object.keys(errors).length > 0) return;
     try {
       setIsSubmitting(true);
-      await new Promise((res) => setTimeout(res, 600));
+      const params = new URLSearchParams(formValues);
+      const endpoint = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || '/contactt.php';
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params.toString(),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) {
+        const errorMessage = (data && (data.error || JSON.stringify(data.errors))) || 'Unknown error';
+        alert('Failed to send your message: ' + errorMessage);
+        return;
+      }
       alert("Thanks! Your message has been sent.");
+      console.log('formvalueeeeeeeeeeeeee',formValues)
       handleClose();
       setFormValues({ fullName: "", email: "", subject: "", message: "" });
     } finally {

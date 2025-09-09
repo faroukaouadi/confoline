@@ -1,16 +1,17 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Partners() {
   const partners = [
-    { name: "opentext", src: "/images/opentext.png", width: 110 },
-    { name: "ser", src: "/images/SER.png", width: 110 },
-    { name: "newrelic", src: "/images/newrelic.png", width: 110 },
-    { name: "elastic", src: "/images/elastic.png", width: 10 },
-    { name: "ibm", src: "/images/ibm.png", width: 110 },
-    { name: "tricentis", src: "/images/tricentis.png", width: 110 },
-    { name: "opsramp", src: "/images/OpsRamp.png", width: 110 },
+    { name: "opentext", src: "/images/opentext.png", link: 'https://www.opentext.com/' },
+    { name: "ser", src: "/images/SER.png", link: 'https://www.sergroup.com/' },
+    { name: "newrelic", src: "/images/newrelic.png", link: 'https://newrelic.com/' },
+    { name: "elastic", src: "/images/elastic.png", link: 'https://www.elastic.co/' },
+    { name: "ibm", src: "/images/ibm.png", link: 'https://www.ibm.com/' },
+    { name: "tricentis", src: "/images/tricentis.png", link: 'https://www.tricentis.com/' },
+    { name: "opsramp", src: "/images/OpsRamp.png", link: 'https://www.opsramp.com/' },
   ];
 
   return (
@@ -22,13 +23,15 @@ export default function Partners() {
           <div className="flex flex-wrap items-center justify-center gap-x-10 2xl:gap-x-14 gap-y-6 pb-8 border-b border-gray-200">
             {partners.map((p) => (
               <div key={p.name} className="flex items-center justify-center h-16 2xl:h-20">
+                <Link href={p.link} target="_blank" rel="noopener noreferrer">
                 <Image
                   src={p.src}
                   alt={p.name}
-                  width={p.width}
+                  width= {130}
                   height={40}
-                  className="h-12 2xl:h-14 w-auto object-contain"
+                  className="object-contain"
                 />
+                </Link>
               </div>
             ))}
           </div>
