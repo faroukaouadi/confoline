@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { Menu, X, Search, Globe, ChevronDown } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -11,30 +13,33 @@ export default function Header() {
       <div className=" max-w-7xl 2xl:max-w-[90%] mx-auto flex justify-between items-center p-4 2xl:p-6">
         {/* Logo */}
         <h1 className="text-xl sm:text-2xl 2xl:text-3xl font-bold cursor-pointer">
-          <span className="text-white">Confoline</span>
-          <span className="text-blue-400">.</span>
+          <Link href="/" className="inline-block">
+            <span className="text-white">confoline</span>
+            {/* <Image src="/images/confoline-logo.png" alt="confoline" width={10} height={40} /> */}
+            <span className="text-blue-400">.</span>
+          </Link>
         </h1>
 
         {/* Navigation */}
         <nav className="hidden lg:flex space-x-6 2xl:space-x-8 font-medium text-sm 2xl:text-base">
-          <a href="#" className="hover:text-blue-300 flex items-center gap-1">
+          <Link href="/services" className="hover:text-blue-300 flex items-center gap-1">
             Services <ChevronDown size={16} />
-          </a>
-          <a href="#" className="hover:text-blue-300 flex items-center gap-1">
+          </Link>
+          <Link href="#" className="hover:text-blue-300 flex items-center gap-1">
             Industries <ChevronDown size={16} />
-          </a>
-          <a href="#" className="hover:text-blue-300 flex items-center gap-1">
+          </Link>
+          <Link href="#" className="hover:text-blue-300 flex items-center gap-1">
             Customers <ChevronDown size={16} />
-          </a>
-          <a href="#" className="hover:text-blue-300 flex items-center gap-1">
+          </Link>
+          <Link href="#" className="hover:text-blue-300 flex items-center gap-1">
             Support <ChevronDown size={16} />
-          </a>
-          <a href="#" className="hover:text-blue-300 flex items-center gap-1">
+          </Link>
+          <Link href="#" className="hover:text-blue-300 flex items-center gap-1">
             Partners <ChevronDown size={16} />
-          </a>
-          <a href="#" className="hover:text-blue-300 flex items-center gap-1">
+          </Link>
+          <Link href="#" className="hover:text-blue-300 flex items-center gap-1">
             Company <ChevronDown size={16} />
-          </a>
+          </Link>
         </nav>
         
         {/* Right side utilities */}
@@ -62,7 +67,7 @@ export default function Header() {
       {/* Mobile dropdown */}
       {open && (
         <div className="lg:hidden bg-blue-800 px-4 pb-4 space-y-2">
-          <a href="#" className="block py-2">Products</a>
+          <a href="/services" className="block py-2">Services</a>
           <a href="#" className="block py-2">Industries</a>
           <a href="#" className="block py-2">Learning</a>
           <a href="#" className="block py-2">Support</a>
