@@ -4,19 +4,19 @@ import ServiceChatbot from "../components/ServiceChatbot";
 
 export default function ServicesPage() {
   return (
-    <main className="relative isolate min-h-screen bg-gradient-to-b from-blue-950 to-blue-900 text-white">
+    <main className="relative min-h-screen bg-gradient-to-b from-blue-950 to-blue-900 text-white">
       <section className="max-w-7xl 2xl:max-w-[90%] mx-auto px-4 py-12 sm:py-16 md:py-20">
         <div className="flex items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">Services</h1>
-            <p className="mt-2 max-w-3xl text-sm sm:text-base text-blue-200">
+            <h1 className="text-2xl sm:text-3xl 2xl:text-5xl md:text-4xl font-bold">Services</h1>
+            <p className="mt-2 max-w-3xl text-sm sm:text-base 2xl:text-xl text-blue-200">
               Next-generation IT services combining Observability, intelligent automation, and AI to
               accelerate business outcomes.
             </p>
           </div>
           <a
             href="#details"
-            className="inline-block rounded-md bg-blue-400 px-4 py-2 text-sm font-medium text-blue-950 hover:bg-blue-300"
+            className="inline-block rounded-md bg-blue-400 px-4 py-2 text-sm 2xl:text-xl font-medium text-blue-950 hover:bg-blue-300"
           >
             Learn more
           </a>
@@ -70,8 +70,8 @@ type CardProps = {
 function ServiceCard({ title, description }: CardProps) {
   return (
     <article className="rounded-xl border border-blue-700/50 bg-blue-900/30 p-5 shadow-md shadow-blue-950/40 backdrop-blur-sm">
-      <h3 className="text-base sm:text-lg font-semibold text-white">{title}</h3>
-      <p className="mt-2 text-xs sm:text-sm leading-relaxed text-blue-200">{description}</p>
+      <h3 className="text-base sm:text-lg 2xl:text-xl font-semibold text-white">{title}</h3>
+      <p className="mt-2 text-xs sm:text-sm 2xl:text-xl leading-relaxed text-blue-200">{description}</p>
     </article>
   );
 }

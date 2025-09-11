@@ -91,7 +91,7 @@ export default function DemoPopup({ open, onClose }) {
 
   return createPortal(
     <div
-      className="fixed inset-0 z-50 grid place-items-center"
+      className="fixed inset-0 z-30 grid place-items-center"
       role="dialog"
       aria-modal="true"
       aria-labelledby="demo-title"

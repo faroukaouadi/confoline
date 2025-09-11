@@ -77,7 +77,6 @@ export default function ContactPopup({ open, onClose }) {
         return;
       }
       alert("Thanks! Your message has been sent.");
-      console.log('formvalueeeeeeeeeeeeee',formValues)
       handleClose();
       setFormValues({ fullName: "", email: "", subject: "", message: "" });
     } finally {
@@ -89,7 +88,7 @@ export default function ContactPopup({ open, onClose }) {
 
   return createPortal(
     <div
-      className="fixed inset-0 z-50 grid place-items-center"
+      className="fixed inset-0 z-30 grid place-items-center"
       role="dialog"
       aria-modal="true"
       aria-labelledby="contact-title"

@@ -22,32 +22,32 @@ export default function Footer() {
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
             {/* Columns */}
             <div>
-              <h4 className="text-xs tracking-wider font-semibold text-white/80">PLATFORM</h4>
-              <ul className="mt-4 space-y-2 text-sm text-white/90">
+              <h4 className="text-xs 2xl:text-lg tracking-wider font-semibold text-white/80">PLATFORM</h4>
+              <ul className="mt-4 space-y-2 text-sm 2xl:text-lg text-white/90">
                 <li><a href="#" className="hover:text-cyan-300">Overview</a></li>
                 <li><a href="#" className="hover:text-cyan-300">Pricing</a></li>
                 <li><a href="#" className="hover:text-cyan-300">Supported technologies</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-xs tracking-wider font-semibold text-white/80">SOLUTIONS</h4>
-              <ul className="mt-4 space-y-2 text-sm text-white/90">
+              <h4 className="text-xs 2xl:text-lg tracking-wider font-semibold text-white/80">SOLUTIONS</h4>
+              <ul className="mt-4 space-y-2 text-sm 2xl:text-lg text-white/90">
                 <li><a href="#" className="hover:text-cyan-300">Overview</a></li>
                 <li><a href="#" className="hover:text-cyan-300">Application monitoring</a></li>
                 <li><a href="#" className="hover:text-cyan-300">Cloud monitoring</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-xs tracking-wider font-semibold text-white/80">RESOURCES</h4>
-              <ul className="mt-4 space-y-2 text-sm text-white/90">
+              <h4 className="text-xs 2xl:text-lg tracking-wider font-semibold text-white/80">RESOURCES</h4>
+              <ul className="mt-4 space-y-2 text-sm 2xl:text-lg text-white/90">
                 <li><a href="#" className="hover:text-cyan-300">Overview</a></li>
                 <li><a href="#" className="hover:text-cyan-300">Blog</a></li>
                 <li><a href="#" className="hover:text-cyan-300">Customer stories</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-xs tracking-wider font-semibold text-white/80">SERVICES & SUPPORT</h4>
-              <ul className="mt-4 space-y-2 text-sm text-white/90">
+              <h4 className="text-xs 2xl:text-lg tracking-wider font-semibold text-white/80">SERVICES & SUPPORT</h4>
+              <ul className="mt-4 space-y-2 text-sm 2xl:text-lg text-white/90">
                 <li><a href="#" className="hover:text-cyan-300">Overview</a></li>
                 <li><a href="#" className="hover:text-cyan-300">Success and Support</a></li>
                 <li><a href="#" className="hover:text-cyan-300">Partner Hub</a></li>
@@ -63,7 +63,7 @@ export default function Footer() {
                   referrerPolicy="no-referrer-when-downgrade"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2622.5128994931324!2d2.3028616754678963!3d48.90561959738298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66f0d10ff2475%3A0xc2dd101a06dd88c9!2s6%20Rue%20des%20Bateliers%2C%2092110%20Clichy%2C%20France!5e0!3m2!1sfr!2stn!4v1757061524325!5m2!1sfr!2stn"
                 />
-                <div className="p-3 text-xs text-white/90">
+                <div className="p-3 text-xs 2xl:text-lg text-white/90">
                   Confoline — 6 RUE DES BATELIERS 92110 CLICHY, France
                 </div>
               </div>

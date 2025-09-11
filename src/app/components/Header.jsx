@@ -12,23 +12,23 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-gradient-to-br from-blue-950 to-blue-900 text-white shadow-md">
       <div className=" max-w-7xl 2xl:max-w-[90%] mx-auto flex justify-between items-center p-4 2xl:p-6">
         {/* Logo */}
-        <h1 className="text-xl sm:text-2xl 2xl:text-3xl font-bold cursor-pointer">
-          <Link href="/" className="inline-block">
-            <span className="text-white">confoline</span>
-            {/* <Image src="/images/confoline-logo.png" alt="confoline" width={10} height={40} /> */}
-            <span className="text-blue-400">.</span>
+        <div className="text-xl sm:text-2xl 2xl:text-3xl font-bold cursor-pointer">
+          <Link href="/" >
+            {/* <span className="text-white">confoline</span> */}
+            <Image src="/images/confoline-logo.png" alt="confoline" width={150} height={40} className="object-contain" />
+            {/* <span className="text-blue-400">.</span> */}
           </Link>
-        </h1>
+        </div>
 
         {/* Navigation */}
-        <nav className="hidden lg:flex space-x-6 2xl:space-x-8 font-medium text-sm 2xl:text-base">
+        <nav className="hidden lg:flex space-x-6 2xl:space-x-8 font-medium text-sm 2xl:text-xl">
           <Link href="/services" className="hover:text-blue-300 flex items-center gap-1">
             Services <ChevronDown size={16} />
           </Link>
-          <Link href="#" className="hover:text-blue-300 flex items-center gap-1">
+          <Link href="industries" className="hover:text-blue-300 flex items-center gap-1">
             Industries <ChevronDown size={16} />
           </Link>
-          <Link href="#" className="hover:text-blue-300 flex items-center gap-1">
+          <Link href="customers" className="hover:text-blue-300 flex items-center gap-1">
             Customers <ChevronDown size={16} />
           </Link>
           <Link href="#" className="hover:text-blue-300 flex items-center gap-1">

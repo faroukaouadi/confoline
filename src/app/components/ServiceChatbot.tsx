@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { createPortal } from "react-dom";
 import { MessageCircle, Send, X } from "lucide-react";
 
 type ChatMessage = {
@@ -22,14 +21,13 @@ export default function ServiceChatbot() {
   const [isOpen, setIsOpen] = useState(true);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const endRef = useRef<HTMLDivElement | null>(null);
   const [mounted, setMounted] = useState(false);
+  const endRef = useRef<HTMLDivElement | null>(null);
 
   const suggestions = useMemo(() => seedSuggestions, []);
 
   useEffect(() => {
     setMounted(true);
-    // seed greeting only on client after mount to avoid SSR mismatches
     setMessages([
       {
         id: "welcome",
@@ -78,30 +76,27 @@ export default function ServiceChatbot() {
     setTimeout(() => pushMessage("assistant", reply), 300);
   }
 
-  if (!mounted) {
-    return null;
-  }
+  if (!mounted) return null;
 
   if (!isOpen) {
-    return createPortal(
+    return (
       <button
         aria-label="Open services chat"
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-5 right-5 z-[1000] rounded-full bg-blue-400 p-3 text-blue-950 shadow-lg hover:bg-blue-300"
+        className="fixed bottom-5 right-5 z-[1000] rounded-full bg-blue-600 p-3 text-white shadow-lg hover:bg-blue-500"
       >
-        <MessageCircle size={22} />
-      </button>,
-      document.body
+        <MessageCircle size={22} className="2xl:size-9" />
+      </button>
     );
   }
 
-  return createPortal(
-    <div className="fixed bottom-5 right-5 z-[1000] w-[320px] sm:w-[360px]">
-      <div className="rounded-xl border border-blue-700/60 bg-white text-slate-900 shadow-xl shadow-blue-950/20">
+  return (
+    <div className="fixed bottom-5 right-5 z-[1000] w-[320px] sm:w-[360px] 2xl:w-[480px]">
+      <div className="rounded-xl border border-blue-200 bg-white text-slate-900 shadow-xl">
         <div className="flex items-center justify-between rounded-t-xl bg-blue-800 px-4 py-3 text-white">
           <div>
-            <p className="text-sm font-semibold">Welcome to Confoline!</p>
-            <p className="text-[11px] text-blue-200">Ask about our services</p>
+            <p className="text-sm 2xl:text-xl font-semibold">Welcome to Confoline!</p>
+            <p className="text-[11px] 2xl:text-xl text-blue-200">Ask about our services</p>
           </div>
           <button
             aria-label="Close chat"
@@ -118,8 +113,8 @@ export default function ServiceChatbot() {
               <div
                 className={
                   m.role === "assistant"
-                    ? "inline-block max-w-[85%] rounded-lg bg-slate-100 text-slate-800 px-3 py-2 text-xs"
-                    : "inline-block max-w-[85%] rounded-lg bg-blue-500 text-white px-3 py-2 text-xs ml-auto"
+                    ? "inline-block max-w-[85%] rounded-lg bg-slate-100 text-slate-800 px-3 py-2 text-sm 2xl:text-xl"
+                    : "inline-block max-w-[85%] rounded-lg bg-blue-500 text-white px-3 py-2 text-sm 2xl:text-xl ml-auto"
                 }
               >
                 {m.text}
@@ -135,7 +130,7 @@ export default function ServiceChatbot() {
               <button
                 key={s}
                 onClick={() => handleSend(s)}
-                className="rounded-full border border-slate-300 bg-slate-100 px-3 py-1 text-[11px] text-slate-700 hover:bg-slate-200"
+                className="rounded-full border border-slate-300 bg-slate-100 px-3 py-1 text-[14px] 2xl:text-xl text-slate-700 hover:bg-slate-200"
               >
                 {s}
               </button>
@@ -162,8 +157,7 @@ export default function ServiceChatbot() {
           </div>
         </div>
       </div>
-    </div>,
-    document.body
+    </div>
   );
 }
 

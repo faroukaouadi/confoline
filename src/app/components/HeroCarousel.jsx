@@ -19,7 +19,7 @@ function HeroCarousel() {
         "images/employee2.jpg",
     ];
     return (
-        <div className="relative rounded-2xl p-8">
+        <div className="relative rounded-2xl">
             <Swiper
                 modules={[Navigation, Pagination, Autoplay]}
                 spaceBetween={8}  
