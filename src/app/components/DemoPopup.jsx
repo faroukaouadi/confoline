@@ -1,7 +1,6 @@
 "use client";
 
 import { X } from "lucide-react";
-import { createPortal } from "react-dom";
 import { useEffect, useMemo, useState } from "react";
 
 export default function DemoPopup({ open, onClose }) {
@@ -89,22 +88,22 @@ export default function DemoPopup({ open, onClose }) {
 
   if (!open) return null;
 
-  return createPortal(
+  return (
     <div
-      className="fixed inset-0 z-30 grid place-items-center"
+      className="fixed inset-0 z-[9999] grid place-items-center "
       role="dialog"
       aria-modal="true"
       aria-labelledby="demo-title"
     >
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={handleClose} />
 
-      <div className="relative z-10 mx-3 w-full max-w-3xl rounded-2xl border border-white/20 bg-white p-6 sm:p-8 shadow-2xl">
+      <div className="relative z-10 mx-3 w-full max-w-lg sm:max-w-3xl rounded-2xl border border-white/20 bg-white p-4 sm:p-8 shadow-2xl max-h-[80vh] overflow-y-auto">
         <div className="mb-6 flex items-start justify-between gap-4">
           <div>
-            <h2 id="demo-title" className="text-2xl sm:text-3xl font-semibold text-blue-950 text-center sm:text-left">
+            <h2 id="demo-title" className="text-xl sm:text-3xl font-semibold text-blue-950 text-center sm:text-left">
               Want a demo?
             </h2>
-            <p className="mt-1 text-sm text-slate-600 text-center sm:text-left">
+            <p className="mt-1 text-xs sm:text-sm text-slate-600 text-center sm:text-left">
               Fill this out and we’ll send you one.
             </p>
           </div>
@@ -118,9 +117,9 @@ export default function DemoPopup({ open, onClose }) {
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
           <div className="grid gap-1.5">
-            <label htmlFor="topic" className="text-sm font-medium text-slate-700">
+            <label htmlFor="topic" className="text-xs sm:text-sm font-medium text-slate-700">
               How can we help you? <span className="text-red-500">*</span>
             </label>
             <div className="relative">
@@ -129,7 +128,7 @@ export default function DemoPopup({ open, onClose }) {
                 name="topic"
                 value={formValues.topic}
                 onChange={handleChange}
-                className="w-full appearance-none rounded-xl border border-slate-300 bg-white px-4 py-2.5 pr-10 text-slate-900 placeholder-slate-400 shadow-sm outline-none ring-cyan-400/0 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30"
+                className="w-full appearance-none rounded-xl border border-slate-300 bg-white px-3 py-2 sm:px-4 sm:py-2.5 pr-10 text-slate-900 placeholder-slate-400 shadow-sm outline-none ring-cyan-400/0 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 text-sm sm:text-base"
               >
                 <option value="">Choose a topic</option>
                 <option value="pricing">Pricing</option>
@@ -145,7 +144,7 @@ export default function DemoPopup({ open, onClose }) {
           </div>
 
           <div className="grid gap-1.5">
-            <label htmlFor="persona" className="text-sm font-medium text-slate-700">
+            <label htmlFor="persona" className="text-xs sm:text-sm font-medium text-slate-700">
               What describes you best? <span className="text-red-500">*</span>
             </label>
             <div className="relative">
@@ -154,7 +153,7 @@ export default function DemoPopup({ open, onClose }) {
                 name="persona"
                 value={formValues.persona}
                 onChange={handleChange}
-                className="w-full appearance-none rounded-xl border border-slate-300 bg-white px-4 py-2.5 pr-10 text-slate-900 placeholder-slate-400 shadow-sm outline-none ring-cyan-400/0 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30"
+                className="w-full appearance-none rounded-xl border border-slate-300 bg-white px-3 py-2 sm:px-4 sm:py-2.5 pr-10 text-slate-900 placeholder-slate-400 shadow-sm outline-none ring-cyan-400/0 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 text-sm sm:text-base"
               >
                 <option value="">I am…</option>
                 <option value="it">IT</option>
@@ -169,7 +168,7 @@ export default function DemoPopup({ open, onClose }) {
             )}
           </div>
           <div className="grid gap-1.5">
-            <label htmlFor="fullName" className="text-sm font-medium text-slate-700">
+            <label htmlFor="fullName" className="text-xs sm:text-sm font-medium text-slate-700">
               Name <span className="text-red-500">*</span>
             </label>
             <input
@@ -179,7 +178,7 @@ export default function DemoPopup({ open, onClose }) {
               autoComplete="name"
               value={formValues.fullName}
               onChange={handleChange}
-              className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-slate-900 placeholder-slate-400 shadow-sm outline-none ring-cyan-400/0 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30"
+              className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 sm:px-4 sm:py-2.5 text-slate-900 placeholder-slate-400 shadow-sm outline-none ring-cyan-400/0 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 text-sm sm:text-base"
               placeholder="Your name"
               aria-invalid={Boolean(formErrors.fullName)}
               aria-describedby={formErrors.fullName ? "fullName-error" : undefined}
@@ -192,7 +191,7 @@ export default function DemoPopup({ open, onClose }) {
           </div>
 
           <div className="grid gap-1.5">
-            <label htmlFor="email" className="text-sm font-medium text-slate-700">
+            <label htmlFor="email" className="text-xs sm:text-sm font-medium text-slate-700">
               Email Address <span className="text-red-500">*</span>
             </label>
             <input
@@ -202,7 +201,7 @@ export default function DemoPopup({ open, onClose }) {
               autoComplete="email"
               value={formValues.email}
               onChange={handleChange}
-              className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-slate-900 placeholder-slate-400 shadow-sm outline-none ring-cyan-400/0 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30"
+              className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 sm:px-4 sm:py-2.5 text-slate-900 placeholder-slate-400 shadow-sm outline-none ring-cyan-400/0 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 text-sm sm:text-base"
               placeholder="ex: you@example.com"
               aria-invalid={Boolean(formErrors.email)}
               aria-describedby={formErrors.email ? "email-error" : undefined}
@@ -215,7 +214,7 @@ export default function DemoPopup({ open, onClose }) {
           </div>
 
           <div className="grid gap-1.5">
-            <label htmlFor="company" className="text-sm font-medium text-slate-700">
+            <label htmlFor="company" className="text-xs sm:text-sm font-medium text-slate-700">
               Company <span className="text-red-500">*</span>
             </label>
             <input
@@ -224,7 +223,7 @@ export default function DemoPopup({ open, onClose }) {
               type="text"
               value={formValues.company}
               onChange={handleChange}
-              className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-slate-900 placeholder-slate-400 shadow-sm outline-none ring-cyan-400/0 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30"
+              className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 sm:px-4 sm:py-2.5 text-slate-900 placeholder-slate-400 shadow-sm outline-none ring-cyan-400/0 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 text-sm sm:text-base"
               placeholder="Your company"
               aria-invalid={Boolean(formErrors.company)}
               aria-describedby={formErrors.company ? "company-error" : undefined}
@@ -237,7 +236,7 @@ export default function DemoPopup({ open, onClose }) {
           </div>
 
           <div className="grid gap-1.5">
-            <label htmlFor="source" className="text-sm font-medium text-slate-700">
+            <label htmlFor="source" className="text-xs sm:text-sm font-medium text-slate-700">
               How’d you hear about us? <span className="text-red-500">*</span>
             </label>
             <div className="relative">
@@ -246,7 +245,7 @@ export default function DemoPopup({ open, onClose }) {
                 name="source"
                 value={formValues.source}
                 onChange={handleChange}
-                className="w-full appearance-none rounded-xl border border-slate-300 bg-white px-4 py-2.5 pr-10 text-slate-900 placeholder-slate-400 shadow-sm outline-none ring-cyan-400/0 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30"
+                className="w-full appearance-none rounded-xl border border-slate-300 bg-white px-3 py-2 sm:px-4 sm:py-2.5 pr-10 text-slate-900 placeholder-slate-400 shadow-sm outline-none ring-cyan-400/0 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 text-sm sm:text-base"
               >
                 <option value="">Choose one</option>
                 <option value="search">Search engine</option>
@@ -263,7 +262,7 @@ export default function DemoPopup({ open, onClose }) {
           </div>
 
           <div className="sm:col-span-2 grid gap-1.5">
-            <label htmlFor="message" className="text-sm font-medium text-slate-700">
+            <label htmlFor="message" className="text-xs sm:text-sm font-medium text-slate-700">
               What would you like to see?
             </label>
             <textarea
@@ -272,7 +271,7 @@ export default function DemoPopup({ open, onClose }) {
               rows={4}
               value={formValues.message}
               onChange={handleChange}
-              className="w-full resize-y rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-slate-900 placeholder-slate-400 shadow-sm outline-none ring-cyan-400/0 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30"
+              className="w-full resize-y rounded-xl border border-slate-300 bg-white px-3 py-2 sm:px-4 sm:py-2.5 text-slate-900 placeholder-slate-400 shadow-sm outline-none ring-cyan-400/0 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 text-sm sm:text-base"
               placeholder="Describe your use case (optional)"
             />
           </div>
@@ -281,22 +280,21 @@ export default function DemoPopup({ open, onClose }) {
             <button
               type="button"
               onClick={handleClose}
-              className="rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-slate-700 shadow-sm transition hover:bg-slate-50"
+              className="rounded-xl border border-slate-300 bg-white px-3 py-2 sm:px-4 sm:py-2.5 text-slate-700 text-sm sm:text-base shadow-sm transition hover:bg-slate-50"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting || hasErrors}
-              className="inline-flex items-center gap-2 rounded-xl border-2 border-cyan-500 bg-white text-cyan-700 px-8 py-3 font-semibold shadow-md transition hover:bg-cyan-50 disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex items-center gap-2 rounded-xl border-2 border-cyan-500 bg-white text-cyan-700 px-6 py-2.5 sm:px-8 sm:py-3 font-semibold text-sm sm:text-base shadow-md transition hover:bg-cyan-50 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {isSubmitting ? "Sending..." : "Send"}
             </button>
           </div>
         </form>
       </div>
-    </div>,
-    document.body
+    </div>
   );
 }
 

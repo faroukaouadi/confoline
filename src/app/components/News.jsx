@@ -82,7 +82,7 @@ export default function News() {
         </div>
 
         {/* Mobile buttons */}
-        <div className="mt-6 flex sm:hidden items-center gap-3">
+        <div className="mt-6 flex sm:hidden items-center justify-center gap-3">
           <button className="px-4 py-2 rounded-full bg-cyan-500 text-blue-950 hover:bg-cyan-400 transition-colors text-sm font-medium">View Blogs</button>
           <button className="px-4 py-2 rounded-full bg-cyan-500 text-blue-950 hover:bg-cyan-400 transition-colors text-sm font-medium">View Analyst Reports</button>
         </div>

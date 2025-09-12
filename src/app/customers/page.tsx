@@ -11,7 +11,7 @@ export default function CustomersPage() {
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="text-2xl 2xl:text-4xl sm:text-3xl font-semibold tracking-tight">Customers</h1>
-            <p className="mt-1 text-blue-200 max-w-3xl text-sm  sm:text-base 2xl:text-lg">
+            <p className="mt-1 text-blue-200 max-w-3xl text-sm  sm:text-base 2xl:text-xl">
               Confoline help you solve the complex business challenges unique to your industry.
             </p>
           </div>
@@ -36,8 +36,7 @@ export default function CustomersPage() {
               <div
                 key={idx}
                 className={
-                  "rounded-md border border-white/15 bg-white/5 px-4 py-3 text-sm 2xl:text-3xl font-semibold text-blue-100 " +
-                  (idx === 1 ? "ring-2 ring-cyan-400/60 bg-cyan-500/10" : "hover:bg-white/10")
+                  "rounded-md border border-white/15 bg-white/5 px-4 py-3 text-sm 2xl:text-3xl font-semibold text-blue-100 hover:bg-white/10"
                 }
               >
                 <div className="flex items-center gap-2">

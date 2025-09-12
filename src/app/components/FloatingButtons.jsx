@@ -11,7 +11,8 @@ export default function FloatingButtons() {
   
 
   return (
-    <div className="fixed right-3 sm:right-4 top-9/12 -translate-y-1/2 z-30 flex flex-col gap-2 sm:gap-3">
+    <>
+        <div className="fixed right-3 sm:right-4 top-9/12 -translate-y-1/2 z-30 flex flex-col gap-2 sm:gap-3">
       <a
         href="#contact"
         className="group inline-flex items-center gap-1.5 sm:gap-2 rounded-full border-2 sm:border-4 border-white/70 bg-cyan-400 px-3.5 py-2.5 sm:px-5 sm:py-3 text-blue-950 text-sm sm:text-base shadow-xl transition-transform hover:scale-105 focus-visible:scale-105"
@@ -35,9 +36,13 @@ export default function FloatingButtons() {
         <span className="font-semibold">Demo</span>
       </a>
 
+      
+    </div>
       <ContactPopup open={isContactOpen} onClose={() => setIsContactOpen(false)} />
       <DemoPopup open={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
-    </div>
+    </>
+
+
   );
 }
 

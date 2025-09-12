@@ -31,10 +31,10 @@ export default function Header() {
           <Link href="customers" className="hover:text-blue-300 flex items-center gap-1">
             Customers <ChevronDown size={16} />
           </Link>
-          <Link href="#" className="hover:text-blue-300 flex items-center gap-1">
+          <Link href="/support" className="hover:text-blue-300 flex items-center gap-1">
             Support <ChevronDown size={16} />
           </Link>
-          <Link href="#" className="hover:text-blue-300 flex items-center gap-1">
+          <Link href="/partners" className="hover:text-blue-300 flex items-center gap-1">
             Partners <ChevronDown size={16} />
           </Link>
           <Link href="#" className="hover:text-blue-300 flex items-center gap-1">
@@ -70,8 +70,8 @@ export default function Header() {
           <a href="/services" className="block py-2">Services</a>
           <a href="#" className="block py-2">Industries</a>
           <a href="#" className="block py-2">Learning</a>
-          <a href="#" className="block py-2">Support</a>
-          <a href="#" className="block py-2">Partners</a>
+          <a href="/support" className="block py-2">Support</a>
+          <a href="/partners" className="block py-2">Partners</a>
           <a href="#" className="block py-2">Company</a>
           <button className="w-full mt-3 bg-blue-400 px-6 py-2 rounded-md hover:bg-blue-300">
             Get Started

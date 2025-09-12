@@ -1,7 +1,6 @@
 "use client";
 
 import { X } from "lucide-react";
-import { createPortal } from "react-dom";
 import { useEffect, useMemo, useState } from "react";
 
 export default function ContactPopup({ open, onClose }) {
@@ -22,6 +21,16 @@ export default function ContactPopup({ open, onClose }) {
     }
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
+  // lock background scroll when modal is open
+  useEffect(() => {
+    if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
   }, [open]);
 
   function handleClose() {
@@ -86,9 +95,9 @@ export default function ContactPopup({ open, onClose }) {
 
   if (!open) return null;
 
-  return createPortal(
+  return (
     <div
-      className="fixed inset-0 z-30 grid place-items-center"
+      className="fixed inset-0 z-[9999] grid place-items-center"
       role="dialog"
       aria-modal="true"
       aria-labelledby="contact-title"
@@ -98,13 +107,13 @@ export default function ContactPopup({ open, onClose }) {
 
       {/* Popup centered */
       }
-      <div className="relative z-10 mx-3 w-full max-w-lg rounded-2xl border border-white/20 bg-white p-5 sm:p-6 shadow-2xl">
+      <div className="relative z-10 mx-3 w-full max-w-sm sm:max-w-lg rounded-2xl border border-white/20 bg-white p-4 sm:p-6 shadow-2xl max-h-[90vh] overflow-y-auto">
         <div className="mb-4 flex items-start justify-between gap-4">
           <div>
-            <h2 id="contact-title" className="text-xl sm:text-2xl font-semibold text-blue-950">
+            <h2 id="contact-title" className="text-lg sm:text-2xl font-semibold text-blue-950">
               Contact us
             </h2>
-            <p className="mt-1 text-sm text-slate-600">
+            <p className="mt-1 text-xs sm:text-sm text-slate-600">
               Fill out the form and we\'ll get back to you shortly.
             </p>
           </div>
@@ -118,9 +127,9 @@ export default function ContactPopup({ open, onClose }) {
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4">
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-3 sm:gap-4">
           <div className="grid gap-1.5">
-            <label htmlFor="fullName" className="text-sm font-medium text-slate-700">
+            <label htmlFor="fullName" className="text-xs sm:text-sm font-medium text-slate-700">
               Full name
             </label>
             <input
@@ -130,7 +139,7 @@ export default function ContactPopup({ open, onClose }) {
               autoComplete="name"
               value={formValues.fullName}
               onChange={handleChange}
-              className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-slate-900 placeholder-slate-400 shadow-sm outline-none ring-cyan-400/0 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30"
+              className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 sm:px-4 sm:py-2.5 text-slate-900 placeholder-slate-400 shadow-sm outline-none ring-cyan-400/0 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 text-sm sm:text-base"
               placeholder="Your name"
               aria-invalid={Boolean(formErrors.fullName)}
               aria-describedby={formErrors.fullName ? "fullName-error" : undefined}
@@ -143,7 +152,7 @@ export default function ContactPopup({ open, onClose }) {
           </div>
 
           <div className="grid gap-1.5">
-            <label htmlFor="email" className="text-sm font-medium text-slate-700">
+            <label htmlFor="email" className="text-xs sm:text-sm font-medium text-slate-700">
               Email
             </label>
             <input
@@ -153,7 +162,7 @@ export default function ContactPopup({ open, onClose }) {
               autoComplete="email"
               value={formValues.email}
               onChange={handleChange}
-              className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-slate-900 placeholder-slate-400 shadow-sm outline-none ring-cyan-400/0 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30"
+              className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 sm:px-4 sm:py-2.5 text-slate-900 placeholder-slate-400 shadow-sm outline-none ring-cyan-400/0 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 text-sm sm:text-base"
               placeholder="you@example.com"
               aria-invalid={Boolean(formErrors.email)}
               aria-describedby={formErrors.email ? "email-error" : undefined}
@@ -166,7 +175,7 @@ export default function ContactPopup({ open, onClose }) {
           </div>
 
           <div className="grid gap-1.5">
-            <label htmlFor="subject" className="text-sm font-medium text-slate-700">
+            <label htmlFor="subject" className="text-xs sm:text-sm font-medium text-slate-700">
               Subject
             </label>
             <input
@@ -175,7 +184,7 @@ export default function ContactPopup({ open, onClose }) {
               type="text"
               value={formValues.subject}
               onChange={handleChange}
-              className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-slate-900 placeholder-slate-400 shadow-sm outline-none ring-cyan-400/0 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30"
+              className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 sm:px-4 sm:py-2.5 text-slate-900 placeholder-slate-400 shadow-sm outline-none ring-cyan-400/0 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 text-sm sm:text-base"
               placeholder="Subject of your message"
               aria-invalid={Boolean(formErrors.subject)}
               aria-describedby={formErrors.subject ? "subject-error" : undefined}
@@ -188,7 +197,7 @@ export default function ContactPopup({ open, onClose }) {
           </div>
 
           <div className="grid gap-1.5">
-            <label htmlFor="message" className="text-sm font-medium text-slate-700">
+            <label htmlFor="message" className="text-xs sm:text-sm font-medium text-slate-700">
               Message
             </label>
             <textarea
@@ -197,7 +206,7 @@ export default function ContactPopup({ open, onClose }) {
               rows={5}
               value={formValues.message}
               onChange={handleChange}
-              className="w-full resize-y rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-slate-900 placeholder-slate-400 shadow-sm outline-none ring-cyan-400/0 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30"
+              className="w-full resize-y rounded-xl border border-slate-300 bg-white px-3 py-2 sm:px-4 sm:py-2.5 text-slate-900 placeholder-slate-400 shadow-sm outline-none ring-cyan-400/0 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 text-sm sm:text-base"
               placeholder="Describe your request..."
               aria-invalid={Boolean(formErrors.message)}
               aria-describedby={formErrors.message ? "message-error" : undefined}
@@ -213,22 +222,22 @@ export default function ContactPopup({ open, onClose }) {
             <button
               type="button"
               onClick={handleClose}
-              className="rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-slate-700 shadow-sm transition hover:bg-slate-50"
+              className="rounded-xl border border-slate-300 bg-white px-3 py-2 sm:px-4 sm:py-2.5 text-slate-700 text-sm sm:text-base shadow-sm transition hover:bg-slate-50"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting || hasErrors}
-              className="inline-flex items-center gap-2 rounded-xl border-2 border-transparent bg-cyan-500 px-5 py-2.5 font-semibold text-white shadow-md transition hover:bg-cyan-600 disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex items-center gap-2 rounded-xl border-2 border-transparent bg-cyan-500 px-4 py-2 sm:px-5 sm:py-2.5 font-semibold text-white text-sm sm:text-base shadow-md transition hover:bg-cyan-600 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {isSubmitting ? "Sending..." : "Send"}
             </button>
           </div>
         </form>
       </div>
-    </div>,
-    document.body
+    </div>
+    
   );
 }
 
