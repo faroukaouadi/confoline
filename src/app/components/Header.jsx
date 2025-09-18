@@ -12,16 +12,16 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-gradient-to-br from-blue-950 to-blue-900 text-white shadow-md">
       <div className=" max-w-7xl 2xl:max-w-[90%] mx-auto flex justify-between items-center p-4 2xl:p-6">
         {/* Logo */}
-        <div className="text-xl sm:text-2xl 2xl:text-3xl font-bold cursor-pointer">
+        <div className="cursor-pointer">
           <Link href="/" >
             {/* <span className="text-white">confoline</span> */}
-            <Image src="/images/confoline-logo.png" alt="confoline" width={150} height={40} className="object-contain" />
+            <Image src="/images/confoline-logo.png" alt="confoline" width={150} height={40} className="object-contain 2xl:w-44" />
             {/* <span className="text-blue-400">.</span> */}
           </Link>
         </div>
 
         {/* Navigation */}
-        <nav className="hidden lg:flex space-x-6 2xl:space-x-8 font-medium text-sm 2xl:text-xl">
+        <nav className="hidden lg:flex space-x-6 2xl:space-x-8 font-medium text-sm 2xl:text-[24px]">
           <Link href="/services" className="hover:text-blue-300 flex items-center gap-1">
             Services <ChevronDown size={16} />
           </Link>
@@ -45,15 +45,15 @@ export default function Header() {
         {/* Right side utilities */}
         <div className="hidden lg:flex items-center space-x-4 2xl:space-x-6">
           <button className="p-1.5 sm:p-2 hover:bg-blue-800 rounded-full">
-            <Search size={18} className="text-white" />
+            <Search size={18} className="text-white 2xl:size-7"/>
           </button>
-          <button className="p-1.5 sm:p-2 hover:bg-blue-800 rounded-full">
+          {/* <button className="p-1.5 sm:p-2 hover:bg-blue-800 rounded-full">
             <Globe size={18} className="text-white" />
           </button>
           <button className="text-white hover:text-blue-300 font-medium text-xs sm:text-sm 2xl:text-base">
             Sign In
-          </button>
-          <button className=" bg-blue-400 hover:bg-blue-300 px-5 sm:px-6 py-2 2xl:px-7 2xl:py-2.5 rounded-md font-medium transition-colors text-sm 2xl:text-base">
+          </button> */}
+          <button className=" w-31 h-11 2xl:w-51 2xl:h-18 bg-[#51A2FF] hover:bg-blue-300 rounded-full font-medium transition-colors text-sm 2xl:text-[24px]">
             Get Started
           </button>
         </div>
@@ -66,10 +66,10 @@ export default function Header() {
 
       {/* Mobile dropdown */}
       {open && (
-        <div className="lg:hidden bg-blue-800 px-4 pb-4 space-y-2">
+        <div className="lg:hidden bg-gradient-to-br from-blue-950 to-blue-900 px-4 pb-4 space-y-2">
           <a href="/services" className="block py-2">Services</a>
-          <a href="#" className="block py-2">Industries</a>
-          <a href="#" className="block py-2">Learning</a>
+          <a href="/industries" className="block py-2">Industries</a>
+          <a href="/customers" className="block py-2">Customers</a>
           <a href="/support" className="block py-2">Support</a>
           <a href="/partners" className="block py-2">Partners</a>
           <a href="#" className="block py-2">Company</a>

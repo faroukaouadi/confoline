@@ -18,10 +18,10 @@ export default function Partners() {
   return (
     <section className="bg-white">
       <div className="max-w-7xl 2xl:max-w-[90%] mx-auto px-4 py-10 2xl:py-14">
-        <h2 className="text-2xl text-black sm:text-3xl 2xl:text-4xl font-bold text-center mb-8">Our partners</h2>
+        <h2 className=" text-black text-2xl sm:text-3xl md:text-4xl 2xl:text-5xl font-bold text-center mb-8">Our partners</h2>
 
         <div className="relative">
-          <div className="flex flex-wrap items-center justify-center gap-x-10 2xl:gap-x-14 gap-y-6 pb-8 border-b border-gray-200">
+          <div className="flex flex-wrap items-center justify-center gap-x-10 2xl:gap-x-14 gap-y-6 pb-8 ">
             {partnersData.map((p) => (
               <div key={p.name} className="flex items-center justify-center h-16 2xl:h-20">
                 <Link href={p.link} target="_blank" rel="noopener noreferrer">
@@ -30,7 +30,7 @@ export default function Partners() {
                   alt={p.name}
                   width= {130}
                   height={40}
-                  className="object-contain"
+                  className="object-contain 2xl:w-52"
                 />
                 </Link>
               </div>

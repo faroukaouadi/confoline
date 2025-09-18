@@ -97,7 +97,7 @@ export default function DemoPopup({ open, onClose }) {
     >
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={handleClose} />
 
-      <div className="relative z-10 mx-3 w-full max-w-lg sm:max-w-3xl rounded-2xl border border-white/20 bg-white p-4 sm:p-8 shadow-2xl max-h-[80vh] overflow-y-auto">
+      <div className="relative z-10 mx-3 w-full max-w-lg sm:max-w-3xl rounded-2xl border border-white/20 bg-white p-4 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
         <div className="mb-6 flex items-start justify-between gap-4">
           <div>
             <h2 id="demo-title" className="text-xl sm:text-3xl font-semibold text-blue-950 text-center sm:text-left">

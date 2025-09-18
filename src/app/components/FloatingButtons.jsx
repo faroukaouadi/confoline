@@ -15,25 +15,25 @@ export default function FloatingButtons() {
         <div className="fixed right-3 sm:right-4 top-9/12 -translate-y-1/2 z-30 flex flex-col gap-2 sm:gap-3">
       <a
         href="#contact"
-        className="group inline-flex items-center gap-1.5 sm:gap-2 rounded-full border-2 sm:border-4 border-white/70 bg-cyan-400 px-3.5 py-2.5 sm:px-5 sm:py-3 text-blue-950 text-sm sm:text-base shadow-xl transition-transform hover:scale-105 focus-visible:scale-105"
+        className="group inline-flex items-center gap-1.5 sm:gap-2 rounded-full border-2  border-white/70 bg-[#51A2FF] px-3.5 py-2.5 sm:px-5 sm:py-3 text-white text-sm sm:text-base shadow-xl transition-transform hover:scale-105 focus-visible:scale-105"
         onClick={(e) => {
           e.preventDefault();
           setIsContactOpen(true);
         }}
       >
-        <MessageSquareText className="h-4 w-4 sm:h-5 sm:w-5" />
-        <span className="font-semibold">Contact</span>
+        <MessageSquareText className="h-4 w-4 sm:h-5 sm:w-5 2xl:h-6 2xl:w-6" />
+        <span className="font-semibold 2xl:text-[24px]">Contact</span>
       </a>
       <a
         href="#demo"
-        className="group inline-flex items-center gap-1.5 sm:gap-2 rounded-full border-2 sm:border-4 border-white/70 bg-cyan-400 px-3.5 py-2.5 sm:px-5 sm:py-3 text-blue-950 text-sm sm:text-base shadow-xl transition-transform hover:scale-105 focus-visible:scale-105"
+        className="group inline-flex items-center gap-1.5 sm:gap-2 rounded-full border-2  border-white/70 bg-[#51A2FF] px-3.5 py-2.5 sm:px-5 sm:py-3 text-white text-sm sm:text-base shadow-xl transition-transform hover:scale-105 focus-visible:scale-105"
         onClick={(e) => {
           e.preventDefault();
           setIsDemoOpen(true);
         }}
       >
-        <Laptop2 className="h-4 w-4 sm:h-5 sm:w-5" />
-        <span className="font-semibold">Demo</span>
+        <Laptop2 className="h-4 w-4 sm:h-5 sm:w-5 2xl:h-6 2xl:w-6" />
+        <span className="font-semibold 2xl:text-[24px]">Demo</span>
       </a>
 
       

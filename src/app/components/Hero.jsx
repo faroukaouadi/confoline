@@ -60,8 +60,8 @@ export default function Hero() {
   };
 
   return (
-    <div className="text-white min-h-screen bg-gradient-to-br from-blue-950 to-blue-900">
-      <div className=" max-w-7xl 2xl:max-w-[90%] mx-auto px-4 py-16 2xl:py-20">
+    <div className="text-white min-h-screen bg-[linear-gradient(180deg,#0C1B46_0%,#0065A1_30.76%,#0C1B46_100%)]">
+      <div className=" max-w-7xl 2xl:max-w-[90%] mx-auto px-4 pt-16 2xl:py-20">
         <div className="space-y-4">
 
           {/* Section Texte avec Carrousel */}
@@ -87,7 +87,7 @@ export default function Hero() {
 
                         {/* Description à droite */}
                         <div>
-                          <p className="text-lg sm:text-xl 2xl:text-[2.25rem] text-gray-200 leading-relaxed">
+                          <p className="text-lg sm:text-xl 2xl:text-[2.75rem] text-gray-200 leading-relaxed">
                             {slide.description}
                           </p>
                         </div>
@@ -106,7 +106,7 @@ export default function Hero() {
                       <button
                         key={index}
                         onClick={() => setCurrentTextIndex(index)}
-                        className={`w-3 h-3 2xl:w-4 2xl:h-4 rounded-full transition-colors ${index === currentTextIndex
+                        className={`w-3 h-3 2xl:w-5 2xl:h-5 rounded-full transition-colors ${index === currentTextIndex
                             ? 'bg-blue-400'
                             : 'bg-white/30 hover:bg-white/50'
                           }`}
@@ -125,10 +125,10 @@ export default function Hero() {
 
                 {/* Actions à droite */}
                 <div className="flex flex-col sm:flex-row items-center gap-2.5 sm:gap-4 2xl:gap-5">
-                  <button className="border-2 border-white text-white hover:bg-white hover:text-blue-900 px-5 sm:px-8 py-2.5 sm:py-3 2xl:px-10 2xl:py-4 rounded-full font-medium transition-colors text-sm 2xl:text-base w-full sm:w-auto">
+                  <button className=" border-2 border-cyan-300/60 text-white hover:bg-cyan-300/10 hover:text-white px-5 sm:px-8 py-2.5 sm:py-3 2xl:px-10 2xl:py-4 rounded-full font-medium transition-colors text-sm 2xl:text-[24px] w-[180] h-[56]  2xl:h-18 sm:w-auto">
                     Explore AI Agents
                   </button>
-                  <button className="bg-blue-400 hover:bg-blue-300 text-white px-5 sm:px-8 py-2.5 sm:py-3 2xl:px-10 2xl:py-4 rounded-full font-medium transition-colors text-sm 2xl:text-base w-full sm:w-auto">
+                  <button className="bg-[#51A2FF] hover:bg-blue-300 text-white px-5 sm:px-8 py-2.5 sm:py-3 2xl:px-10 2xl:py-4 rounded-full font-medium transition-colors text-sm 2xl:text-[24px]  w-[180] h-[56] 2xl:h-18 sm:w-auto">
                     Schedule Demo
                   </button>
                 </div>
