@@ -22,12 +22,12 @@ export default function SupportPage() {
             <section className="max-w-7xl 2xl:max-w-[90%] mx-auto px-4 pt-8 2xl:pt-12">
                 <div className="flex items-start justify-between">
                     <div>
-                        <h1 className="text-2xl sm:text-3xl 2xl:text-4xl font-extrabold">Support</h1>
+                        <h1 className="text-2xl sm:text-4xl 2xl:text-5xl font-extrabold">Support</h1>
                     </div>
                     <div className="hidden sm:block">
                         <Link
                             href="#"
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-white/20 bg-white/5 hover:bg-white/10 text-sm 2xl:text-lg"
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 text-sm 2xl:text-xl"
                         >
                             Learn more
                         </Link>
@@ -43,7 +43,7 @@ export default function SupportPage() {
                 <div className="grid grid-cols-12 gap-6 pt-6">
                     {/* Left tabs */}
                     <aside className="col-span-12 md:col-span-3">
-                        <nav className="space-y-2 text-sm 2xl:text-lg">
+                        <nav className="space-y-2 text-sm 2xl:text-2xl">
                             {tabs.map((t) => {
                                 const isActive = active === t.key;
                                 return (
@@ -206,7 +206,7 @@ export default function SupportPage() {
                         )}
 
                         {/* Bottom note */}
-                        <div className="mt-10 text-center text-xs sm:text-sm 2xl:text-base text-blue-200">
+                        <div className="mt-10 text-center text-xs sm:text-sm 2xl:text-xl text-blue-200">
                             Watch today’s vision demo. Our Next generation of presales architect.{' '}
                             <Link href="#" className="underline hover:text-white">Watch.</Link>
                         </div>

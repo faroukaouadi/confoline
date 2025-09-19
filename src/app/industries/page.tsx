@@ -21,15 +21,15 @@ export default function IndustriesPage() {
         {/* Header */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h1 className="text-2xl sm:text-3xl 2xl:text-4xl font-semibold tracking-tight">Industries</h1>
-            <p className="mt-1 text-blue-200 max-w-3xl text-sm sm:text-base 2xl:text-xl">
+            <h1 className="text-2xl sm:text-4xl 2xl:text-5xl font-semibold tracking-tight">Industries</h1>
+            <p className="mt-1 text-blue-200 max-w-3xl text-sm sm:text-base 2xl:text-2xl">
               Confoline help you solve the complex business challenges unique to your industry.
             </p>
           </div>
           <div className="shrink-0">
             <Link
               href="#learn-more"
-              className="inline-flex items-center justify-center rounded-md border border-cyan-300/40 bg-cyan-500/10 px-4 py-2 text-sm 2xl:text-lg font-medium text-cyan-200 hover:bg-cyan-500/20"
+              className="inline-flex items-center justify-center rounded-full border border-cyan-300/40 bg-cyan-500/10 px-4 py-2 text-sm 2xl:text-xl font-medium text-cyan-200 hover:bg-cyan-500/20"
             >
               Learn more
             </Link>
@@ -45,7 +45,7 @@ export default function IndustriesPage() {
             <div
               key={item.label}
               className={
-                "rounded-md border border-white/15 bg-white/5 px-4 py-3 text-sm 2xl:text-xl font-semibold text-blue-100 " +
+                "rounded-md border border-white/15 bg-white/5 px-4 py-3 text-sm 2xl:text-2xl font-semibold text-blue-100 " +
                 (item.active
                   ? "ring-2 ring-cyan-400/60 bg-cyan-500/10"
                   : "hover:bg-white/10")
@@ -60,7 +60,7 @@ export default function IndustriesPage() {
         </div>
 
         {/* Bottom note */}
-        <div className="mt-10 text-center text-xs text-blue-200">
+        <div className="mt-10 text-center text-xs 2xl:text-xl text-blue-200">
           <span>
             Watch today’s vision demo. Our Next generation of presales architect.
           </span>{" "}

@@ -10,15 +10,15 @@ export default function PartnersPage() {
       <section className="max-w-7xl 2xl:max-w-[90%] mx-auto px-4 pt-8 pb-6 2xl:pt-12 2xl:pb-8">
         <div className="flex items-start justify-between">
           <div>
-            <h1 className="text-2xl sm:text-3xl 2xl:text-4xl font-extrabold">Partners</h1>
-            <p className="mt-2 text-sm sm:text-base 2xl:text-xl text-blue-200 max-w-2xl">
+            <h1 className="text-2xl sm:text-4xl 2xl:text-5xl font-extrabold">Partners</h1>
+            <p className="mt-2 text-sm sm:text-base 2xl:text-2xl text-blue-200 max-w-2xl">
               Proud to collaborate with industry-leading partners driving innovation and value.
             </p>
           </div>
           <div className="hidden sm:block">
             <Link
               href="#"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-white/20 bg-white/5 hover:bg-white/10 text-sm 2xl:text-lg"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 text-sm 2xl:text-xl"
             >
               Learn more
             </Link>
@@ -37,7 +37,7 @@ export default function PartnersPage() {
                     alt={p.name}
                     width={200}
                     height={64}
-                    className="object-contain w-[200px] h-[64px]"
+                    className="object-contain 2xl:w-55"
                   />
                 </Link>
               </div>
@@ -45,7 +45,7 @@ export default function PartnersPage() {
           </div>
         </div>
 
-        <div className="mt-6 text-center text-xs sm:text-sm 2xl:text-base text-blue-200">
+        <div className="mt-6 text-center text-xs sm:text-sm 2xl:text-xl text-blue-200">
           Watch today’s vision demo. Our Next generation of presales architect.{' '}
           <Link href="#" className="underline hover:text-white">
             Watch.
