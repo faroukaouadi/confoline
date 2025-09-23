@@ -28,14 +28,14 @@ export default function PartnersPage() {
 
       <section className="max-w-7xl 2xl:max-w-[90%] mx-auto px-4 pb-10 2xl:pb-14">
         <div className="rounded-xl bg-white shadow-sm border border-white/10 p-4 sm:p-6 2xl:p-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-10 2xl:gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
             {partnersData.map((p) => (
               <div key={p.name} className="flex items-center justify-center">
                 <Link href={p.link} target="_blank" rel="noopener noreferrer" className="block">
                   <Image
                     src={p.src}
                     alt={p.name}
-                    width={200}
+                    width={150}
                     height={64}
                     className="object-contain 2xl:w-55"
                   />

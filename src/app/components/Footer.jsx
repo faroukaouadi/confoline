@@ -1,4 +1,5 @@
 import Link from "next/link";
+import {MapPin} from "lucide-react";
 
 export default function Footer() {
   return (
@@ -54,11 +55,8 @@ export default function Footer() {
                <a aria-label="LinkedIn" href="#" className="p-1 rounded-full text-[#51A2FF] hover:bg-white/10">
                 <svg width="18" height="18" className="2xl:w-6 2xl:h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2h.05c.53-1 1.83-2.2 3.77-2.2 4.03 0 4.78 2.65 4.78 6.1V24h-4v-7.1c0-1.7-.03-3.9-2.38-3.9-2.38 0-2.75 1.86-2.75 3.77V24h-4V8z"/></svg>
               </a>
-               <a aria-label="Twitter" href="#" className="p-1 rounded-full text-[#51A2FF] hover:bg-white/10">
-                <svg width="18" height="18" className="2xl:w-6 2xl:h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M22.162 5.656c-.793.352-1.644.59-2.538.696a4.428 4.428 0 0 0 1.944-2.444 8.828 8.828 0 0 1-2.807 1.073 4.414 4.414 0 0 0-7.515 4.024A12.528 12.528 0 0 1 3.1 4.79a4.41 4.41 0 0 0 1.365 5.888c-.682-.02-1.326-.21-1.887-.522v.052a4.415 4.415 0 0 0 3.54 4.325c-.322.087-.662.133-1.012.133-.247 0-.49-.024-.725-.07a4.42 4.42 0 0 0 4.123 3.066 8.85 8.85 0 0 1-5.473 1.888c-.356 0-.707-.021-1.053-.061A12.48 12.48 0 0 0 8.07 22c8.135 0 12.58-6.739 12.58-12.58 0-.191-.004-.381-.013-.57a8.984 8.984 0 0 0 2.205-2.294z"/></svg>
-              </a>
-               <a aria-label="Facebook" href="#" className="p-1 rounded-full text-[#51A2FF] hover:bg-white/10">
-                <svg width="18" height="18" className="2xl:w-6 2xl:h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M22.676 0H1.324C.593 0 0 .593 0 1.324v21.352C0 23.407.593 24 1.324 24h11.5v-9.294H9.847v-3.62h2.977V8.41c0-2.948 1.8-4.554 4.43-4.554 1.26 0 2.342.094 2.656.136v3.08h-1.82c-1.427 0-1.702.678-1.702 1.672v2.19h3.404l-.444 3.62h-2.96V24h5.805C23.407 24 24 23.407 24 22.676V1.324C24 .593 23.407 0 22.676 0z"/></svg>
+               <a aria-label="YouTube" href="#" className="p-1 rounded-full text-[#51A2FF] hover:bg-white/10">
+                <svg width="18" height="18" className="2xl:w-6 2xl:h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.003 3.003 0 0 0-2.113-2.126C19.595 3.5 12 3.5 12 3.5s-7.595 0-9.385.56A3.003 3.003 0 0 0 .502 6.186C0 7.98 0 12 0 12s0 4.02.502 5.814a3.003 3.003 0 0 0 2.113 2.126C4.405 20.5 12 20.5 12 20.5s7.595 0 9.385-.56a3.003 3.003 0 0 0 2.113-2.126C24 16.02 24 12 24 12s0-4.02-.502-5.814zM9.75 15.5v-7l6 3.5-6 3.5z"/></svg>
               </a>
             </div>
             </div>
@@ -73,7 +71,7 @@ export default function Footer() {
                 <Link href="#" className="hover:underline">Conditions</Link>
                 <Link href="#" className="hover:underline">Cookies</Link>
               </div>
-              <p className="text-gray-900">© 2024 BI Insights. All Rights Reserved.</p>
+              <p className="text-gray-900">© {new Date().getFullYear()} Confoline. All rights reserved  </p>
             </div>
           </div>
 
@@ -90,7 +88,7 @@ export default function Footer() {
                 />
               </div>
               <div className="flex items-start gap-2 text-[12px] sm:text-sm mt-3">
-                <span className="inline-block size-2 mt-1 rounded-full bg-blue-300" />
+                <MapPin />
                 <div>
                   <p className="font-medium">Confoline — 6 RUE DES BATELIERS</p>
                   <p className="text-white/80">92110 CLICHY, France</p>

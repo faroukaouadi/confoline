@@ -1,6 +1,6 @@
 "use client";
 
-import { Database, Cloud, Shield, Server, Network, Boxes, Gauge, Globe, Cpu, Wallet } from "lucide-react";
+import { Cloud, Shield, Server, Network, Boxes, Gauge, Globe, Cpu, Wallet } from "lucide-react";
 
 type ServiceItem = {
   label: string;
@@ -115,11 +115,11 @@ export default function Services() {
             </div>
           </div>
 
-          <div className="mt-12 flex justify-center">
+          {/* <div className="mt-12 flex justify-center">
             <button className="px-8 py-3 rounded-4xl text-white border border-cyan-300/60 hover:bg-cyan-300/10 transition-colors text-base 2xl:text-[24px] sm:w-auto h-[56] 2xl:h-18">
               Explore the platform
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
       

@@ -55,8 +55,8 @@ function HeroCarousel() {
                                     src={image}
                                     alt={`AI Platform ${index + 1}`}
                                     className={`object-cover mx-auto block ${index % 2 === 0
-                                        ? 'w-76 h-63 2xl:w-116 2xl:h-103'
-                                        : 'w-76 h-74 2xl:w-116 2xl:h-114'
+                                        ? 'w-76 h-63 2xl:w-116 2xl:h-93'
+                                        : 'w-76 h-74 2xl:w-116 2xl:h-104'
                                         }`}
                                     onError={(e) => {
                                         e.target.style.display = 'none';

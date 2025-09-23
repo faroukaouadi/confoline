@@ -10,7 +10,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-gradient-to-br from-blue-950 to-blue-900 text-white shadow-md">
-      <div className=" max-w-7xl 2xl:max-w-[90%] mx-auto flex justify-between items-center p-4 2xl:p-6">
+      <div className="max-w-[90%] mx-auto flex justify-between items-center p-4 2xl:p-6">
         {/* Logo */}
         <div className="cursor-pointer">
           <Link href="/" >
@@ -53,7 +53,7 @@ export default function Header() {
           <button className="text-white hover:text-blue-300 font-medium text-xs sm:text-sm 2xl:text-base">
             Sign In
           </button> */}
-          <button className=" w-31 h-11 2xl:w-51 2xl:h-18 bg-[#51A2FF] hover:bg-blue-300 rounded-full font-medium transition-colors text-sm 2xl:text-[24px]">
+          <button className=" w-31 h-11 2xl:w-51 2xl:h-18 bg-[#51A2FF] hover:bg-blue-300 rounded-full font-medium cursor-pointer transition-colors text-sm 2xl:text-[24px]">
             Get Started
           </button>
         </div>
@@ -73,7 +73,7 @@ export default function Header() {
           <a href="/support" className="block py-2">Support</a>
           <a href="/partners" className="block py-2">Partners</a>
           <a href="#" className="block py-2">Company</a>
-          <button className="w-full mt-3 bg-blue-400 px-6 py-2 rounded-md hover:bg-blue-300">
+          <button className="w-full mt-3 bg-blue-400 px-6 py-2 rounded-md hover:bg-blue-300 cursor-pointer">
             Get Started
           </button>
         </div>

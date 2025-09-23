@@ -14,8 +14,8 @@ export default function News() {
             </h2>
           </div>
           <div className="hidden sm:flex items-center gap-3">
-            <button className="bg-blue-400 hover:bg-blue-300 text-white px-8 py-3 rounded-full font-medium transition-colors 2xl:text-[24px]">View Blogs</button>
-            <button className="border-2 border-cyan-300/60 text-white hover:bg-cyan-300/10 hover:text-white px-8 py-3 rounded-full font-medium transition-colors 2xl:text-[24px]">View Analyst Reports</button>
+            <button className="bg-blue-400 hover:bg-blue-300 cursor-pointer text-white px-8 py-3 rounded-full font-medium transition-colors 2xl:text-[24px]">View Blogs</button>
+            <button className="border-2 border-cyan-300/60 text-white cursor-pointer hover:bg-cyan-300/10 hover:text-white px-8 py-3 rounded-full font-medium transition-colors 2xl:text-[24px]">View Analyst Reports</button>
           </div>
         </div>
 
@@ -47,7 +47,7 @@ export default function News() {
           {/* Top right card */}
           <article className="rounded-2xl overflow-hidden bg-blue-800">
             <div className="h-full flex">
-              <div className="bg-[linear-gradient(180deg,#0C1B46_0%,#0065A1_30.76%,#0C1B46_100%)] w-1/2 lg:w-auto sm:h-57 2xl:h-77 flex justify-center items-center">
+              <div className="w-5/12 h-full flex justify-center items-center bg-[linear-gradient(180deg,#0C1B46_0%,#0065A1_30.76%,#0C1B46_100%)]">
               <img src="/images/employee2.jpg" alt="Elastic report" className="w-10/12 h-9/12 object-cover" />
               </div>
               <div className="p-6 2xl:p-8 h-full flex flex-col flex-1">
@@ -68,7 +68,7 @@ export default function News() {
           {/* Bottom right card */}
           <article className="rounded-2xl overflow-hidden bg-blue-800">
             <div className="h-full flex">
-            <div className="bg-[linear-gradient(180deg,#0C1B46_0%,#0065A1_30.76%,#0C1B46_100%)] w-1/2 lg:w-auto sm:h-57 2xl:h-77 flex justify-center items-center">
+            <div className="w-5/12 h-full flex justify-center items-center bg-[linear-gradient(180deg,#0C1B46_0%,#0065A1_30.76%,#0C1B46_100%)]">
               <img src="/images/employee2.jpg" alt="IDC report" className="w-10/12 h-9/12 object-cover" />
             </div>
               <div className="p-6 2xl:p-8 h-full flex flex-col flex-1">
