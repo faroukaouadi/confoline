@@ -47,7 +47,7 @@ export default function ServicesPage() {
         </div>
 
         <p className="mt-10 text-center text-xs sm:text-sm 2xl:text-xl text-blue-300">
-          Watch today’s vision demo. Our next generation of presales architect: <a
+          Watch today’s vision demo. Our next generation of Presales Architect: <a
             href="#watch"
             className="underline hover:text-white"
           >

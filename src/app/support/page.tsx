@@ -207,7 +207,7 @@ export default function SupportPage() {
 
                         {/* Bottom note */}
                         <div className="mt-10 text-center text-xs sm:text-sm 2xl:text-xl text-blue-200">
-                            Watch today’s vision demo. Our Next generation of presales architect.{' '}
+                            Watch today’s vision demo. Our Next generation of Presales Architect.{' '}
                             <Link href="#" className="underline hover:text-white">Watch.</Link>
                         </div>
                     </section>

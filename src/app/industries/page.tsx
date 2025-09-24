@@ -60,9 +60,9 @@ export default function IndustriesPage() {
         </div>
 
         {/* Bottom note */}
-        <div className="mt-10 text-center text-xs 2xl:text-xl text-blue-200">
+        <div className="mt-10 text-center text-xs sm:text-sm 2xl:text-xl text-blue-200">
           <span>
-            Watch today’s vision demo. Our Next generation of presales architect.
+            Watch today’s vision demo. Our Next generation of Presales Architect.
           </span>{" "}
           <Link href="#watch" className="text-cyan-300 hover:underline">
             Watch.
