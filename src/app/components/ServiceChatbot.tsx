@@ -18,7 +18,7 @@ const seedSuggestions = [
 ];
 
 export default function ServiceChatbot() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [mounted, setMounted] = useState(false);
@@ -83,7 +83,7 @@ export default function ServiceChatbot() {
       <button
         aria-label="Open services chat"
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-5 right-5 z-[1000] rounded-full bg-blue-600 p-3 text-white shadow-lg hover:bg-blue-500"
+        className="fixed bottom-6 right-5 z-[1000] rounded-full bg-blue-600 p-3 text-white shadow-lg hover:bg-blue-500"
       >
         <MessageCircle size={22} className="2xl:size-9" />
       </button>
@@ -91,7 +91,7 @@ export default function ServiceChatbot() {
   }
 
   return (
-    <div className="fixed bottom-5 right-5 z-[1000] w-[320px] sm:w-[360px] 2xl:w-[480px]">
+    <div className="fixed bottom-6 right-5 z-[1000] w-[320px] sm:w-[360px] 2xl:w-[480px]">
       <div className="rounded-xl border border-blue-200 bg-white text-slate-900 shadow-xl">
         <div className="flex items-center justify-between rounded-t-xl bg-blue-800 px-4 py-3 text-white">
           <div>

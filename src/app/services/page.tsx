@@ -56,8 +56,7 @@ export default function ServicesPage() {
         </p>
       </section>
 
-      {/* Chatbot Widget */}
-      <ServiceChatbot />
+
     </main>
   );
 }
