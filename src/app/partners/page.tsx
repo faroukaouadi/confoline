@@ -1,10 +1,44 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { partnersData } from "../components/Partners";
+
+type Partner = { id: number; name: string; src: string; link: string };
 
 export default function PartnersPage() {
+  const [partners, setPartners] = useState<Partner[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    async function load() {
+      try {
+        setLoading(true);
+        setError(null);
+        const res = await fetch("http://127.0.0.1:8000/admin/confoline-Api/partners.php", {
+          signal: controller.signal,
+          headers: { "Accept": "application/json" },
+          cache: "no-store",
+        });
+        if (!res.ok) throw new Error("Failed to fetch partners");
+        const json = await res.json();
+        if (json && json.success && Array.isArray(json.data)) {
+          setPartners(json.data);
+        } else {
+          throw new Error("Invalid response format");
+        }
+      } catch (e: any) {
+        if (e.name !== "AbortError") setError(e.message || "Error loading partners");
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
+    return () => controller.abort();
+  }, []);
+
   return (
     <main className="bg-gradient-to-br from-blue-950 to-blue-900 text-white min-h-screen">
       <section className="max-w-7xl 2xl:max-w-[90%] mx-auto px-4 pt-8 pb-6 2xl:pt-12 2xl:pb-8">
@@ -28,21 +62,29 @@ export default function PartnersPage() {
 
       <section className="max-w-7xl 2xl:max-w-[90%] mx-auto px-4 pb-10 2xl:pb-14">
         <div className="rounded-xl bg-white shadow-sm border border-white/10 p-4 sm:p-6 2xl:p-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-            {partnersData.map((p) => (
-              <div key={p.name} className="flex items-center justify-center">
-                <Link href={p.link} target="_blank" rel="noopener noreferrer" className="block">
-                  <Image
-                    src={p.src}
-                    alt={p.name}
-                    width={150}
-                    height={64}
-                    className="object-contain 2xl:w-55"
-                  />
-                </Link>
-              </div>
-            ))}
-          </div>
+          {loading && (
+            <div className="text-center text-blue-900">Loading partners...</div>
+          )}
+          {error && (
+            <div className="text-center text-red-600">{error}</div>
+          )}
+          {!loading && !error && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+              {partners.map((p) => (
+                <div key={p.id} className="flex items-center justify-center">
+                  <Link href={p.link} target="_blank" rel="noopener noreferrer" className="block">
+                    <Image
+                      src={p.src}
+                      alt={p.name}
+                      width={150}
+                      height={64}
+                      className="object-contain 2xl:w-55"
+                    />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="mt-6 text-center text-xs sm:text-sm 2xl:text-xl text-blue-200">
