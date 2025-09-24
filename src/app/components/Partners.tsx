@@ -8,11 +8,9 @@ import Autoplay from "embla-carousel-autoplay";
 
 export const partnersData = [
   { name: "opentext", src: "/images/opentext.png", link: 'https://www.opentext.com/' },
-  // { name: "ser", src: "/images/SER.png", link: 'https://www.sergroup.com/' },
   { name: "newrelic", src: "/images/newrelic.png", link: 'https://newrelic.com/' },
   { name: "elastic", src: "/images/elastic.png", link: 'https://www.elastic.co/' },
   { name: "tricentis", src: "/images/tricentis.png", link: 'https://www.tricentis.com/' },
-  // { name: "opsramp", src: "/images/OpsRamp.png", link: 'https://www.opsramp.com/' },
   { name: "zabbix", src: "/images/Zabbix.png", link: 'https://www.zabbix.com/'},
   { name: "gitLab", src: "/images/GitLab.png", link: 'https://about.gitlab.com/'},
   { name: "splunk", src: "/images/Splunk.png", link: 'https://www.splunk.com/'},
