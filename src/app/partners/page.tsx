@@ -49,7 +49,7 @@ export default function PartnersPage() {
               Proud to collaborate with industry-leading partners driving innovation and value.
             </p>
           </div>
-          <div className="hidden sm:block">
+          <div className="hidden sm:block ">
             <Link
               href="#"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 text-sm 2xl:text-xl"
