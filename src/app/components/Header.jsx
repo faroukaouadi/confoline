@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { Menu, X, Search, Globe, ChevronDown } from "lucide-react";
+import { Menu, X, Search, Globe, ChevronDown, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -12,6 +12,8 @@ export default function Header() {
 
   const navLinkClass = (href) =>
     `hover:text-blue-300 flex items-center gap-1 ${pathname && pathname.startsWith(href) ? "text-blue-300" : ""}`;
+  const isActive = (href) => pathname && pathname.startsWith(href);
+  const navHref = (href) => (isActive(href) ? "/" : href);
 
   return (
     <header className="sticky top-0 z-50 bg-gradient-to-br from-blue-950 to-blue-900 text-white shadow-md">
@@ -25,20 +27,20 @@ export default function Header() {
 
         {/* Navigation */}
         <nav className="hidden lg:flex space-x-6 2xl:space-x-8 font-medium text-sm 2xl:text-[24px]">
-          <Link href="/services" className={navLinkClass("/services")}>
-            Services <ChevronDown size={16} />
+          <Link href={navHref("/services")} className={navLinkClass("/services")}>
+            Services {isActive("/services") ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
           </Link>
-          <Link href="/industries" className={navLinkClass("/industries")}>
-            Industries <ChevronDown size={16} />
+          <Link href={navHref("/industries")} className={navLinkClass("/industries")}>
+            Industries {isActive("/industries") ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
           </Link>
-          <Link href="/customers" className={navLinkClass("/customers")}>
-            Customers <ChevronDown size={16} />
+          <Link href={navHref("/customers")} className={navLinkClass("/customers")}>
+            Customers {isActive("/customers") ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
           </Link>
-          <Link href="/support" className={navLinkClass("/support")}>
-            Support <ChevronDown size={16} />
+          <Link href={navHref("/support")} className={navLinkClass("/support")}>
+            Support {isActive("/support") ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
           </Link>
-          <Link href="/partners" className={navLinkClass("/partners")}>
-            Partners <ChevronDown size={16} />
+          <Link href={navHref("/partners")} className={navLinkClass("/partners")}>
+            Partners {isActive("/partners") ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
           </Link>
           <Link href="#" className="hover:text-blue-300 flex items-center gap-1">
             Company <ChevronDown size={16} />
@@ -70,11 +72,11 @@ export default function Header() {
       {/* Mobile dropdown */}
       {open && (
         <div className="lg:hidden bg-gradient-to-br from-blue-950 to-blue-900 px-4 pb-4 space-y-2">
-          <Link href="/services" className={`block py-2 ${pathname && pathname.startsWith("/services") ? "text-blue-300" : ""}`}>Services</Link>
-          <Link href="/industries" className={`block py-2 ${pathname && pathname.startsWith("/industries") ? "text-blue-300" : ""}`}>Industries</Link>
-          <Link href="/customers" className={`block py-2 ${pathname && pathname.startsWith("/customers") ? "text-blue-300" : ""}`}>Customers</Link>
-          <Link href="/support" className={`block py-2 ${pathname && pathname.startsWith("/support") ? "text-blue-300" : ""}`}>Support</Link>
-          <Link href="/partners" className={`block py-2 ${pathname && pathname.startsWith("/partners") ? "text-blue-300" : ""}`}>Partners</Link>
+          <Link href={navHref("/services")} className={`block py-2 ${pathname && pathname.startsWith("/services") ? "text-blue-300" : ""}`}>Services</Link>
+          <Link href={navHref("/industries")} className={`block py-2 ${pathname && pathname.startsWith("/industries") ? "text-blue-300" : ""}`}>Industries</Link>
+          <Link href={navHref("/customers")} className={`block py-2 ${pathname && pathname.startsWith("/customers") ? "text-blue-300" : ""}`}>Customers</Link>
+          <Link href={navHref("/support")} className={`block py-2 ${pathname && pathname.startsWith("/support") ? "text-blue-300" : ""}`}>Support</Link>
+          <Link href={navHref("/partners")} className={`block py-2 ${pathname && pathname.startsWith("/partners") ? "text-blue-300" : ""}`}>Partners</Link>
           <Link href="#" className="block py-2">Company</Link>
           <button className="w-full mt-3 bg-blue-400 px-6 py-2 rounded-md hover:bg-blue-300 cursor-pointer">
             Get Started
