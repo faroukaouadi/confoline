@@ -11,6 +11,8 @@ export default function PartnersPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  console.log('test partners',partners)
+
   useEffect(() => {
     const controller = new AbortController();
     async function load() {
