@@ -19,7 +19,10 @@ export default function PartnersPage() {
       try {
         setLoading(true);
         setError(null);
-        const res = await fetch("http://127.0.0.1:8000/admin/confoline-Api/partners.php", {
+        const apiUrl = process.env.NODE_ENV === 'development' 
+          ? "http://127.0.0.1:8000/admin/confoline-Api/partners.php"
+          : "/admin/confoline-Api/partners.php";
+        const res = await fetch(apiUrl, {
           signal: controller.signal,
           headers: { "Accept": "application/json" },
           cache: "no-store",

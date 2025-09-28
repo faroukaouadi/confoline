@@ -11,7 +11,7 @@
 .auth-form{display:flex;flex-direction:column;gap:14px}
 .form-group{display:flex;flex-direction:column;gap:8px}
 label{font-size:13px;color:var(--muted)}
-input{background:#0b1220;border:1px solid rgba(255,255,255,.08);color:var(--text);padding:12px 14px;border-radius:10px;outline:none;transition:border .2s}input:focus{border:1px solid var(--acc)}
+input,textarea,select{background:#0b1220;border:1px solid rgba(255,255,255,.08);color:var(--text);padding:12px 14px;border-radius:10px;outline:none;transition:border .2s;font-family:inherit}input:focus,textarea:focus,select:focus{border:1px solid var(--acc)}textarea{resize:vertical;min-height:80px}select{appearance:none;background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");background-position:right 12px center;background-repeat:no-repeat;background-size:16px;padding-right:40px}
 .btn-primary{background:linear-gradient(90deg,var(--acc),var(--acc-2));border:none;color:#fff;padding:12px 16px;border-radius:10px;font-weight:600;cursor:pointer;box-shadow:0 6px 20px rgba(99,102,241,.35);transition:transform .05s ease-in} .btn-primary:active{transform:translateY(1px)}
 
 /* Dashboard */

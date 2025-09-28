@@ -25,6 +25,7 @@ $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
       <nav class="menu">
         <a href="../dashboard.php" class="menu-item">Dashboard</a>
         <a href="./index.php" class="menu-item active">Partenaires</a>
+        <a href="../news/index.php" class="menu-item ">Actualités</a>
       </nav>
       <form action="../logout.php" method="post">
         <button class="btn-logout" type="submit">Déconnexion</button>

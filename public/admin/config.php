@@ -11,5 +11,7 @@ define('DB_PASS', '');
 // Upload settings
 define('PARTNERS_UPLOAD_DIR', __DIR__ . '/../images/partners');
 define('PARTNERS_PUBLIC_PATH', '/images/partners');
+define('NEWS_UPLOAD_DIR', __DIR__ . '/../images/news');
+define('NEWS_PUBLIC_PATH', '/images/news');
 
 
