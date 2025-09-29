@@ -22,6 +22,7 @@ $username = isset($_SESSION['admin_username']) ? $_SESSION['admin_username'] : '
         <a href="#" class="menu-item active">Dashboard</a>
         <a href="partners/index.php" class="menu-item">Partenaires</a>
         <a href="news/index.php" class="menu-item">Actualités</a>
+        <a href="gallery/index.php" class="menu-item">Galerie</a>
         <a href="#" class="menu-item">Paramètres</a>
       </nav>
       <form action="logout.php" method="post">

@@ -14,4 +14,7 @@ define('PARTNERS_PUBLIC_PATH', '/images/partners');
 define('NEWS_UPLOAD_DIR', __DIR__ . '/../images/news');
 define('NEWS_PUBLIC_PATH', '/images/news');
 
+define('GALLERY_UPLOAD_DIR', __DIR__ . '/../images/gallery');
+define('GALLERY_PUBLIC_PATH', '/images/gallery');
+
 
