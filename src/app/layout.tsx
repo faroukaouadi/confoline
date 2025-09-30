@@ -35,7 +35,7 @@ export default function RootLayout({
         {children}
         <FloatingButtons />
       {/* Chatbot Widget */}
-      <ServiceChatbot />
+        <ServiceChatbot />
         <Footer />
       </body>
     </html>
