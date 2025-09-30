@@ -2,13 +2,15 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { Menu, X, Search, Globe, ChevronDown, ChevronRight } from "lucide-react";
+import { Menu, X, Search, ChevronDown, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [companyOpen, setCompanyOpen] = useState(false);
   const pathname = usePathname();
+
 
   const navLinkClass = (href) =>
     `hover:text-blue-300 flex items-center gap-1 ${pathname && pathname.startsWith(href) ? "text-blue-300" : ""}`;
@@ -42,9 +44,27 @@ export default function Header() {
           <Link href={navHref("/partners")} className={navLinkClass("/partners")}>
             Partners {isActive("/partners") ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
           </Link>
-          <Link href="#" className="hover:text-blue-300 flex items-center gap-1">
-            Company <ChevronDown size={16} />
-          </Link>
+          <div className="relative group cursor-pointer" onMouseEnter={()=>setCompanyOpen(true)} onMouseLeave={()=>setCompanyOpen(false)}>
+          <button   className="hover:text-blue-300 flex items-center gap-1">
+            Company {companyOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+          </button>
+          {companyOpen && (
+              <div className="absolute left-0 top-full w-35  bg-gradient-to-br from-blue-950 to-blue-900 shadow-lg rounded-lg py-2">
+                <Link href="#" className="block px-4 py-2 hover:bg-blue-800 ">
+                  Company Story
+                </Link>
+                <Link href="/company/blogs" className="block px-4 py-2 hover:bg-blue-800">
+                  Blogs
+                </Link>
+                <Link href="/company/career" className="block px-4 py-2 hover:bg-blue-800">
+                  Career
+                </Link>
+                <Link href="/company/locations" className="block px-4 py-2 hover:bg-blue-800">
+                  Locations
+                </Link>
+              </div>
+          )}
+          </div>
         </nav>
         
         {/* Right side utilities */}
