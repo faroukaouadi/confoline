@@ -20,43 +20,43 @@ $username = isset($_SESSION['admin_username']) ? $_SESSION['admin_username'] : '
       <div class="brand">Confoline Admin</div>
       <nav class="menu">
         <a href="#" class="menu-item active">Dashboard</a>
-        <a href="partners/index.php" class="menu-item">Partenaires</a>
-        <a href="news/index.php" class="menu-item">Actualités</a>
-        <a href="gallery/index.php" class="menu-item">Galerie</a>
-        <a href="#" class="menu-item">Paramètres</a>
+        <a href="partners/index.php" class="menu-item">Partners</a>
+        <a href="news/index.php" class="menu-item">News</a>
+        <a href="gallery/index.php" class="menu-item">Gallery</a>
+        <!-- <a href="#" class="menu-item">Paramètres</a> -->
       </nav>
       <form action="logout.php" method="post">
-        <button class="btn-logout" type="submit">Déconnexion</button>
+        <button class="btn-logout" type="submit">Logout</button>
       </form>
     </aside>
 
     <main class="content">
       <header class="topbar">
-        <h1>Bienvenue, <?php echo htmlspecialchars($username); ?></h1>
+        <h1>Welcome, <?php echo htmlspecialchars($username); ?></h1>
       </header>
 
       <section class="cards">
         <div class="card">
-          <div class="card-title">Visites aujourd'hui</div>
+          <div class="card-title">Visits today</div>
           <div class="card-value">1,248</div>
         </div>
         <div class="card">
-          <div class="card-title">Nouveaux clients</div>
+          <div class="card-title">New customers</div>
           <div class="card-value">32</div>
         </div>
         <div class="card">
-          <div class="card-title">Tickets ouverts</div>
+          <div class="card-title">Tickets open</div>
           <div class="card-value">7</div>
         </div>
       </section>
 
       <section class="panel">
-        <div class="panel-header">Activité récente</div>
+        <div class="panel-header">Recent activity</div>
         <div class="panel-body">
           <ul class="activity">
-            <li>Utilisateur "demo" créé</li>
-            <li>Mise à jour des paramètres globaux</li>
-            <li>Export des rapports hebdomadaires</li>
+            <li>"demo" user created</li>
+            <li>Update global settings</li>
+            <li>Exporting weekly reports</li>
           </ul>
         </div>
       </section>

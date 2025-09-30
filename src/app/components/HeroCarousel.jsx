@@ -1,11 +1,13 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay, FreeMode } from 'swiper/modules';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import 'swiper/css/free-mode'; 
+
 function HeroCarousel() {
     const [images, setImages] = useState([])
     const [loading, setLoading] = useState(true)
@@ -44,25 +46,30 @@ function HeroCarousel() {
             {error && <div className="text-center text-red-400 py-8">{error}</div>}
             {!loading && !error && (
             <Swiper
-                modules={[Navigation, Pagination, Autoplay]}
+                modules={[Navigation, Pagination, Autoplay, FreeMode]}
                 spaceBetween={32}  
                 slidesPerView={1}
                 centeredSlides={true}
+                slidesPerGroup={1}
                 loop={true}
                 speed={8000}
                 autoplay={{
                     delay: 0,
-                    disableOnInteraction: true,
+                    disableOnInteraction: false,
                     
                 }}
+                    freeMode={{
+                        enabled: true,
+                        momentum: false, // empêche l'arrêt entre les slides
+                    }}
                 breakpoints={{
                     0: { slidesPerView: 1,centeredSlides: true },
                     640: { slidesPerView: 1.5,centeredSlides: true},
-                    768: { slidesPerView: 2.5,centeredSlides: true },
-                    1024: { slidesPerView: 3.5,centeredSlides: true},
-                    1280: { slidesPerView: 4.5,centeredSlides: true },
-                    1536: { slidesPerView: 5.5,centeredSlides: true},
-                    1920: { slidesPerView: 5.5,centeredSlides: true }
+                    768: { slidesPerView: 2.5,centeredSlides: false},
+                    1024: { slidesPerView: 3.5,centeredSlides: false},
+                    1280: { slidesPerView: 4.5,centeredSlides: false},
+                    1536: { slidesPerView: 5.5,centeredSlides: false},
+                    1920: { slidesPerView: 5.5,centeredSlides: false}
                 }}
                 navigation={{
                     nextEl: '.swiper-button-next',
@@ -71,8 +78,8 @@ function HeroCarousel() {
                 
                 className="py-8"
             >
-                {images.map((item, index) => (
-                    <SwiperSlide key={item.id || index}>
+                {[...images,...images].map((item, index) => (
+                    <SwiperSlide key={index}>
                         <div className="group h-105 2xl:h-120 flex items-center justify-center">
                             <div className={`overflow-hidden rounded-3xl border border-white/10 transition-all duration-500 group-hover:scale-105  flex items-center justify-center`}>
                                 <img
