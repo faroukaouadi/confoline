@@ -20,7 +20,7 @@ $error = isset($_GET['error']) ? htmlspecialchars($_GET['error']) : '';
     <div class="auth-container">
       <div class="auth-card">
         <h1 class="auth-title">Administration</h1>
-        <p class="auth-subtitle">Log in to access the dashboard</p>
+        <p class="auth-subtitle">Connectez-vous pour accéder au tableau de bord</p>
 
         <?php if ($error): ?>
           <div class="alert-error"><?php echo $error; ?></div>
@@ -28,14 +28,14 @@ $error = isset($_GET['error']) ? htmlspecialchars($_GET['error']) : '';
 
         <form class="auth-form" method="post" action="login.php" autocomplete="off">
           <div class="form-group">
-            <label for="username">User</label>
+            <label for="username">Utilisateur</label>
             <input id="username" name="username" type="text" required placeholder="admin" />
           </div>
           <div class="form-group">
-            <label for="password">Password</label>
+            <label for="password">Mot de passe</label>
             <input id="password" name="password" type="password" required placeholder="admin" />
           </div>
-          <button type="submit" class="btn-primary">Log in</button>
+          <button type="submit" class="btn-primary">Se connecter</button>
         </form>
       </div>
     </div>

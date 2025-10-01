@@ -15,27 +15,61 @@ $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Manage news</title>
+    <title>Gérer les actualités</title>
     <link rel="stylesheet" href="../styles.css" />
-    <style>table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255,255,255,.08);padding:10px;text-align:left}th{color:#94a3b8;font-weight:600}.thumb{height:28px;width:40px;object-fit:cover;border-radius:4px}.featured{color:#22d3ee;font-weight:600}</style>
+    <style>table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255,255,255,.08);padding:10px;text-align:left}th{color:#94a3b8;font-weight:600}.thumb{height:60px;width:80px;object-fit:cover;border-radius:4px}.featured{color:#22d3ee;font-weight:600}</style>
+    <link href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css" rel="stylesheet">
+    <style>
+      .ql-toolbar.ql-snow{border:1px solid rgba(255,255,255,.18);border-radius:8px 8px 0 0;background:#0b1220}
+      .ql-container.ql-snow{border:1px solid rgba(255,255,255,.18);border-top:0;border-radius:0 0 8px 8px}
+      .ql-container .ql-editor{background:#ffffff;color:#111827;min-height:220px}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        var ta = document.querySelector('textarea[name="content"]');
+        if (!ta || !window.Quill) return;
+        var editor = document.createElement('div');
+        editor.id = 'editor-content';
+        editor.style.minHeight = '220px';
+        editor.innerHTML = ta.value || '';
+        ta.style.display = 'none';
+        ta.parentNode.insertBefore(editor, ta);
+        var q = new Quill('#editor-content', {
+          theme: 'snow',
+          modules: { toolbar: [
+            ['bold', 'italic', 'underline'],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{ 'align': [] }],
+            ['link'],
+            ['clean']
+          ]}
+        });
+        var form = ta.closest('form');
+        if (form) {
+          form.addEventListener('submit', function(){
+            ta.value = q.root.innerHTML;
+          });
+        }
+      });
+    </script>
   </head>
   <body class="dash-body">
     <aside class="sidebar">
       <div class="brand">Confoline Admin</div>
       <nav class="menu">
         <a href="../dashboard.php" class="menu-item">Dashboard</a>
-        <a href="../partners/index.php" class="menu-item">Partners</a>
-        <a href="./index.php" class="menu-item active">News</a>
-        <a href="../gallery/index.php" class="menu-item">Gallery</a>
+        <a href="../partners/index.php" class="menu-item">Partenaires</a>
+        <a href="./index.php" class="menu-item active">Actualités</a>
       </nav>
       <form action="../logout.php" method="post">
-        <button class="btn-logout" type="submit">Logout</button>
+        <button class="btn-logout" type="submit">Déconnexion</button>
       </form>
     </aside>
 
     <main class="content">
       <header class="topbar">
-        <h1>News</h1>
+        <h1>Actualités</h1>
       </header>
 
       <?php if ($flash): ?>
@@ -45,15 +79,15 @@ $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
       <?php endif; ?>
 
       <section class="panel">
-        <div class="panel-header">Add news</div>
+        <div class="panel-header">Ajouter une actualité</div>
         <div class="panel-body">
           <form action="add.php" method="post" enctype="multipart/form-data" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:end">
             <div>
-              <label>Title</label>
+              <label>Titre</label>
               <input type="text" name="title" required placeholder="Titre de l'actualité" />
             </div>
             <div>
-              <label>Category</label>
+              <label>Catégorie</label>
               <select name="category" required>
                 <option value="Report">Report</option>
                 <option value="Blog">Blog</option>
@@ -61,40 +95,40 @@ $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
               </select>
             </div>
             <div>
-              <label>Link (optionnel)</label>
+              <label>Lien (optionnel)</label>
               <input type="url" name="link" placeholder="https://..." />
             </div>
             <div style="grid-column:span 3">
-              <label>Content</label>
-              <textarea name="content" required placeholder="Description de l'actualité" rows="3"></textarea>
+              <label>Contenu</label>
+              <textarea name="content" required placeholder="Description de l'actualité" rows="6"></textarea>
             </div>
             <div>
-              <label>Picture</label>
+              <label>Image</label>
               <input type="file" name="image" accept="image/png,image/jpeg,image/jpg" required />
             </div>
             <div>
               <label>
-                <input type="checkbox" name="is_featured" value="1" /> Featured
+                <input type="checkbox" name="is_featured" value="1" /> Mise en avant
               </label>
             </div>
             <div>
-              <button type="submit" class="btn-primary">Add</button>
+              <button type="submit" class="btn-primary">Ajouter</button>
             </div>
           </form>
         </div>
       </section>
 
       <section class="panel" style="margin-top:16px;">
-        <div class="panel-header">List of news</div>
+        <div class="panel-header">Liste des actualités</div>
         <div class="panel-body">
           <table>
             <thead>
               <tr>
                 <th>ID</th>
                 <th>Image</th>
-                <th>Title</th>
-                <th>Category</th>
-                <th>Featured</th>
+                <th>Titre</th>
+                <th>Catégorie</th>
+                <th>Mise en avant</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -110,9 +144,9 @@ $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
                 </td>
                 <td>
                   <a href="edit.php?id=<?php echo (int)$n['id']; ?>" class="btn-logout" style="margin-right:8px;">Modifier</a>
-                  <form action="delete.php" method="post" onsubmit="return confirm('Delete this news ?');" style="display:inline">
+                  <form action="delete.php" method="post" onsubmit="return confirm('Supprimer cette actualité ?');" style="display:inline">
                     <input type="hidden" name="id" value="<?php echo (int)$n['id']; ?>" />
-                    <button class="btn-logout" type="submit">Delete</button>
+                    <button class="btn-logout" type="submit">Supprimer</button>
                   </form>
                 </td>
               </tr>

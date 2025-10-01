@@ -90,9 +90,10 @@ export default function News() {
                   <h3 className="mt-2 text-sm sm:text-xl md:text-2xl 2xl:text-4xl font-semibold">
                     {featuredNews[0].title}
                   </h3>
-                  <p className="mt-3 text-white/80 line-clamp-3 text-xs lg:text-base 2xl:text-lg">
-                    {featuredNews[0].content}
-                  </p>
+                  <div
+                    className="mt-3 text-white/80 prose prose-invert max-w-none text-xs lg:text-base 2xl:text-lg"
+                    dangerouslySetInnerHTML={{ __html: featuredNews[0].content }}
+                  />
                   <div className="pt-4">
                     <a 
                       href={featuredNews[0].link || '#'} 

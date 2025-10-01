@@ -15,7 +15,7 @@ $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Manage partners</title>
+    <title>Gérer les partenaires</title>
     <link rel="stylesheet" href="../styles.css" />
     <style>table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255,255,255,.08);padding:10px;text-align:left}th{color:#94a3b8;font-weight:600}.thumb{height:28px}</style>
   </head>
@@ -24,18 +24,17 @@ $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
       <div class="brand">Confoline Admin</div>
       <nav class="menu">
         <a href="../dashboard.php" class="menu-item">Dashboard</a>
-        <a href="./index.php" class="menu-item active">Partners</a>
-        <a href="../news/index.php" class="menu-item ">News</a>
-        <a href="../gallery/index.php" class="menu-item">Gallery</a>
+        <a href="./index.php" class="menu-item active">Partenaires</a>
+        <a href="../news/index.php" class="menu-item ">Actualités</a>
       </nav>
       <form action="../logout.php" method="post">
-        <button class="btn-logout" type="submit">Logout</button>
+        <button class="btn-logout" type="submit">Déconnexion</button>
       </form>
     </aside>
 
     <main class="content">
       <header class="topbar">
-        <h1>Partners</h1>
+        <h1>Partenaires</h1>
       </header>
 
       <?php if ($flash): ?>
@@ -45,15 +44,15 @@ $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
       <?php endif; ?>
 
       <section class="panel">
-        <div class="panel-header">Add a partner</div>
+        <div class="panel-header">Ajouter un partenaire</div>
         <div class="panel-body">
           <form action="upload.php" method="post" enctype="multipart/form-data" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;align-items:end">
             <div>
-              <label>Name</label>
+              <label>Nom</label>
               <input type="text" name="name" required placeholder="ex: opentext" />
             </div>
             <div>
-              <label>Link</label>
+              <label>Lien</label>
               <input type="url" name="link" required placeholder="https://..." />
             </div>
             <div>
@@ -61,22 +60,22 @@ $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
               <input type="file" name="logo" accept="image/png,image/jpeg,image/jpg,image/svg+xml" required />
             </div>
             <div>
-              <button type="submit" class="btn-primary">Add</button>
+              <button type="submit" class="btn-primary">Ajouter</button>
             </div>
           </form>
         </div>
       </section>
 
       <section class="panel" style="margin-top:16px;">
-        <div class="panel-header">List</div>
+        <div class="panel-header">Liste</div>
         <div class="panel-body">
           <table>
             <thead>
               <tr>
                 <th>ID</th>
                 <th>Logo</th>
-                <th>Name</th>
-                <th>Link</th>
+                <th>Nom</th>
+                <th>Lien</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -88,9 +87,9 @@ $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
                 <td><?php echo htmlspecialchars($p['name']); ?></td>
                 <td><a href="<?php echo htmlspecialchars($p['link']); ?>" target="_blank"><?php echo htmlspecialchars($p['link']); ?></a></td>
                 <td>
-                  <form action="remove.php" method="post" onsubmit="return confirm('Delete this partner ?');" style="display:inline">
+                  <form action="remove.php" method="post" onsubmit="return confirm('Supprimer ce partenaire ?');" style="display:inline">
                     <input type="hidden" name="id" value="<?php echo (int)$p['id']; ?>" />
-                    <button class="btn-logout" type="submit">Delete</button>
+                    <button class="btn-logout" type="submit">Supprimer</button>
                   </form>
                 </td>
               </tr>

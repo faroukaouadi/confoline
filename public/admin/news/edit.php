@@ -89,6 +89,41 @@ $msg = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Modifier l'actualité</title>
     <link rel="stylesheet" href="../styles.css" />
+    <link href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css" rel="stylesheet">
+    <style>
+      .ql-toolbar.ql-snow{border:1px solid rgba(255,255,255,.18);border-radius:8px 8px 0 0;background:#0b1220}
+      .ql-container.ql-snow{border:1px solid rgba(255,255,255,.18);border-top:0;border-radius:0 0 8px 8px}
+      .ql-container .ql-editor{background:#ffffff;color:#111827;min-height:220px}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        var ta = document.querySelector('textarea[name="content"]');
+        if (!ta || !window.Quill) return;
+        var editor = document.createElement('div');
+        editor.id = 'editor-content';
+        editor.style.minHeight = '220px';
+        editor.innerHTML = ta.value || '';
+        ta.style.display = 'none';
+        ta.parentNode.insertBefore(editor, ta);
+        var q = new Quill('#editor-content', {
+          theme: 'snow',
+          modules: { toolbar: [
+            ['bold', 'italic', 'underline'],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{ 'align': [] }],
+            ['link'],
+            ['clean']
+          ]}
+        });
+        var form = ta.closest('form');
+        if (form) {
+          form.addEventListener('submit', function(){
+            ta.value = q.root.innerHTML;
+          });
+        }
+      });
+    </script>
   </head>
   <body class="dash-body">
     <aside class="sidebar">
@@ -136,7 +171,7 @@ $msg = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
             </div>
             <div style="grid-column:span 3">
               <label>Contenu</label>
-              <textarea name="content" required rows="3"><?php echo htmlspecialchars($news['content']); ?></textarea>
+              <textarea name="content" required rows="6"><?php echo htmlspecialchars($news['content']); ?></textarea>
             </div>
             <div>
               <label>Image actuelle</label>
