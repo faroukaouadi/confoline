@@ -11,11 +11,11 @@ $news = $pdo->query('SELECT id, title, content, image, category, link, is_featur
 $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
 ?>
 <!doctype html>
-<html lang="fr">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Gérer les actualités</title>
+    <title>Manage News</title>
     <link rel="stylesheet" href="../styles.css" />
     <style>table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255,255,255,.08);padding:10px;text-align:left}th{color:#94a3b8;font-weight:600}.thumb{height:60px;width:80px;object-fit:cover;border-radius:4px}.featured{color:#22d3ee;font-weight:600}</style>
     <link href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css" rel="stylesheet">
@@ -35,16 +35,45 @@ $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
         editor.innerHTML = ta.value || '';
         ta.style.display = 'none';
         ta.parentNode.insertBefore(editor, ta);
-        var q = new Quill('#editor-content', {
-          theme: 'snow',
-          modules: { toolbar: [
-            ['bold', 'italic', 'underline'],
-            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-            [{ 'align': [] }],
-            ['link'],
-            ['clean']
-          ]}
+        var toolbar = [
+          ['bold', 'italic', 'underline'],
+          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+          [{ 'align': [] }],
+          ['link', 'image'],
+          ['clean']
+        ];
+        var q = new Quill('#editor-content', { theme: 'snow', modules: { toolbar } });
+
+        // Keep textarea synced so browser validation won't block
+        q.on('text-change', function(){ ta.value = q.root.innerHTML; });
+
+        // Custom image upload handler
+        var toolbarModule = q.getModule('toolbar');
+        toolbarModule.addHandler('image', function(){
+          var input = document.createElement('input');
+          input.type = 'file';
+          input.accept = 'image/*';
+          input.onchange = async function(){
+            var file = input.files && input.files[0];
+            if (!file) return;
+            var form = new FormData();
+            form.append('image', file);
+            try {
+              const res = await fetch('../news/upload-image.php', { method: 'POST', body: form, credentials: 'same-origin' });
+              if (!res.ok) throw new Error('upload failed');
+              const json = await res.json();
+              if (json && json.success && json.url) {
+                const range = q.getSelection(true);
+                q.insertEmbed(range.index, 'image', json.url, 'user');
+                q.setSelection(range.index + 1, 0);
+              }
+            } catch (e) {
+              alert('Image upload error');
+            }
+          };
+          input.click();
         });
+
         var form = ta.closest('form');
         if (form) {
           form.addEventListener('submit', function(){
@@ -59,17 +88,18 @@ $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
       <div class="brand">Confoline Admin</div>
       <nav class="menu">
         <a href="../dashboard.php" class="menu-item">Dashboard</a>
-        <a href="../partners/index.php" class="menu-item">Partenaires</a>
-        <a href="./index.php" class="menu-item active">Actualités</a>
+        <a href="../partners/index.php" class="menu-item">Partners</a>
+        <a href="./index.php" class="menu-item active">News</a>
+        <a href="../gallery/index.php" class="menu-item">Gallery</a>
       </nav>
       <form action="../logout.php" method="post">
-        <button class="btn-logout" type="submit">Déconnexion</button>
+        <button class="btn-logout" type="submit">Logout</button>
       </form>
     </aside>
 
     <main class="content">
       <header class="topbar">
-        <h1>Actualités</h1>
+        <h1>News</h1>
       </header>
 
       <?php if ($flash): ?>
@@ -79,15 +109,15 @@ $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
       <?php endif; ?>
 
       <section class="panel">
-        <div class="panel-header">Ajouter une actualité</div>
+        <div class="panel-header">Add a news item</div>
         <div class="panel-body">
           <form action="add.php" method="post" enctype="multipart/form-data" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:end">
             <div>
-              <label>Titre</label>
-              <input type="text" name="title" required placeholder="Titre de l'actualité" />
+              <label>Title</label>
+              <input type="text" name="title" required placeholder="News title" />
             </div>
             <div>
-              <label>Catégorie</label>
+              <label>Category</label>
               <select name="category" required>
                 <option value="Report">Report</option>
                 <option value="Blog">Blog</option>
@@ -95,40 +125,40 @@ $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
               </select>
             </div>
             <div>
-              <label>Lien (optionnel)</label>
+              <label>Link (optional)</label>
               <input type="url" name="link" placeholder="https://..." />
             </div>
             <div style="grid-column:span 3">
-              <label>Contenu</label>
-              <textarea name="content" required placeholder="Description de l'actualité" rows="6"></textarea>
+              <label>Content</label>
+              <textarea name="content" placeholder="News content" rows="6"></textarea>
             </div>
             <div>
-              <label>Image</label>
-              <input type="file" name="image" accept="image/png,image/jpeg,image/jpg" required />
+              <label>Cover image (optional)</label>
+              <input type="file" name="image" accept="image/png,image/jpeg,image/jpg" />
             </div>
             <div>
               <label>
-                <input type="checkbox" name="is_featured" value="1" /> Mise en avant
+                <input type="checkbox" name="is_featured" value="1" /> Featured
               </label>
             </div>
             <div>
-              <button type="submit" class="btn-primary">Ajouter</button>
+              <button type="submit" class="btn-primary">Add</button>
             </div>
           </form>
         </div>
       </section>
 
       <section class="panel" style="margin-top:16px;">
-        <div class="panel-header">Liste des actualités</div>
+        <div class="panel-header">List</div>
         <div class="panel-body">
           <table>
             <thead>
               <tr>
                 <th>ID</th>
                 <th>Image</th>
-                <th>Titre</th>
-                <th>Catégorie</th>
-                <th>Mise en avant</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Featured</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -143,10 +173,10 @@ $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
                   <?php echo $n['is_featured'] ? '★' : '○'; ?>
                 </td>
                 <td>
-                  <a href="edit.php?id=<?php echo (int)$n['id']; ?>" class="btn-logout" style="margin-right:8px;">Modifier</a>
-                  <form action="delete.php" method="post" onsubmit="return confirm('Supprimer cette actualité ?');" style="display:inline">
+                  <a href="edit.php?id=<?php echo (int)$n['id']; ?>" class="btn-logout" style="margin-right:8px;">Edit</a>
+                  <form action="delete.php" method="post" onsubmit="return confirm('Delete this news item?');" style="display:inline">
                     <input type="hidden" name="id" value="<?php echo (int)$n['id']; ?>" />
-                    <button class="btn-logout" type="submit">Supprimer</button>
+                    <button class="btn-logout" type="submit">Delete</button>
                   </form>
                 </td>
               </tr>

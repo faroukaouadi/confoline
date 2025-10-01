@@ -8,7 +8,7 @@ require_once __DIR__ . '/../db.php';
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 if ($id <= 0) {
-    header('Location: index.php?msg=' . urlencode('ID invalide'));
+    header('Location: index.php?msg=' . urlencode('Invalid ID'));
     exit();
 }
 
@@ -18,7 +18,7 @@ $stmt->execute([':id' => $id]);
 $news = $stmt->fetch();
 
 if (!$news) {
-    header('Location: index.php?msg=' . urlencode('Actualité introuvable'));
+    header('Location: index.php?msg=' . urlencode('News not found'));
     exit();
 }
 
@@ -72,10 +72,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':is_featured' => $is_featured,
             ':id' => $id
         ]);
-        header('Location: index.php?msg=' . urlencode('Actualité modifiée'));
+        header('Location: index.php?msg=' . urlencode('News updated'));
         exit();
     } catch (Throwable $e) {
-        header('Location: edit.php?id=' . $id . '&msg=' . urlencode('Erreur base de données'));
+        header('Location: edit.php?id=' . $id . '&msg=' . urlencode('Database error'));
         exit();
     }
 }
@@ -83,11 +83,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $msg = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
 ?>
 <!doctype html>
-<html lang="fr">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Modifier l'actualité</title>
+    <title>Edit news</title>
     <link rel="stylesheet" href="../styles.css" />
     <link href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css" rel="stylesheet">
     <style>
@@ -106,16 +106,41 @@ $msg = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
         editor.innerHTML = ta.value || '';
         ta.style.display = 'none';
         ta.parentNode.insertBefore(editor, ta);
-        var q = new Quill('#editor-content', {
-          theme: 'snow',
-          modules: { toolbar: [
-            ['bold', 'italic', 'underline'],
-            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-            [{ 'align': [] }],
-            ['link'],
-            ['clean']
-          ]}
+        var toolbar = [
+          ['bold', 'italic', 'underline'],
+          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+          [{ 'align': [] }],
+          ['link', 'image'],
+          ['clean']
+        ];
+        var q = new Quill('#editor-content', { theme: 'snow', modules: { toolbar } });
+
+        var toolbarModule = q.getModule('toolbar');
+        toolbarModule.addHandler('image', function(){
+          var input = document.createElement('input');
+          input.type = 'file';
+          input.accept = 'image/*';
+          input.onchange = async function(){
+            var file = input.files && input.files[0];
+            if (!file) return;
+            var form = new FormData();
+            form.append('image', file);
+            try {
+              const res = await fetch('../news/upload-image.php', { method: 'POST', body: form, credentials: 'same-origin' });
+              if (!res.ok) throw new Error('upload failed');
+              const json = await res.json();
+              if (json && json.success && json.url) {
+                const range = q.getSelection(true);
+                q.insertEmbed(range.index, 'image', json.url, 'user');
+                q.setSelection(range.index + 1, 0);
+              }
+            } catch (e) {
+              alert('Image upload error');
+            }
+          };
+          input.click();
         });
+
         var form = ta.closest('form');
         if (form) {
           form.addEventListener('submit', function(){
@@ -130,17 +155,18 @@ $msg = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
       <div class="brand">Confoline Admin</div>
       <nav class="menu">
         <a href="../dashboard.php" class="menu-item">Dashboard</a>
-        <a href="../partners/index.php" class="menu-item">Partenaires</a>
-        <a href="./index.php" class="menu-item active">Actualités</a>
+        <a href="../partners/index.php" class="menu-item">Partners</a>
+        <a href="./index.php" class="menu-item active">News</a>
+        <a href="../gallery/index.php" class="menu-item">Gallery</a>
       </nav>
       <form action="../logout.php" method="post">
-        <button class="btn-logout" type="submit">Déconnexion</button>
+        <button class="btn-logout" type="submit">Logout</button>
       </form>
     </aside>
 
     <main class="content">
       <header class="topbar">
-        <h1>Modifier l'actualité</h1>
+        <h1>Edit news</h1>
       </header>
 
       <?php if ($msg): ?>
@@ -150,15 +176,15 @@ $msg = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
       <?php endif; ?>
 
       <section class="panel">
-        <div class="panel-header">Modifier l'actualité</div>
+        <div class="panel-header">Edit news</div>
         <div class="panel-body">
           <form action="edit.php?id=<?php echo $id; ?>" method="post" enctype="multipart/form-data" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:end">
             <div>
-              <label>Titre</label>
+              <label>Title</label>
               <input type="text" name="title" required value="<?php echo htmlspecialchars($news['title']); ?>" />
             </div>
             <div>
-              <label>Catégorie</label>
+              <label>Category</label>
               <select name="category" required>
                 <option value="Report" <?php echo $news['category'] === 'Report' ? 'selected' : ''; ?>>Report</option>
                 <option value="Blog" <?php echo $news['category'] === 'Blog' ? 'selected' : ''; ?>>Blog</option>
@@ -166,29 +192,29 @@ $msg = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
               </select>
             </div>
             <div>
-              <label>Lien (optionnel)</label>
+              <label>Link (optional)</label>
               <input type="url" name="link" value="<?php echo htmlspecialchars($news['link']); ?>" />
             </div>
             <div style="grid-column:span 3">
-              <label>Contenu</label>
+              <label>Content</label>
               <textarea name="content" required rows="6"><?php echo htmlspecialchars($news['content']); ?></textarea>
             </div>
             <div>
-              <label>Image actuelle</label>
+              <label>Current image</label>
               <img src="<?php echo htmlspecialchars($news['image']); ?>" alt="current" style="height:60px;width:80px;object-fit:cover;border-radius:4px;" />
             </div>
             <div>
-              <label>Nouvelle image (optionnel)</label>
+              <label>New image (optional)</label>
               <input type="file" name="image" accept="image/png,image/jpeg,image/jpg" />
             </div>
             <div>
               <label>
-                <input type="checkbox" name="is_featured" value="1" <?php echo $news['is_featured'] ? 'checked' : ''; ?> /> Mise en avant
+                <input type="checkbox" name="is_featured" value="1" <?php echo $news['is_featured'] ? 'checked' : ''; ?> /> Featured
               </label>
             </div>
             <div>
-              <button type="submit" class="btn-primary">Modifier</button>
-              <a href="index.php" class="btn-logout" style="margin-left:8px;">Annuler</a>
+              <button type="submit" class="btn-primary">Save</button>
+              <a href="index.php" class="btn-logout" style="margin-left:8px;">Cancel</a>
             </div>
           </form>
         </div>
