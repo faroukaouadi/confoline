@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 type NewsItem = { 
   id: number; 
   title: string; 
   content: string; 
+  excerpt?: string; 
   image: string; 
   category: string; 
   link: string; 
@@ -90,18 +92,19 @@ export default function News() {
                   <h3 className="mt-2 text-sm sm:text-xl md:text-2xl 2xl:text-4xl font-semibold">
                     {featuredNews[0].title}
                   </h3>
-                  <div
-                    className="mt-3 text-white/80 prose prose-invert max-w-none text-xs lg:text-base 2xl:text-lg"
-                    dangerouslySetInnerHTML={{ __html: featuredNews[0].content }}
-                  />
+                  {featuredNews[0].excerpt ? (
+                    <div className="mt-3 text-white/80 prose prose-invert max-w-none text-xs lg:text-base 2xl:text-lg" dangerouslySetInnerHTML={{ __html: featuredNews[0].excerpt }} />
+                  ) : (
+                    <div className="mt-3 text-white/80 prose prose-invert max-w-none text-xs lg:text-base 2xl:text-lg" dangerouslySetInnerHTML={{ __html: featuredNews[0].content }} />
+                  )}
                   <div className="pt-4">
-                    <a 
-                      href={featuredNews[0].link || '#'} 
+                    <Link 
+                      href={`/news/${featuredNews[0].id}`}
                       className="text-cyan-300 hover:text-cyan-200 text-xs lg:text-base 2xl:text-lg inline-flex items-center gap-2"
                     >
-                      Read {featuredNews[0].category}
+                      Read more
                       <span aria-hidden>→</span>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </article>
@@ -119,14 +122,19 @@ export default function News() {
                     <h3 className="mt-2 text-xs sm:text-lg 2xl:text-3xl font-semibold">
                       {item.title}
                     </h3>
+                    {item.excerpt ? (
+                      <div className="mt-3 text-white/80 prose prose-invert prose max-w-none text-xs lg:text-base 2xl:text-lg line-clamp-3" dangerouslySetInnerHTML={{ __html: item.excerpt }} />
+                    ) : (
+                      <div className="mt-3 text-white/80 prose prose-invert text-xs lg:text-base 2xl:text-lg prose max-w-none line-clamp-3" dangerouslySetInnerHTML={{ __html: item.content }} />
+                    )}
                     <div className="mt-auto pt-4">
-                      <a 
-                        href={item.link || '#'} 
+                      <Link 
+                        href={`/news/${item.id}`}
                         className="text-cyan-300 hover:text-cyan-200 text-xs lg:text-base 2xl:text-lg inline-flex items-center gap-2"
                       >
-                        Read {item.category}
+                        Read more
                         <span aria-hidden>→</span>
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>

@@ -10,7 +10,7 @@ require_once __DIR__ . '/../db.php';
 
 try {
     $pdo = get_pdo();
-    $stmt = $pdo->query('SELECT id, title, content, image, category, link, is_featured, created_at FROM news ORDER BY is_featured DESC, created_at DESC');
+    $stmt = $pdo->query('SELECT id, title, content, excerpt, image, category, link, is_featured, created_at FROM news ORDER BY is_featured DESC, created_at DESC');
     $rows = $stmt->fetchAll();
     echo json_encode([
         'success' => true,

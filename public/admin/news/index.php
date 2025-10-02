@@ -35,6 +35,19 @@ $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
         editor.innerHTML = ta.value || '';
         ta.style.display = 'none';
         ta.parentNode.insertBefore(editor, ta);
+        
+        // Excerpt editor
+        var texcerpt = document.querySelector('textarea[name="excerpt"]');
+        var exEditor;
+        if (texcerpt) {
+          exEditor = document.createElement('div');
+          exEditor.id = 'editor-excerpt';
+          exEditor.style.minHeight = '90px';
+          exEditor.innerHTML = texcerpt.value || '';
+          texcerpt.style.display = 'none';
+          texcerpt.parentNode.insertBefore(exEditor, texcerpt);
+        }
+        
         var toolbar = [
           ['bold', 'italic', 'underline'],
           [{ 'list': 'ordered'}, { 'list': 'bullet' }],
@@ -43,9 +56,11 @@ $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
           ['clean']
         ];
         var q = new Quill('#editor-content', { theme: 'snow', modules: { toolbar } });
+        var qx = exEditor ? new Quill('#editor-excerpt', { theme: 'snow', modules: { toolbar: [['bold','italic','underline'],[{ list:'bullet'}],['clean']] } }) : null;
 
-        // Keep textarea synced so browser validation won't block
+        // Keep textareas synced
         q.on('text-change', function(){ ta.value = q.root.innerHTML; });
+        if (qx && texcerpt) qx.on('text-change', function(){ texcerpt.value = qx.root.innerHTML; });
 
         // Custom image upload handler
         var toolbarModule = q.getModule('toolbar');
@@ -78,6 +93,7 @@ $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
         if (form) {
           form.addEventListener('submit', function(){
             ta.value = q.root.innerHTML;
+            if (qx && texcerpt) texcerpt.value = qx.root.innerHTML;
           });
         }
       });
@@ -127,6 +143,10 @@ $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
             <div>
               <label>Link (optional)</label>
               <input type="url" name="link" placeholder="https://..." />
+            </div>
+            <div style="grid-column:span 3">
+              <label>Excerpt (short summary)</label>
+              <textarea name="excerpt" placeholder="Short paragraph shown on cards" rows="3"></textarea>
             </div>
             <div style="grid-column:span 3">
               <label>Content</label>

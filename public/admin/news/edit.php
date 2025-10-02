@@ -62,10 +62,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $pdo->prepare('UPDATE news SET is_featured = 0 WHERE id != :id')->execute([':id' => $id]);
         }
         
-        $stmt = $pdo->prepare('UPDATE news SET title = :title, content = :content, image = :image, category = :category, link = :link, is_featured = :is_featured WHERE id = :id');
+        $stmt = $pdo->prepare('UPDATE news SET title = :title, content = :content, excerpt = :excerpt, image = :image, category = :category, link = :link, is_featured = :is_featured WHERE id = :id');
         $stmt->execute([
             ':title' => $title,
             ':content' => $content,
+            ':excerpt' => isset($_POST['excerpt']) ? trim($_POST['excerpt']) : null,
             ':image' => $image,
             ':category' => $category,
             ':link' => $link ?: null,
@@ -99,6 +100,7 @@ $msg = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
     <script>
       document.addEventListener('DOMContentLoaded', function(){
         var ta = document.querySelector('textarea[name="content"]');
+        var texcerpt = document.querySelector('textarea[name="excerpt"]');
         if (!ta || !window.Quill) return;
         var editor = document.createElement('div');
         editor.id = 'editor-content';
@@ -106,6 +108,17 @@ $msg = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
         editor.innerHTML = ta.value || '';
         ta.style.display = 'none';
         ta.parentNode.insertBefore(editor, ta);
+        
+        var exEditor;
+        if (texcerpt) {
+          exEditor = document.createElement('div');
+          exEditor.id = 'editor-excerpt';
+          exEditor.style.minHeight = '90px';
+          exEditor.innerHTML = texcerpt.value || '';
+          texcerpt.style.display = 'none';
+          texcerpt.parentNode.insertBefore(exEditor, texcerpt);
+        }
+        
         var toolbar = [
           ['bold', 'italic', 'underline'],
           [{ 'list': 'ordered'}, { 'list': 'bullet' }],
@@ -114,6 +127,7 @@ $msg = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
           ['clean']
         ];
         var q = new Quill('#editor-content', { theme: 'snow', modules: { toolbar } });
+        var qx = exEditor ? new Quill('#editor-excerpt', { theme: 'snow', modules: { toolbar: [['bold','italic','underline'],[{ list:'bullet'}],['clean']] } }) : null;
 
         var toolbarModule = q.getModule('toolbar');
         toolbarModule.addHandler('image', function(){
@@ -145,6 +159,7 @@ $msg = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
         if (form) {
           form.addEventListener('submit', function(){
             ta.value = q.root.innerHTML;
+            if (qx && texcerpt) texcerpt.value = qx.root.innerHTML;
           });
         }
       });
@@ -194,6 +209,10 @@ $msg = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
             <div>
               <label>Link (optional)</label>
               <input type="url" name="link" value="<?php echo htmlspecialchars($news['link']); ?>" />
+            </div>
+            <div style="grid-column:span 3">
+              <label>Excerpt (short summary)</label>
+              <textarea name="excerpt" rows="3"><?php echo htmlspecialchars($news['excerpt'] ?? ''); ?></textarea>
             </div>
             <div style="grid-column:span 3">
               <label>Content</label>
