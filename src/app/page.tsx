@@ -8,8 +8,10 @@ import Work from "./components/Work"
 export default function Home() {
   return (
     <div>
+      <div className="bg-[linear-gradient(180deg,#0C1B46_0%,#0065A1_30.76%,#0C1B46_100%)]">
       <Hero />
       <Partners />
+      </div>
       <Services />
       <News />
       <Story />

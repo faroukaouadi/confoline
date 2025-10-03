@@ -8,17 +8,17 @@ import Autoplay from "embla-carousel-autoplay";
 
 export const partnersData = [
   
-  { name: "newrelic", src: "/images/partners/newrelic.svg", link: 'https://newrelic.com/' },
-  { name: "zabbix", src: "/images/partners/zabbix.svg", link: 'https://www.zabbix.com/'},
-  { name: "gitLab", src: "/images/partners/gitLab.svg", link: 'https://about.gitlab.com/'},
-  { name: "keysight", src: "/images/partners/Keysight.svg", link: 'https://www.keysight.com/'},
-  { name: "ibm", src: "/images/partners/ibm.svg", link: 'https://www.ibm.com/'},
-  { name: "elastic", src: "/images/partners/elastic.svg", link: 'https://www.elastic.co/' },
-  { name: "opentext", src: "/images/partners/opentext.svg", link: 'https://www.opentext.com/'},
-  { name: "splunk", src: "/images/partners/splunk.svg", link: 'https://www.splunk.com/'},
-  { name: "tricentis", src: "/images/partners/tricentis.svg", link: 'https://www.tricentis.com/' },
-  // { name: "opsramp", src: "/images/partners/opsramp.svg", link: 'https://www.opsramp.com/' },
-  // { name: "ser", src: "/images/partners/ser.svg", link: 'https://www.sergroup.com/'},
+  { name: "newrelic", src: "/images/partners/newrelicWHITE.svg", link: 'https://newrelic.com/' },
+  { name: "zabbix", src: "/images/partners/zabbixWHITE.svg", link: 'https://www.zabbix.com/'},
+  { name: "gitLab", src: "/images/partners/gitlabWHITE.svg", link: 'https://about.gitlab.com/'},
+  { name: "keysight", src: "/images/partners/KeysightWHITE.svg", link: 'https://www.keysight.com/'},
+  { name: "ibm", src: "/images/partners/ibmWHITE.svg", link: 'https://www.ibm.com/'},
+  { name: "elastic", src: "/images/partners/elasticWHITE.svg", link: 'https://www.elastic.co/' },
+  { name: "opentext", src: "/images/partners/opentextWHITE.svg", link: 'https://www.opentext.com/'},
+  { name: "splunk", src: "/images/partners/splunkWHITE.svg", link: 'https://www.splunk.com/'},
+  { name: "tricentis", src: "/images/partners/tricentisWHITE.svg", link: 'https://www.tricentis.com/' },
+  // { name: "opsramp", src: "/images/partners/opsrampWHITE.svg", link: 'https://www.opsramp.com/' },
+  // { name: "ser", src: "/images/partners/serWHITE.svg", link: 'https://www.sergroup.com/'},
 ];
 
 export default function Partners() {
@@ -29,9 +29,11 @@ export default function Partners() {
   const [emblaRef] = useEmblaCarousel({ loop: true, align: "start" }, [autoplay.current]);
 
   return (
-    <section className="bg-white">
+    <section className="">
       <div className="max-w-[90%] mx-auto px-4 py-10 2xl:py-14">
-        <h2 className=" text-black text-2xl sm:text-3xl md:text-4xl 2xl:text-5xl font-bold text-center mb-8">Our partners</h2>
+        <h2 className=" text-white text-2xl sm:text-3xl md:text-4xl 2xl:text-5xl font-bold text-center mb-8">
+          Trusted by partners across the globe
+        </h2>
 
         <div className="relative overflow-hidden" ref={emblaRef}>
           <div className="flex items-center pl-16 pb-8 gap-x-16 ">
