@@ -1,64 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-
-type Partner = { id: number; name: string; src: string; link: string };
-
-export const partnersData = [
-  
-  { name: "newrelic", src: "/images/partners/newrelic.svg", link: 'https://newrelic.com/' },
-  { name: "zabbix", src: "/images/partners/zabbix.svg", link: 'https://www.zabbix.com/'},
-  { name: "gitLab", src: "/images/partners/gitlab.svg", link: 'https://about.gitlab.com/'},
-  { name: "keysight", src: "/images/partners/Keysight.svg", link: 'https://www.keysight.com/'},
-  { name: "ibm", src: "/images/partners/ibm.svg", link: 'https://www.ibm.com/'},
-  { name: "elastic", src: "/images/partners/elastic.svg", link: 'https://www.elastic.co/' },
-  { name: "opentext", src: "/images/partners/opentext.svg", link: 'https://www.opentext.com/'},
-  { name: "splunk", src: "/images/partners/splunk.svg", link: 'https://www.splunk.com/'},
-  { name: "tricentis", src: "/images/partners/tricentis.svg", link: 'https://www.tricentis.com/' },
-  // { name: "opsramp", src: "/images/partners/opsramp.svg", link: 'https://www.opsramp.com/' },
-  // { name: "ser", src: "/images/partners/ser.svg", link: 'https://www.sergroup.com/'},
-];
-
+import { usePartners } from "../../hooks/usePartners";
 
 export default function PartnersPage() {
-  const [partners, setPartners] = useState<Partner[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  console.log('test partners',partners)
-
-  useEffect(() => {
-    const controller = new AbortController();
-    async function load() {
-      try {
-        setLoading(true);
-        setError(null);
-        const apiUrl = process.env.NODE_ENV === 'development' 
-          ? "http://127.0.0.1:8000/admin/confoline-Api/partners.php"
-          : "/admin/confoline-Api/partners.php";
-        const res = await fetch(apiUrl, {
-          signal: controller.signal,
-          headers: { "Accept": "application/json" },
-          cache: "no-store",
-        });
-        if (!res.ok) throw new Error("Failed to fetch partners");
-        const json = await res.json();
-        if (json && json.success && Array.isArray(json.data)) {
-          setPartners(json.data);
-        } else {
-          throw new Error("Invalid response format");
-        }
-      } catch (e: any) {
-        if (e.name !== "AbortError") setError(e.message || "Error loading partners");
-      } finally {
-        setLoading(false);
-      }
-    }
-    load();
-    return () => controller.abort();
-  }, []);
+  const { data: partners = [], isLoading: loading, error } = usePartners();
 
   return (
     <main className="bg-gradient-to-br from-blue-950 to-blue-900 text-white min-h-screen">
@@ -66,7 +13,7 @@ export default function PartnersPage() {
         <div className="flex items-start justify-between">
           <div>
             <h1 className="text-2xl sm:text-4xl 2xl:text-5xl font-extrabold">Partners</h1>
-            <p className="mt-2 text-sm sm:text-base 2xl:text-2xl text-blue-200">
+            <p className="mt-2 text-sm sm:text-base 2xl:text-2xl text-blue-200 max-w-2xl">
               Proud to collaborate with industry-leading partners driving innovation and value.
             </p>
           </div>
@@ -87,7 +34,7 @@ export default function PartnersPage() {
             <div className="text-center text-blue-900">Loading partners...</div>
           )}
           {error && (
-            <div className="text-center text-red-600">{error}</div>
+            <div className="text-center text-red-600">{error?.message || "Error loading partners"}</div>
           )}
           {!loading && !error && (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 2xl:gap-14">

@@ -104,7 +104,6 @@ $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
       <div class="brand">Confoline Admin</div>
       <nav class="menu">
         <a href="../dashboard.php" class="menu-item">Dashboard</a>
-        <a href="../home-partners/index.php" class="menu-item">Home Partners</a>
         <a href="../partners/index.php" class="menu-item">Partners</a>
         <a href="./index.php" class="menu-item active">News</a>
         <a href="../gallery/index.php" class="menu-item">Gallery</a>

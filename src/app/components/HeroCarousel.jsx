@@ -1,47 +1,20 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { useGallery } from '../../hooks/useGallery';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-function HeroCarousel() {
-    const [images, setImages] = useState([])
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(null)
 
-    useEffect(() => {
-        const controller = new AbortController()
-        async function load() {
-            try {
-                setLoading(true)
-                setError(null)
-                const apiUrl = process.env.NODE_ENV === 'development' 
-                  ? 'http://127.0.0.1:8000/admin/confoline-Api/gallery.php'
-                  : '/admin/confoline-Api/gallery.php'
-                const res = await fetch(apiUrl, { signal: controller.signal, headers: { 'Accept': 'application/json' }, cache: 'no-store' })
-                if (!res.ok) throw new Error('Failed to fetch gallery')
-                const json = await res.json()
-                if (json && json.success && Array.isArray(json.data)) {
-                    setImages(json.data)
-                } else {
-                    throw new Error('Invalid response format')
-                }
-            } catch (e) {
-                if (e.name !== 'AbortError') setError(e.message || 'Error loading gallery')
-            } finally {
-                setLoading(false)
-            }
-        }
-        load()
-        return () => controller.abort()
-    }, [])
+function HeroCarousel() {
+    const { data: images = [], isLoading: loading, error } = useGallery()
 
     return (
         <div className="relative rounded-3xl ">
             {loading && <div className="text-center text-white/70 py-8">Loading...</div>}
-            {error && <div className="text-center text-red-400 py-8">{error}</div>}
+            {error && <div className="text-center text-red-400 py-8">{error?.message || "Error loading gallery"}</div>}
             {!loading && !error && (
             <Swiper
                 modules={[Navigation, Pagination, Autoplay]}
@@ -52,20 +25,16 @@ function HeroCarousel() {
                 speed={8000}
                 autoplay={{
                     delay: 0,
-                    disableOnInteraction: false,
+                    disableOnInteraction: true,
                     
                 }}
-                pagination={{
-                    clickable: true,
-                    el: '.swiper-pagination',
-                  }}
                 breakpoints={{
                     0: { slidesPerView: 1,centeredSlides: true },
                     640: { slidesPerView: 1.5,centeredSlides: true},
                     768: { slidesPerView: 2.5,centeredSlides: true },
-                    1024: { slidesPerView: 3.5,centeredSlides: true},
-                    1280: { slidesPerView: 4.5,centeredSlides: true },
-                    1536: { slidesPerView: 5.5,centeredSlides: true},
+                    1024: { slidesPerView: 3.5,centeredSlides: false},
+                    1280: { slidesPerView: 4.5,centeredSlides: false },
+                    1536: { slidesPerView: 5.5,centeredSlides: false},
                     1920: { slidesPerView: 5.5,centeredSlides: true }
                 }}
                 navigation={{
@@ -75,8 +44,8 @@ function HeroCarousel() {
                 
                 className="py-8"
             >
-                {[...images,...images].map((image, index) => (
-                    <SwiperSlide key={item.id ||index}>
+                {images.map((item, index) => (
+                    <SwiperSlide key={item.id || index}>
                         <div className="group h-105 2xl:h-120 flex items-center justify-center">
                             <div className={`overflow-hidden rounded-3xl border border-white/10 transition-all duration-500 group-hover:scale-105  flex items-center justify-center`}>
                                 <img

@@ -14,14 +14,14 @@ CREATE TABLE IF NOT EXISTS `partners` (
 
 -- Seed with existing static entries (optional)
 INSERT INTO `partners` (`name`, `src`, `link`) VALUES
-('opentext', '/images/partners/opentextWHITE.svg', 'https://www.opentext.com/'),
-('newrelic', '/images/partners/newrelicWHITE.svg', 'https://newrelic.com/'),
-('elastic', '/images/partners/elasticWHITE.svg', 'https://www.elastic.co/'),
-('tricentis', '/images/partners/tricentisWHITE.svg', 'https://www.tricentis.com/'),
-('zabbix', '/images/partners/zabbixWHITE.svg', 'https://www.zabbix.com/'),
-('gitLab', '/images/partners/gitLabWHITE.svg', 'https://about.gitlab.com/'),
-('splunk', '/images/partners/splunkWHITE.svg', 'https://www.splunk.com/'),
-('keysight', '/images/partners/keysightWHITE.svg', 'https://www.keysight.com/'),
-('ibm', '/images/partners/ibmWHITE.svg', 'https://www.ibm.com/');
+('opentext', '/images/opentext.png', 'https://www.opentext.com/'),
+('newrelic', '/images/newrelic.png', 'https://newrelic.com/'),
+('elastic', '/images/elastic.png', 'https://www.elastic.co/'),
+('tricentis', '/images/tricentis.png', 'https://www.tricentis.com/'),
+('zabbix', '/images/Zabbix.png', 'https://www.zabbix.com/'),
+('gitLab', '/images/GitLab.png', 'https://about.gitlab.com/'),
+('splunk', '/images/Splunk.png', 'https://www.splunk.com/'),
+('keysight', '/images/Keysight.png', 'https://www.keysight.com/'),
+('ibm', '/images/ibm.png', 'https://www.ibm.com/');
 
 

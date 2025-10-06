@@ -1,54 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
-
-type NewsItem = { 
-  id: number; 
-  title: string; 
-  content: string; 
-  excerpt?: string; 
-  image: string; 
-  category: string; 
-  link: string; 
-  is_featured: boolean; 
-};
+import { useNews } from "../../hooks/useNews";
 
 export default function News() {
-  const [news, setNews] = useState<NewsItem[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const controller = new AbortController();
-    async function load() {
-      try {
-        setLoading(true);
-        setError(null);
-        const apiUrl = process.env.NODE_ENV === 'development' 
-          ? "http://127.0.0.1:8000/admin/confoline-Api/news.php"
-          : "/admin/confoline-Api/news.php";
-        const res = await fetch(apiUrl, {
-          signal: controller.signal,
-          headers: { "Accept": "application/json" },
-          cache: "no-store",
-        });
-        if (!res.ok) throw new Error("Failed to fetch news");
-        const json = await res.json();
-        if (json && json.success && Array.isArray(json.data)) {
-          setNews(json.data);
-        } else {
-          throw new Error("Invalid response format");
-        }
-      } catch (e: any) {
-        if (e.name !== "AbortError") setError(e.message || "Error loading news");
-      } finally {
-        setLoading(false);
-      }
-    }
-    load();
-    return () => controller.abort();
-  }, []);
+  const { data: news = [], isLoading: loading, error } = useNews();
 
   const featuredNews = news.filter(item => item.is_featured);
   const regularNews = news.filter(item => !item.is_featured);
@@ -76,7 +32,7 @@ export default function News() {
         )}
 
         {error && (
-          <div className="text-center text-red-400">{error}</div>
+          <div className="text-center text-red-400">{error?.message || "Error loading news"}</div>
         )}
 
         {!loading && !error && news.length > 0 && (

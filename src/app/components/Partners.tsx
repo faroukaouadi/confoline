@@ -1,50 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-
-
-type Partner = { id: number; name: string; src: string; link: string };
-
+import { usePartnersHome } from "../../hooks/usePartnersHome";
 
 export default function Partners() {
-  const [partners, setPartners] = useState<Partner[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const controller = new AbortController();
-    async function load() {
-      try {
-        setLoading(true);
-        setError(null);
-        const apiUrl = process.env.NODE_ENV === 'development' 
-          ? "http://127.0.0.1:8000/admin/confoline-Api/partners-home.php"
-          : "/admin/confoline-Api/partners-home.php";
-        const res = await fetch(apiUrl, {
-          signal: controller.signal,
-          headers: { "Accept": "application/json" },
-          cache: "no-store",
-        });
-        if (!res.ok) throw new Error("Failed to fetch partners");
-        const json = await res.json();
-        if (json && json.success && Array.isArray(json.data)) {
-          setPartners(json.data);
-        } else {
-          throw new Error("Invalid response format");
-        }
-      } catch (e: any) {
-        if (e.name !== "AbortError") setError(e.message || "Error loading partners");
-      } finally {
-        setLoading(false);
-      }
-    }
-    load();
-    return () => controller.abort();
-  }, []);
+  const { data: partners = [], isLoading: loading, error } = usePartnersHome();
 
 
   const autoplay = useRef(
@@ -62,7 +26,7 @@ export default function Partners() {
             <div className="text-center text-blue-900">Loading partners...</div>
           )}
             {error && (
-            <div className="text-center text-red-600">{error}</div>
+            <div className="text-center text-red-600">{error?.message || "Error loading partners"}</div>
           )}
           {!loading && !error && (
 

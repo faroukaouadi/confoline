@@ -1,29 +1,14 @@
 'use client'
 
 import { useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { useNewsById } from '../../hooks/useNews'
 
 export default function NewsDetail() {
   const searchParams = useSearchParams()
   const id = searchParams.get('id')
-  const [item, setItem] = useState<any>(null)
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    if (!id) return
-    const isDev = process.env.NODE_ENV === 'development'
-    const url = isDev
-      ? `http://127.0.0.1:8000/admin/confoline-Api/news-one.php?id=${id}`
-      : `/admin/confoline-Api/news-one.php?id=${id}`
-
-    fetch(url)
-      .then(res => res.json())
-      .then(json => {
-        if (json.success) setItem(json.data)
-      })
-      .finally(() => setLoading(false))
-  }, [id])
+  const newsId = id ? parseInt(id, 10) : 0
+  const { data: item, isLoading: loading, error } = useNewsById(newsId)
 
   if (!id) {
     return (
@@ -37,6 +22,14 @@ export default function NewsDetail() {
     return (
       <main className="bg-gradient-to-br from-blue-950 to-blue-900 text-white min-h-screen flex items-center justify-center">
         <p>Loading...</p>
+      </main>
+    )
+  }
+
+  if (error) {
+    return (
+      <main className="bg-gradient-to-br from-blue-950 to-blue-900 text-white min-h-screen flex items-center justify-center">
+        <h1 className="text-2xl font-bold">Error loading news: {error?.message}</h1>
       </main>
     )
   }

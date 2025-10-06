@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import FloatingButtons from "./components/FloatingButtons";
 import Footer from "./components/Footer";
 import ServiceChatbot from "./components/ServiceChatbot";
+import QueryProvider from "./components/QueryProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,12 +28,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} antialiased`}
       >
-        <Header />
-        {children}
-        <FloatingButtons />
-      {/* Chatbot Widget */}
-        <ServiceChatbot />
-        <Footer />
+        <QueryProvider>
+          <Header />
+          {children}
+          <FloatingButtons />
+          {/* Chatbot Widget */}
+          <ServiceChatbot />
+          <Footer />
+        </QueryProvider>
       </body>
     </html>
   );
