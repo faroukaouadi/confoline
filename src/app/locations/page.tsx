@@ -185,7 +185,7 @@ export default function LocationsPage() {
              {currentLocations.map((location) => (
                <div
                  key={location.id}
-                 className="bg-gray-900 rounded-lg p-6 text-white hover:bg-gray-800 transition-colors duration-300"
+                 className="bg-[#1A337D] rounded-lg p-6 text-white hover:bg-gray-800 transition-colors duration-300 cursor-pointer"
                >
                  <h3 className="text-lg font-semibold mb-3">{location.title}</h3>
                  <div className="space-y-1">
@@ -198,11 +198,11 @@ export default function LocationsPage() {
            </div>
 
            {/* See More Button */}
-           <div className="text-center">
+           {/* <div className="text-center">
              <button className="bg-white border border-black text-black px-8 py-3 rounded-full font-medium hover:bg-gray-50 transition-colors duration-300">
                See More
              </button>
-           </div>
+           </div> */}
          </div>
        </section>
 

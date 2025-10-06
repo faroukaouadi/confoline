@@ -9,14 +9,14 @@ import 'swiper/css/pagination';
 function HeroCarousel() {
     // Tableau des images pour le carrousel
     const images = [
-        "images/employee1.jpg",
-        "images/employee2.jpg",
-        "images/employee3.jpg",
-        "images/team.jpg",
-        "images/employee3.jpg",
-        "images/team.jpg",
-        "images/employee1.jpg",
-        "images/employee2.jpg",
+        "images/gallery1.jpg",
+        "images/gallery2.jpg",
+        "images/gallery3.jpg",
+        "images/gallery4.jpg",
+        "images/gallery5.jpg",
+        "images/gallery6.jpg",
+        "images/gallery7.jpg",
+        "images/gallery8.jpg",
     ];
     return (
         <div className="relative rounded-3xl ">
@@ -29,9 +29,13 @@ function HeroCarousel() {
                 speed={8000}
                 autoplay={{
                     delay: 0,
-                    disableOnInteraction: true,
+                    disableOnInteraction: false,
                     
                 }}
+                pagination={{
+                    clickable: true,
+                    el: '.swiper-pagination',
+                  }}
                 breakpoints={{
                     0: { slidesPerView: 1,centeredSlides: true },
                     640: { slidesPerView: 1.5,centeredSlides: true},
@@ -47,7 +51,7 @@ function HeroCarousel() {
                 }}
                 className="py-8"
             >
-                {images.map((image, index) => (
+                {[...images,...images].map((image, index) => (
                     <SwiperSlide key={index}>
                         <div className="group h-105 2xl:h-120 flex items-center justify-center">
                             <div className={`overflow-hidden rounded-3xl border border-white/10 transition-all duration-500 group-hover:scale-105  flex items-center justify-center`}>

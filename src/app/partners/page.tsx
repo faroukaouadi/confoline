@@ -27,7 +27,7 @@ export default function PartnersPage() {
         <div className="flex items-start justify-between">
           <div>
             <h1 className="text-2xl sm:text-4xl 2xl:text-5xl font-extrabold">Partners</h1>
-            <p className="mt-2 text-sm sm:text-base 2xl:text-2xl text-blue-200 max-w-2xl">
+            <p className="mt-2 text-sm sm:text-base 2xl:text-2xl text-blue-200">
               Proud to collaborate with industry-leading partners driving innovation and value.
             </p>
           </div>
