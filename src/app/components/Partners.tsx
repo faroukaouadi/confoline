@@ -9,20 +9,6 @@ import Autoplay from "embla-carousel-autoplay";
 
 type Partner = { id: number; name: string; src: string; link: string };
 
-export const partnersData = [
-  
-  { name: "newrelic", src: "/images/partners/newrelicWHITE.svg", link: 'https://newrelic.com/' },
-  { name: "zabbix", src: "/images/partners/zabbixWHITE.svg", link: 'https://www.zabbix.com/'},
-  { name: "gitLab", src: "/images/partners/gitlabWHITE.svg", link: 'https://about.gitlab.com/'},
-  { name: "keysight", src: "/images/partners/KeysightWHITE.svg", link: 'https://www.keysight.com/'},
-  { name: "ibm", src: "/images/partners/ibmWHITE.svg", link: 'https://www.ibm.com/'},
-  { name: "elastic", src: "/images/partners/elasticWHITE.svg", link: 'https://www.elastic.co/' },
-  { name: "opentext", src: "/images/partners/opentextWHITE.svg", link: 'https://www.opentext.com/'},
-  { name: "splunk", src: "/images/partners/splunkWHITE.svg", link: 'https://www.splunk.com/'},
-  { name: "tricentis", src: "/images/partners/tricentisWHITE.svg", link: 'https://www.tricentis.com/' },
-  // { name: "opsramp", src: "/images/partners/opsrampWHITE.svg", link: 'https://www.opsramp.com/' },
-  // { name: "ser", src: "/images/partners/serWHITE.svg", link: 'https://www.sergroup.com/'},
-];
 
 export default function Partners() {
   const [partners, setPartners] = useState<Partner[]>([]);
@@ -36,8 +22,8 @@ export default function Partners() {
         setLoading(true);
         setError(null);
         const apiUrl = process.env.NODE_ENV === 'development' 
-          ? "http://127.0.0.1:8000/admin/confoline-Api/partners.php"
-          : "/admin/confoline-Api/partners.php";
+          ? "http://127.0.0.1:8000/admin/confoline-Api/partners-home.php"
+          : "/admin/confoline-Api/partners-home.php";
         const res = await fetch(apiUrl, {
           signal: controller.signal,
           headers: { "Accept": "application/json" },

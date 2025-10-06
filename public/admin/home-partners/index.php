@@ -7,7 +7,7 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 require_once __DIR__ . '/../db.php';
 
 $pdo = get_pdo();
-$partners = $pdo->query('SELECT id, name, src, link, created_at FROM partners ORDER BY created_at DESC')->fetchAll();
+$partnersWhite = $pdo->query('SELECT id, name, src, link, created_at FROM partners_white ORDER BY created_at DESC')->fetchAll();
 $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
 ?>
 <!doctype html>
@@ -24,8 +24,8 @@ $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
       <div class="brand">Confoline Admin</div>
       <nav class="menu">
         <a href="../dashboard.php" class="menu-item">Dashboard</a>
-        <a href="../home-partners/index.php" class="menu-item">Home Partners</a>
-        <a href="./index.php" class="menu-item active">Partners</a>
+        <a href="./index.php" class="menu-item active">Home Partners</a>
+        <a href="../partners/index.php" class="menu-item ">Partners</a>
         <a href="../news/index.php" class="menu-item">News</a>
         <a href="../gallery/index.php" class="menu-item">Gallery</a>
       </nav>
@@ -82,7 +82,7 @@ $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($partners as $p): ?>
+              <?php foreach ($partnersWhite as $p): ?>
               <tr>
                 <td><?php echo (int)$p['id']; ?></td>
                 <td><img class="thumb" src="<?php echo htmlspecialchars($p['src']); ?>" alt="logo" /></td>

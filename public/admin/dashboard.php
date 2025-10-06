@@ -20,6 +20,7 @@ $username = isset($_SESSION['admin_username']) ? $_SESSION['admin_username'] : '
       <div class="brand">Confoline Admin</div>
       <nav class="menu">
         <a href="#" class="menu-item active">Dashboard</a>
+        <a href="home-partners/index.php" class="menu-item">Home Partners</a>
         <a href="partners/index.php" class="menu-item">Partners</a>
         <a href="news/index.php" class="menu-item">News</a>
         <a href="gallery/index.php" class="menu-item">Gallery</a>
