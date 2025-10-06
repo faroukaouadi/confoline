@@ -124,7 +124,7 @@ export default function Services() {
       </div>
       
     </section>
-    <div className="h-20 2xl:h-40 bg-amber-50"></div>
+    {/* <div className="h-20 2xl:h-40 bg-amber-50"></div> */}
     </>
     
   );

@@ -1,7 +1,5 @@
 "use client";
 
-import ServiceChatbot from "../components/ServiceChatbot";
-
 export default function ServicesPage() {
   return (
     <main className="relative min-h-screen bg-gradient-to-b from-blue-950 to-blue-900 text-white">

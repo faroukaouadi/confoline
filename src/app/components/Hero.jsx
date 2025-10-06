@@ -61,7 +61,7 @@ export default function Hero() {
   };
 
   return (
-    <div className="text-white bg-[linear-gradient(180deg,#0C1B46_0%,#0065A1_30.76%,#0C1B46_100%)]">
+    <div className="text-white">
       <div className=" max-w-[90%] mx-auto px-4 pt-16 2xl:py-20">
         <div className="space-y-4">
 

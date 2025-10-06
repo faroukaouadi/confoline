@@ -9,6 +9,7 @@ import Image from "next/image";
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [companyOpen, setCompanyOpen] = useState(false);
+  const [companyMobileOpen, setCompanyMobileOpen] = useState(false);
   const pathname = usePathname();
 
 
@@ -53,13 +54,13 @@ export default function Header() {
                 <Link href="#" className="block px-4 py-2 hover:bg-blue-800 ">
                   Company Story
                 </Link>
-                <Link href="/company/blogs" className="block px-4 py-2 hover:bg-blue-800">
+                <Link href="/blogs" className="block px-4 py-2 hover:bg-blue-800">
                   Blogs
                 </Link>
-                <Link href="/company/career" className="block px-4 py-2 hover:bg-blue-800">
+                <Link href="/career" className="block px-4 py-2 hover:bg-blue-800">
                   Career
                 </Link>
-                <Link href="/company/locations" className="block px-4 py-2 hover:bg-blue-800">
+                <Link href="/locations" className="block px-4 py-2 hover:bg-blue-800">
                   Locations
                 </Link>
               </div>
@@ -92,12 +93,38 @@ export default function Header() {
       {/* Mobile dropdown */}
       {open && (
         <div className="lg:hidden bg-gradient-to-br from-blue-950 to-blue-900 px-4 pb-4 space-y-2">
-          <Link href={navHref("/services")} className={`block py-2 ${pathname && pathname.startsWith("/services") ? "text-blue-300" : ""}`}>Services</Link>
-          <Link href={navHref("/industries")} className={`block py-2 ${pathname && pathname.startsWith("/industries") ? "text-blue-300" : ""}`}>Industries</Link>
-          <Link href={navHref("/customers")} className={`block py-2 ${pathname && pathname.startsWith("/customers") ? "text-blue-300" : ""}`}>Customers</Link>
-          <Link href={navHref("/support")} className={`block py-2 ${pathname && pathname.startsWith("/support") ? "text-blue-300" : ""}`}>Support</Link>
-          <Link href={navHref("/partners")} className={`block py-2 ${pathname && pathname.startsWith("/partners") ? "text-blue-300" : ""}`}>Partners</Link>
-          <Link href="#" className="block py-2">Company</Link>
+          <Link href={navHref("/services")} className={`block py-2 ${pathname && pathname.startsWith("/services") ? "text-blue-300" : ""}`} onClick={() => setOpen(!open)}>Services</Link>
+          <Link href={navHref("/industries")} className={`block py-2 ${pathname && pathname.startsWith("/industries") ? "text-blue-300" : ""}`} onClick={() => setOpen(!open)}>Industries</Link>
+          <Link href={navHref("/customers")} className={`block py-2 ${pathname && pathname.startsWith("/customers") ? "text-blue-300" : ""}`} onClick={() => setOpen(!open)}>Customers</Link>
+          <Link href={navHref("/support")} className={`block py-2 ${pathname && pathname.startsWith("/support") ? "text-blue-300" : ""}`} onClick={() => setOpen(!open)}>Support</Link>
+          <Link href={navHref("/partners")} className={`block py-2 ${pathname && pathname.startsWith("/partners") ? "text-blue-300" : ""}`} onClick={() => setOpen(!open)}>Partners</Link>
+          <div>
+      <button
+        onClick={() => setCompanyMobileOpen(!companyMobileOpen)}
+        className="flex items-center justify-between w-full py-2"
+      >
+        <span>Company</span>
+        {companyMobileOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+      </button>
+
+      {companyMobileOpen && (
+        <div className="pl-4 space-y-2">
+          <Link href="#" className="block py-1 hover:text-blue-300" onClick={() => {setOpen(!open);setCompanyMobileOpen(false);}}>
+            Company Story
+          </Link>
+          <Link href="/blogs" className="block py-1 hover:text-blue-300" onClick={() => {setOpen(!open);setCompanyMobileOpen(false);}}>
+            Blogs
+          </Link>
+          <Link href="/career" className="block py-1 hover:text-blue-300" onClick={() => {setOpen(!open);setCompanyMobileOpen(false);}}>
+            Career
+          </Link>
+          <Link href="/locations" className="block py-1 hover:text-blue-300" onClick={() => {setOpen(!open);setCompanyMobileOpen(false);}}>
+            Locations
+          </Link>
+          
+        </div>
+      )}
+    </div>
           <button className="w-full mt-3 bg-blue-400 px-6 py-2 rounded-md hover:bg-blue-300 cursor-pointer">
             Get Started
           </button>

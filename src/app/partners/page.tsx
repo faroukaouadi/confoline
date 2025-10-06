@@ -6,6 +6,22 @@ import Image from "next/image";
 
 type Partner = { id: number; name: string; src: string; link: string };
 
+export const partnersData = [
+  
+  { name: "newrelic", src: "/images/partners/newrelic.svg", link: 'https://newrelic.com/' },
+  { name: "zabbix", src: "/images/partners/zabbix.svg", link: 'https://www.zabbix.com/'},
+  { name: "gitLab", src: "/images/partners/gitlab.svg", link: 'https://about.gitlab.com/'},
+  { name: "keysight", src: "/images/partners/Keysight.svg", link: 'https://www.keysight.com/'},
+  { name: "ibm", src: "/images/partners/ibm.svg", link: 'https://www.ibm.com/'},
+  { name: "elastic", src: "/images/partners/elastic.svg", link: 'https://www.elastic.co/' },
+  { name: "opentext", src: "/images/partners/opentext.svg", link: 'https://www.opentext.com/'},
+  { name: "splunk", src: "/images/partners/splunk.svg", link: 'https://www.splunk.com/'},
+  { name: "tricentis", src: "/images/partners/tricentis.svg", link: 'https://www.tricentis.com/' },
+  // { name: "opsramp", src: "/images/partners/opsramp.svg", link: 'https://www.opsramp.com/' },
+  // { name: "ser", src: "/images/partners/ser.svg", link: 'https://www.sergroup.com/'},
+];
+
+
 export default function PartnersPage() {
   const [partners, setPartners] = useState<Partner[]>([]);
   const [loading, setLoading] = useState(true);
