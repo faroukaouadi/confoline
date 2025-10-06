@@ -67,8 +67,8 @@ export default function Footer() {
             {/* Bottom bar (inside same column) */}
             <div className="py-4 flex flex-col sm:flex-row items-center justify-between text-[11px] sm:text-[12px] 2xl:text-[18px]">
               <div className="flex gap-6 mb-3 sm:mb-0">
-                <Link href="#" className="hover:underline">Confidentialité</Link>
-                <Link href="#" className="hover:underline">Conditions</Link>
+                <Link href="#" className="hover:underline">Confidentiality</Link>
+                <Link href="#" className="hover:underline">Terms</Link>
                 <Link href="#" className="hover:underline">Cookies</Link>
               </div>
               <p className="text-gray-900">© {new Date().getFullYear()} Confoline. All rights reserved  </p>

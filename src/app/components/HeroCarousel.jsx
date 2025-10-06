@@ -52,9 +52,13 @@ function HeroCarousel() {
                 speed={8000}
                 autoplay={{
                     delay: 0,
-                    disableOnInteraction: true,
+                    disableOnInteraction: false,
                     
                 }}
+                pagination={{
+                    clickable: true,
+                    el: '.swiper-pagination',
+                  }}
                 breakpoints={{
                     0: { slidesPerView: 1,centeredSlides: true },
                     640: { slidesPerView: 1.5,centeredSlides: true},
@@ -71,8 +75,8 @@ function HeroCarousel() {
                 
                 className="py-8"
             >
-                {images.map((item, index) => (
-                    <SwiperSlide key={item.id || index}>
+                {[...images,...images].map((image, index) => (
+                    <SwiperSlide key={item.id ||index}>
                         <div className="group h-105 2xl:h-120 flex items-center justify-center">
                             <div className={`overflow-hidden rounded-3xl border border-white/10 transition-all duration-500 group-hover:scale-105  flex items-center justify-center`}>
                                 <img

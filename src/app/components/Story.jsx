@@ -8,12 +8,12 @@ export default function Story() {
 
       <div className="relative z-10 max-w-5xl 2xl:max-w-[80%] mx-auto px-4 py-22 2xl:py-32 text-center">
         <h2 className="text-2xl sm:text-3xl md:text-4xl 2xl:text-5xl font-extrabold text-gray-900">
-          Built to drive every business forward
+        We change the way business works
         </h2>
         <p className="mt-3 text-sm sm:text-base md:text-lg 2xl:text-2xl text-gray-900">
-          See how customers are accelerating growth, driving innovation, and delivering 
+        See how our clients are accelerating growth, driving innovation,
           <br />
-          experiences their customers love with Dynatrace.
+          and building future-ready IT strategies with Confoline.
         </p>
 
         <div className="mt-6 flex items-center justify-center gap-3 sm:gap-4">

@@ -15,25 +15,25 @@ export default function Hero() {
   // Tableau des textes pour le carrousel
   const textSlides = [
     {
-      titlepart1: "PUT AI TO WORK",
-      titlepart2: "FOR EMPLOYEES",
-      description: "Bring AI + Data + Workflows to every corner of your business with ServiceNow, the AI platform for business transformation."
+      titlepart1: "AI-POWERED INSIGHTS ",
+      titlepart2: "FOR YOUR BUSINESS STRATEGY.",
+      description: "By integrating AI, data, and workflows across your organization powered by solutions from diverse software providers we equip you to refine and execute your strategic vision."
     },
     {
 
-      titlepart1: "TRANSFORM YOUR WORKPLACE",
+      titlepart1: "TRANSFORM YOUR BUSINESS PROCESS",
       titlepart2: "TODAY",
-      description: "Streamline operations and boost productivity with intelligent automation and AI-powered solutions that adapt to your needs."
+      description: "Streamline operations, boost productivity, and leverage intelligent automation and AI-powered solutions adapted to your unique needs."
     },
+    // {
+    //   titlepart1: "ACCELERATE INNOVATION",
+    //   titlepart2: "NOW",
+    //   description: "Leverage cutting-edge technology to drive digital transformation and stay ahead of the competition in today's market."
+    // },
     {
-      titlepart1: "ACCELERATE INNOVATION",
-      titlepart2: "NOW",
-      description: "Leverage cutting-edge technology to drive digital transformation and stay ahead of the competition in today's market."
-    },
-    {
-      titlepart1: "EMPOWER YOUR TEAMS",
-      titlepart2: "EVERYWHERE",
-      description: "Give your employees the tools they need to work smarter, faster, and more efficiently across all departments."
+      titlepart1: "EMPOWER YOUR TEAMS  ",
+      titlepart2: "WITH EXPERT INSIGHT",
+      description: "Empower your teams with expert insight, providing the tools they need to work smarter, faster, and more efficiently across all departments."
     }
   ];
 

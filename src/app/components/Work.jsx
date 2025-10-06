@@ -3,10 +3,10 @@
 import { ChevronRight, Users, MessageCircle, Handshake, MonitorPlay } from "lucide-react";
 
 const items = [
-  { title: "Contact us", desc: "Talk to a ServiceNow expert and see how a single platform can solve your most pressing needs.", Icon: MessageCircle },
-  { title: "Join the community", desc: "Learn, share, and connect with people doing work that matters on the ServiceNow AI Platform.", Icon: Users },
-  { title: "Find a partner", desc: "Realize even more value with a ServiceNow partner—Resellers, Service Providers, Implementation partners and more.", Icon: Handshake },
-  { title: "Explore demos", desc: "Get hands-on with the ServiceNow AI Platform. Explore demo options for everyone, at every skill level.", Icon: MonitorPlay },
+  { title: "Contact us", desc: "Speak with a Confoline expert to see how Vision, our AI-Driven Advisor, can help you make the right decision.", Icon: MessageCircle },
+  { title: "Join the community", desc: "Learn, share, and connect with people doing work that matters on Observibility, Service Management, and Application Delivery Management", Icon: Users },
+  { title: "Discover our patnerships", desc: "Explore our partnerships, discover our technical expertise, and see our vision for the future.", Icon: Handshake },
+  { title: "Explore demos", desc: "GExplore a wide range of technologies from leading providers. Find the perfect hands-on demo, no matter your skill level.", Icon: MonitorPlay },
 ];
 
 export default function Work() {
@@ -18,10 +18,10 @@ export default function Work() {
             {/* Left intro */}
             <div className="p-8 md:p-10 2xl:p-12 bg-[#162456] relative">
               <h3 className="text-2xl sm:text-3xl md:text-4xl 2xl:text-5xl font-extrabold">
-                Let’s get to work
+              Stay ahead of the curve
               </h3>
               <p className="mt-3 text-sm sm:text-base text-blue-100 max-w-md 2xl:text-lg">
-                Explore all the ways ServiceNow can put AI to work for your people.
+              Explore all the ways Confoline can put AI to increase your business outcomes.
               </p>
                 {/* Email input with button inside */}
                 <div className="mt-6 relative">
