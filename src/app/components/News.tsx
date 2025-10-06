@@ -99,7 +99,7 @@ export default function News() {
                   )}
                   <div className="pt-4">
                     <Link 
-                      href={`/news/${featuredNews[0].id}`}
+                      href={`/news?id=${featuredNews[0].id}`}
                       className="text-cyan-300 hover:text-cyan-200 text-xs lg:text-base 2xl:text-lg inline-flex items-center gap-2"
                     >
                       Read more
@@ -129,7 +129,7 @@ export default function News() {
                     )}
                     <div className="mt-auto pt-4">
                       <Link 
-                        href={`/news/${item.id}`}
+                        href={`/news?id=${item.id}`}
                         className="text-cyan-300 hover:text-cyan-200 text-xs lg:text-base 2xl:text-lg inline-flex items-center gap-2"
                       >
                         Read more
