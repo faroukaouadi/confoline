@@ -106,7 +106,7 @@ export default function LocationsPage() {
             <p className="text-white text-center text-sm sm:text-xl 2xl:text-3xl">
               See the AI experience by ServiceNow—the UI for Enterprise AI.
             </p>
-            <button className="ml-4 bg-cyan-400 hover:bg-cyan-500 text-white px-6 py-3 rounded-full font-medium text-xs sm:text-sm 2xl:text-2xl transition-colors duration-300">
+            <button className="ml-4 bg-[#51A2FF] hover:bg-[#4A90E2] text-white px-6 py-3 rounded-full font-medium text-xs sm:text-sm 2xl:text-2xl transition-colors duration-300">
               Explore AI Experience
             </button>
           </div>
@@ -120,7 +120,7 @@ export default function LocationsPage() {
             {/* Left Column - Text Content */}
             <div className="space-y-8 lg:col-span-2">
               <div>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-cyan-400 mb-4">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#51A2FF] mb-4">
                   Service Now Locations
                 </h1>
                 <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white">
@@ -134,7 +134,7 @@ export default function LocationsPage() {
                 <p className="text-lg sm:text-xl">Santa Clara, CA 95054</p>
               </div>
               
-              <button className="bg-cyan-400 hover:bg-cyan-500 text-white px-8 py-3 rounded-full font-medium text-lg transition-colors duration-300">
+              <button className="bg-[#51A2FF] hover:bg-[#4A90E2] text-white px-8 py-3 rounded-full font-medium text-lg transition-colors duration-300">
                 Contact Us
               </button>
             </div>
@@ -166,7 +166,7 @@ export default function LocationsPage() {
                  onClick={() => setActiveTab(tab)}
                  className={`px-1 lg:px-15 2xl:px-30 py-3 text-xs lg:text-lg 2xl:text-2xl font-medium transition-colors duration-300 border-b-2 cursor-pointer ${
                    activeTab === tab
-                     ? "text-blue-600 border-blue-600"
+                     ? "text-[#51A2FF] border-[#51A2FF]"
                      : "text-gray-500 border-transparent hover:text-gray-700"
                  }`}
                >
@@ -185,12 +185,12 @@ export default function LocationsPage() {
              {currentLocations.map((location) => (
                <div
                  key={location.id}
-                 className="bg-[#1A337D] rounded-lg p-6 text-white hover:bg-gray-800 transition-colors duration-300 cursor-pointer"
+                  className="bg-[#1A337D] rounded-lg p-6 text-white hover:bg-[#4A90E2] transition-colors duration-300 cursor-pointer"
                >
                  <h3 className="text-lg font-semibold mb-3">{location.title}</h3>
                  <div className="space-y-1">
                    {location.address.map((line, index) => (
-                     <p key={index} className="text-sm text-gray-300">{line}</p>
+                     <p key={index} className="text-sm text-white">{line}</p>
                    ))}
                  </div>
                </div>
