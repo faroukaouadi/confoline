@@ -39,11 +39,11 @@ function HeroCarousel() {
                 breakpoints={{
                     0: { slidesPerView: 1,centeredSlides: true },
                     640: { slidesPerView: 1.5,centeredSlides: true},
-                    768: { slidesPerView: 2.5,centeredSlides: true },
-                    1024: { slidesPerView: 3.5,centeredSlides: true},
-                    1280: { slidesPerView: 4.5,centeredSlides: true },
-                    1536: { slidesPerView: 5.5,centeredSlides: true},
-                    1920: { slidesPerView: 5.5,centeredSlides: true }
+                    768: { slidesPerView: 2.5,centeredSlides: true},
+                    1024: { slidesPerView: 3.5,centeredSlides: false},
+                    1280: { slidesPerView: 4.5,centeredSlides: false},
+                    1536: { slidesPerView: 5.5,centeredSlides: false},
+                    1920: { slidesPerView: 5.5,centeredSlides: false}
                 }}
                 navigation={{
                     nextEl: '.swiper-button-next',

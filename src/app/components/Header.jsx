@@ -51,7 +51,7 @@ export default function Header() {
           </button>
           {companyOpen && (
               <div className="absolute left-0 top-full w-35  bg-gradient-to-br from-blue-950 to-blue-900 shadow-lg rounded-lg py-2">
-                <Link href="#" className="block px-4 py-2 hover:bg-blue-800 ">
+                <Link href="/company" className="block px-4 py-2 hover:bg-blue-800 ">
                   Company Story
                 </Link>
                 <Link href="/blogs" className="block px-4 py-2 hover:bg-blue-800">
@@ -109,7 +109,7 @@ export default function Header() {
 
       {companyMobileOpen && (
         <div className="pl-4 space-y-2">
-          <Link href="#" className="block py-1 hover:text-blue-300" onClick={() => {setOpen(!open);setCompanyMobileOpen(false);}}>
+          <Link href="/company" className="block py-1 hover:text-blue-300" onClick={() => {setOpen(!open);setCompanyMobileOpen(false);}}>
             Company Story
           </Link>
           <Link href="/blogs" className="block py-1 hover:text-blue-300" onClick={() => {setOpen(!open);setCompanyMobileOpen(false);}}>
