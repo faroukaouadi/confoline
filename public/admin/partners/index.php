@@ -24,9 +24,12 @@ $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
       <div class="brand">Confoline Admin</div>
       <nav class="menu">
         <a href="../dashboard.php" class="menu-item">Dashboard</a>
+        <a href="../home-partners/index.php" class="menu-item">Home Partners</a>
         <a href="./index.php" class="menu-item active">Partners</a>
         <a href="../news/index.php" class="menu-item">News</a>
         <a href="../gallery/index.php" class="menu-item">Gallery</a>
+        <a href="../index.php" class="menu-item">Statistics</a>
+        <a href="../opportunities/index.php" class="menu-item">Career Opportunities</a>
       </nav>
       <form action="../logout.php" method="post">
         <button class="btn-logout" type="submit">Logout</button>

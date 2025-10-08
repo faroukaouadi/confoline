@@ -2,10 +2,67 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useMemo } from "react";
 import { useOpportunities } from "../../hooks/useOpportunities";
 
 export default function Career() {
   const { data: opportunities = [], isLoading: loading, error } = useOpportunities();
+  
+  // State for filters
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedDepartment, setSelectedDepartment] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("");
+  const [selectedWorkType, setSelectedWorkType] = useState("");
+  const [showAll, setShowAll] = useState(false);
+  const [showComingSoon, setShowComingSoon] = useState(false);
+
+  // Extract unique values for filter options
+  const departments = useMemo(() => {
+    const depts = [...new Set(opportunities.map(opp => opp.department))];
+    return depts.sort();
+  }, [opportunities]);
+
+  const locations = useMemo(() => {
+    const locs = [...new Set(opportunities.map(opp => opp.location))];
+    return locs.sort();
+  }, [opportunities]);
+
+  const workTypes = useMemo(() => {
+    const types = [...new Set(opportunities.map(opp => opp.work_type))];
+    return types.sort();
+  }, [opportunities]);
+
+  // Filter opportunities based on search and filters
+  const filteredOpportunities = useMemo(() => {
+    return opportunities.filter(opportunity => {
+      const matchesSearch = !searchTerm || 
+        opportunity.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        opportunity.description.toLowerCase().includes(searchTerm.toLowerCase());
+      
+      const matchesDepartment = !selectedDepartment || opportunity.department === selectedDepartment;
+      const matchesLocation = !selectedLocation || opportunity.location === selectedLocation;
+      const matchesWorkType = !selectedWorkType || opportunity.work_type === selectedWorkType;
+      
+      return matchesSearch && matchesDepartment && matchesLocation && matchesWorkType;
+    });
+  }, [opportunities, searchTerm, selectedDepartment, selectedLocation, selectedWorkType]);
+
+  // Display opportunities (3 initially, all if showAll is true)
+  const displayedOpportunities = showAll ? filteredOpportunities : filteredOpportunities.slice(0, 3);
+
+  // Scroll to Current Openings section
+  const scrollToOpenings = () => {
+    const element = document.getElementById('current-openings');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // Show coming soon animation
+  const handleJoinTalentNetwork = () => {
+    setShowComingSoon(true);
+    setTimeout(() => setShowComingSoon(false), 3000);
+  };
   return (
     <div className="min-h-screen bg-[#162456] text-white">
       {/* Hero Section */}
@@ -25,13 +82,29 @@ export default function Career() {
               Join a team where innovation, AI, and human creativity come together.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-[#4A90E2] hover:bg-blue-600 text-white px-8 py-4 rounded-full font-medium transition-colors">
+              <button 
+                onClick={scrollToOpenings}
+                className="bg-[#4A90E2] hover:bg-blue-600 text-white px-8 py-4 rounded-full font-medium transition-colors"
+              >
                 View Open Positions
               </button>
-              <button className="border border-white text-white hover:bg-white hover:text-[#0C1B46] px-8 py-4 rounded-full font-medium transition-colors">
+              <button 
+                onClick={handleJoinTalentNetwork}
+                className="border border-white text-white hover:bg-white hover:text-[#0C1B46] px-8 py-4 rounded-full font-medium transition-colors"
+              >
                 Join Talent Network
               </button>
             </div>
+            
+            {/* Coming Soon Animation */}
+            {showComingSoon && (
+              <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
+                <div className="bg-[#1A337D] border border-[#4A90E2] rounded-2xl p-8 text-center animate-pulse">
+                  <div className="text-2xl font-bold text-[#4A90E2] mb-2">Coming Soon!</div>
+                  <div className="text-white">Talent Network feature is under development</div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -93,7 +166,7 @@ export default function Career() {
       </section>
 
       {/* Current Openings Section */}
-      <section className="py-20 px-4 bg-[#162456]">
+      <section id="current-openings" className="py-20 px-4 bg-[#162456]">
         <div className="max-w-[90%] mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold mb-6">Current Openings</h2>
@@ -104,30 +177,44 @@ export default function Career() {
             <div className="flex-1 relative">
               <input
                 type="text"
-                placeholder="Search"
+                placeholder="Search opportunities..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full px-4 py-3 pl-10 bg-white border border-gray-600 rounded-lg text-[#60646C] placeholder-[#60646C] focus:outline-none focus:border-[#4A90E2]"
               />
               <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#60646C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </div>
-            <select className="px-4 py-3 bg-white border border-gray-600 rounded-lg text-[#60646C] focus:outline-none focus:border-[#4A90E2]">
-              <option>All Departments</option>
-              <option>Engineering</option>
-              <option>Product</option>
-              <option>Design</option>
+            <select 
+              value={selectedDepartment}
+              onChange={(e) => setSelectedDepartment(e.target.value)}
+              className="px-4 py-3 bg-white border border-gray-600 rounded-lg text-[#60646C] focus:outline-none focus:border-[#4A90E2]"
+            >
+              <option value="">All Departments</option>
+              {departments.map((dept) => (
+                <option key={dept} value={dept}>{dept}</option>
+              ))}
             </select>
-            <select className="px-4 py-3 bg-white border border-gray-600 rounded-lg text-[#60646C] focus:outline-none focus:border-[#4A90E2]">
-              <option>All Locations</option>
-              <option>New York, USA</option>
-              <option>London, UK</option>
-              <option>Remote</option>
+            <select 
+              value={selectedLocation}
+              onChange={(e) => setSelectedLocation(e.target.value)}
+              className="px-4 py-3 bg-white border border-gray-600 rounded-lg text-[#60646C] focus:outline-none focus:border-[#4A90E2]"
+            >
+              <option value="">All Locations</option>
+              {locations.map((location) => (
+                <option key={location} value={location}>{location}</option>
+              ))}
             </select>
-            <select className="px-4 py-3 bg-white border border-gray-600 rounded-lg text-[#60646C] focus:outline-none focus:border-[#4A90E2]">
-              <option>All Work Types</option>
-              <option>Full-time</option>
-              <option>Part-time</option>
-              <option>Contract</option>
+            <select 
+              value={selectedWorkType}
+              onChange={(e) => setSelectedWorkType(e.target.value)}
+              className="px-4 py-3 bg-white border border-gray-600 rounded-lg text-[#60646C] focus:outline-none focus:border-[#4A90E2]"
+            >
+              <option value="">All Work Types</option>
+              {workTypes.map((type) => (
+                <option key={type} value={type}>{type}</option>
+              ))}
             </select>
           </div>
 
@@ -139,42 +226,58 @@ export default function Career() {
             <div className="text-center text-red-400 py-8">{error?.message || "Error loading opportunities"}</div>
           )}
           {!loading && !error && (
-            <div className="grid gap-6">
-              {opportunities.map((opportunity) => (
-                <div key={opportunity.id} className="bg-[#1A337D] p-6 rounded-2xl hover:bg-[#2B4BBF] transition-colors">
-                  <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-bold mb-2">{opportunity.title}</h3>
-                      <div className="flex flex-wrap gap-4 text-gray-300 mb-4">
-                        <span>{opportunity.department}</span>
-                        <span>•</span>
-                        <span>{opportunity.location}</span>
-                        <span className={`px-3 py-1 rounded-full text-sm ${
-                          opportunity.work_type === 'Remote' 
-                            ? 'bg-[#4A90E2] text-white' 
-                            : 'bg-green-500 text-white'
-                        }`}>
-                          {opportunity.work_type}
-                        </span>
+            <>
+              <div className="grid gap-6">
+                {displayedOpportunities.map((opportunity) => (
+                  <div key={opportunity.id} className="bg-[#1A337D] p-6 rounded-2xl hover:bg-[#2B4BBF] transition-colors">
+                    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                      <div className="flex-1">
+                        <h3 className="text-2xl font-bold mb-2">{opportunity.title}</h3>
+                        <div className="flex flex-wrap gap-4 text-gray-300 mb-4">
+                          <span>{opportunity.department}</span>
+                          <span>•</span>
+                          <span>{opportunity.location}</span>
+                          <span className={`px-3 py-1 rounded-full text-sm ${
+                            opportunity.work_type === 'Remote' 
+                              ? 'bg-[#4A90E2] text-white' 
+                              : 'bg-green-500 text-white'
+                          }`}>
+                            {opportunity.work_type}
+                          </span>
+                        </div>
                       </div>
+                      <Link 
+                        href={`/career/opportunity?id=${opportunity.id}`} 
+                        className="bg-[#4A90E2] hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors inline-block"
+                      >
+                        Apply
+                      </Link>
                     </div>
-                    <Link 
-                      href={`/career/opportunity?id=${opportunity.id}`} 
-                      className="bg-[#4A90E2] hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors inline-block"
-                    >
-                      Apply
-                    </Link>
                   </div>
-                </div>
-              ))}
-            </div>
-          )}
+                ))}
+              </div>
 
-          <div className="text-center mt-8">
-            <button className="border border-white text-white hover:bg-white hover:text-[#0C1B46] px-8 py-4 rounded-full font-medium transition-colors">
-              View All Positions
-            </button>
-          </div>
+              {/* Show/Hide All Positions Button */}
+              {filteredOpportunities.length > 3 && (
+                <div className="text-center mt-8">
+                  <button 
+                    onClick={() => setShowAll(!showAll)}
+                    className="border border-white text-white hover:bg-white hover:text-[#0C1B46] px-8 py-4 rounded-full font-medium transition-colors"
+                  >
+                    {showAll ? 'Show Less' : `View All Positions (${filteredOpportunities.length})`}
+                  </button>
+                </div>
+              )}
+
+              {/* No results message */}
+              {filteredOpportunities.length === 0 && (
+                <div className="text-center text-gray-300 py-8">
+                  <div className="text-xl mb-2">No opportunities found</div>
+                  <div className="text-sm">Try adjusting your search criteria</div>
+                </div>
+              )}
+            </>
+          )}
         </div>
       </section>
 
