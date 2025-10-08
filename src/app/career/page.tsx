@@ -1,7 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useOpportunities } from "../../hooks/useOpportunities";
 
 export default function Career() {
+  const { data: opportunities = [], isLoading: loading, error } = useOpportunities();
   return (
     <div className="min-h-screen bg-[#162456] text-white">
       {/* Hero Section */}
@@ -128,58 +132,43 @@ export default function Career() {
           </div>
 
           {/* Job Listings */}
-          <div className="grid gap-6">
-            <div className="bg-[#1A337D] p-6 rounded-2xl hover:bg-[#2B4BBF] transition-colors">
-              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-2">Senior Backend Engineer</h3>
-                  <div className="flex flex-wrap gap-4 text-gray-300 mb-4">
-                    <span>Engineering</span>
-                    <span>•</span>
-                    <span>New York, USA</span>
-                    <span className="bg-[#4A90E2] text-white px-3 py-1 rounded-full text-sm">Remote</span>
+          {loading && (
+            <div className="text-center text-white py-8">Loading opportunities...</div>
+          )}
+          {error && (
+            <div className="text-center text-red-400 py-8">{error?.message || "Error loading opportunities"}</div>
+          )}
+          {!loading && !error && (
+            <div className="grid gap-6">
+              {opportunities.map((opportunity) => (
+                <div key={opportunity.id} className="bg-[#1A337D] p-6 rounded-2xl hover:bg-[#2B4BBF] transition-colors">
+                  <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                    <div className="flex-1">
+                      <h3 className="text-2xl font-bold mb-2">{opportunity.title}</h3>
+                      <div className="flex flex-wrap gap-4 text-gray-300 mb-4">
+                        <span>{opportunity.department}</span>
+                        <span>•</span>
+                        <span>{opportunity.location}</span>
+                        <span className={`px-3 py-1 rounded-full text-sm ${
+                          opportunity.work_type === 'Remote' 
+                            ? 'bg-[#4A90E2] text-white' 
+                            : 'bg-green-500 text-white'
+                        }`}>
+                          {opportunity.work_type}
+                        </span>
+                      </div>
+                    </div>
+                    <Link 
+                      href={`/career/opportunity?id=${opportunity.id}`} 
+                      className="bg-[#4A90E2] hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors inline-block"
+                    >
+                      Apply
+                    </Link>
                   </div>
                 </div>
-                <Link href="/career/senior-backend-engineer" className="bg-[#4A90E2] hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors inline-block">
-                  Apply
-                </Link>
-              </div>
+              ))}
             </div>
-
-            <div className="bg-[#1A337D] p-6 rounded-2xl hover:bg-[#2B4BBF] transition-colors">
-              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-2">Product Manager</h3>
-                  <div className="flex flex-wrap gap-4 text-gray-300 mb-4">
-                    <span>Product</span>
-                    <span>•</span>
-                    <span>London, UK</span>
-                    <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm">On-site</span>
-                  </div>
-                </div>
-                <button className="bg-[#4A90E2] hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors">
-                  Apply
-                </button>
-              </div>
-            </div>
-
-            <div className="bg-[#1A337D] p-6 rounded-2xl hover:bg-[#2B4BBF] transition-colors">
-              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-2">Sales Representative</h3>
-                  <div className="flex flex-wrap gap-4 text-gray-300 mb-4">
-                    <span>Sales</span>
-                    <span>•</span>
-                    <span>Remote</span>
-                    <span className="bg-[#4A90E2] text-white px-3 py-1 rounded-full text-sm">Remote</span>
-                  </div>
-                </div>
-                <button className="bg-[#4A90E2] hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors">
-                  Apply
-                </button>
-              </div>
-            </div>
-          </div>
+          )}
 
           <div className="text-center mt-8">
             <button className="border border-white text-white hover:bg-white hover:text-[#0C1B46] px-8 py-4 rounded-full font-medium transition-colors">
