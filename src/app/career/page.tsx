@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useMemo } from "react";
 import { useOpportunities } from "../../hooks/useOpportunities";
+import FormJob from "../components/FormJob";
 
 export default function Career() {
   const { data: opportunities = [], isLoading: loading, error } = useOpportunities();
@@ -15,6 +16,7 @@ export default function Career() {
   const [selectedWorkType, setSelectedWorkType] = useState("");
   const [showAll, setShowAll] = useState(false);
   const [showComingSoon, setShowComingSoon] = useState(false);
+  const [isFormJobOpen, setIsFormJobOpen] = useState(false);
 
   // Extract unique values for filter options
   const departments = useMemo(() => {
@@ -189,7 +191,7 @@ export default function Career() {
             <select 
               value={selectedDepartment}
               onChange={(e) => setSelectedDepartment(e.target.value)}
-              className="px-4 py-3 bg-white border border-gray-600 rounded-lg text-[#60646C] focus:outline-none focus:border-[#4A90E2]"
+              className="w-full lg:w-48 px-4 py-3 bg-white border border-gray-600 rounded-lg text-[#60646C] focus:outline-none focus:border-[#4A90E2]"
             >
               <option value="">All Departments</option>
               {departments.map((dept) => (
@@ -199,7 +201,7 @@ export default function Career() {
             <select 
               value={selectedLocation}
               onChange={(e) => setSelectedLocation(e.target.value)}
-              className="px-4 py-3 bg-white border border-gray-600 rounded-lg text-[#60646C] focus:outline-none focus:border-[#4A90E2]"
+              className="w-full lg:w-48 px-4 py-3 bg-white border border-gray-600 rounded-lg text-[#60646C] focus:outline-none focus:border-[#4A90E2]"
             >
               <option value="">All Locations</option>
               {locations.map((location) => (
@@ -209,7 +211,7 @@ export default function Career() {
             <select 
               value={selectedWorkType}
               onChange={(e) => setSelectedWorkType(e.target.value)}
-              className="px-4 py-3 bg-white border border-gray-600 rounded-lg text-[#60646C] focus:outline-none focus:border-[#4A90E2]"
+              className="w-full lg:w-48 px-4 py-3 bg-white border border-gray-600 rounded-lg text-[#60646C] focus:outline-none focus:border-[#4A90E2]"
             >
               <option value="">All Work Types</option>
               {workTypes.map((type) => (
@@ -290,7 +292,10 @@ export default function Career() {
             <p className="text-xl text-gray-300 mb-8">
               We&apos;re always on the lookout for great people, We&apos;ll get in touch if there&apos;s a match!
             </p>
-            <button className="bg-[#51A2FF] hover:bg-blue-600 text-white px-8 py-4 rounded-full font-medium transition-colors">
+            <button 
+              onClick={() => setIsFormJobOpen(true)}
+              className="bg-[#51A2FF] hover:bg-blue-600 text-white px-8 py-4 rounded-full font-medium transition-colors"
+            >
               Get In Touch
             </button>
           </div>
@@ -323,6 +328,14 @@ export default function Career() {
           </div>
         </div>
       </section>
+
+      {/* FormJob Modal */}
+      <FormJob 
+        open={isFormJobOpen} 
+        onClose={() => setIsFormJobOpen(false)} 
+        jobTitle="General Application"
+        predefinedPosition={undefined}
+      />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useState, Suspense } from "react";
 import { useOpportunity } from "../../../hooks/useOpportunity";
+import FormJob from "../../components/FormJob";
 
 function OpportunityContent() {
   const searchParams = useSearchParams();
@@ -13,6 +14,7 @@ function OpportunityContent() {
   
   const { data: opportunity, isLoading: loading, error } = useOpportunity(opportunityId);
   const [copySuccess, setCopySuccess] = useState(false);
+  const [isFormJobOpen, setIsFormJobOpen] = useState(false);
 
   // Share on LinkedIn
   const shareOnLinkedIn = () => {
@@ -273,7 +275,10 @@ function OpportunityContent() {
                 <p className="text-gray-300 mb-6">
                   Join our team and help build the future of intelligent automation.
                 </p>
-                <button className="w-full bg-[#4A90E2] hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors mb-4">
+                <button 
+                  onClick={() => setIsFormJobOpen(true)}
+                  className="w-full bg-[#4A90E2] hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors mb-4"
+                >
                   Apply for this Position
                 </button>
               </div>
@@ -323,6 +328,14 @@ function OpportunityContent() {
           </div>
         </div>
       </section>
+
+      {/* FormJob Modal */}
+      <FormJob 
+        open={isFormJobOpen} 
+        onClose={() => setIsFormJobOpen(false)} 
+        jobTitle={opportunity?.title || "Job Application"}
+        predefinedPosition={opportunity?.title}
+      />
     </div>
   );
 }
