@@ -1,0 +1,21 @@
+# Security for uploads directory
+<Directory "uploads/resumes">
+    # Prevent direct access to uploaded files
+    Options -Indexes
+    # Allow only specific file types
+    <FilesMatch "\.(pdf|doc|docx)$">
+        Order Allow,Deny
+        Allow from all
+    </FilesMatch>
+    # Deny all other file types
+    <FilesMatch "^(?!.*\.(pdf|doc|docx)$).*$">
+        Order Deny,Allow
+        Deny from all
+    </FilesMatch>
+</Directory>
+
+# Prevent access to PHP files in uploads
+<FilesMatch "\.php$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>

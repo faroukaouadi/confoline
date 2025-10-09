@@ -108,7 +108,7 @@ export default function FormJob({ open, onClose, jobTitle = "Senior Backend Engi
         }
       });
       
-      const endpoint = process.env.NEXT_PUBLIC_JOB_APPLICATION_ENDPOINT || '/job-application.php';
+      const endpoint = process.env.NEXT_PUBLIC_JOB_APPLICATION_ENDPOINT || 'https://www.confoline.com/job-application.php';
       const res = await fetch(endpoint, {
         method: 'POST',
         body: formData,
