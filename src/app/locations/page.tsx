@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { CheckCircle, XCircle, Loader2 } from "lucide-react";
+import ContactPopup from "../components/ContactPopup";
 
 const LOCATIONS_DATA = {
   "North America": [
@@ -89,13 +91,56 @@ const TABS = ["North America", "Latin America", "Middle East, and Africa", "Asia
 export default function LocationsPage() {
   const [activeTab, setActiveTab] = useState("North America");
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const currentLocations = LOCATIONS_DATA[activeTab as keyof typeof LOCATIONS_DATA];
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const isValidEmail = (value: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  };
+
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle subscription logic here
-    console.log("Subscribing with email:", email);
-    setEmail("");
+    setMessage(null);
+    setError(null);
+
+    if (!isValidEmail(email)) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      // ⚠️ en dev on appelle le serveur PHP local ; en prod adapte la base URL
+      const API_BASE = process.env.NODE_ENV === 'development'
+        ? 'http://127.0.0.1:8000/admin/confoline-Api/subscribe.php' // ton serveur PHP local
+        : '/admin/confoline-Api/subscribe.php'; // chemin relatif en production
+
+      // Ajouter un délai pour voir le loading
+      await new Promise(resolve => setTimeout(resolve, 2000)); // 2 secondes de délai
+
+      const res = await fetch(`${API_BASE}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      const json = await res.json();
+
+      if (!res.ok) {
+        setError(json?.error || 'Server error');
+      } else {
+        setMessage(json?.message || 'Subscribed successfully.');
+        setEmail('');
+      }
+    } catch (err) {
+      console.error(err);
+      setError('Network error — could not reach server.');
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <main className="min-h-screen">
@@ -135,7 +180,10 @@ export default function LocationsPage() {
                 <p className="text-lg sm:text-xl">France</p>
               </div>
               
-              <button className="bg-[#51A2FF] hover:bg-[#4A90E2] text-white px-8 py-3 rounded-full font-medium text-lg transition-colors duration-300">
+              <button 
+                onClick={() => setIsContactModalOpen(true)}
+                className="bg-[#51A2FF] hover:bg-[#4A90E2] text-white px-8 py-3 rounded-full font-medium text-lg transition-colors duration-300"
+              >
                 Contact Us
               </button>
             </div>
@@ -223,26 +271,55 @@ export default function LocationsPage() {
                </p>
                
                {/* Email Form */}
-               <form onSubmit={handleSubscribe} className=" relative flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+               <form onSubmit={handleSubscribe} className="relative flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
                  <input
                    type="email"
                    value={email}
                    onChange={(e) => setEmail(e.target.value)}
                    placeholder="Email"
+                   disabled={loading}
                    required
-                   className="flex-1 px-4 py-3 rounded-lg  bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                   className="flex-1 px-4 py-3 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
                  />
                  <button
                    type="submit"
-                   className="sm:absolute right-1 top-2 bottom-2 bg-blue-600 hover:bg-blue-700 text-white sm:px-8 rounded-lg font-medium transition-colors duration-300 whitespace-nowrap"
+                   disabled={loading}
+                   className="sm:absolute right-1 top-2 bottom-2 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-800 disabled:cursor-not-allowed text-white sm:px-8 rounded-lg font-medium transition-colors duration-300 whitespace-nowrap flex items-center gap-2"
                  >
-                   Subscribe
+                   {loading ? (
+                     <>
+                       <Loader2 size={16} className="animate-spin" />
+                       <span className="hidden sm:inline">Subscribing...</span>
+                     </>
+                   ) : (
+                     "Subscribe"
+                   )}
                  </button>
                </form>
+               
+               {/* Message display */}
+               {error && (
+                 <div className="mt-3 flex items-center justify-center gap-2 text-sm text-red-400">
+                   <XCircle size={16} />
+                   <span>{error}</span>
+                 </div>
+               )}
+               {message && (
+                 <div className="mt-3 flex items-center justify-center gap-2 text-sm text-green-400">
+                   <CheckCircle size={16} />
+                   <span>{message}</span>
+                 </div>
+               )}
              </div>
            </div>
          </div>
        </section>
+       
+       {/* Contact Modal */}
+       <ContactPopup 
+         open={isContactModalOpen} 
+         onClose={() => setIsContactModalOpen(false)} 
+       />
      </main>
    );
  }

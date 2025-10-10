@@ -17,6 +17,7 @@ export default function Home() {
       <Testimonials />
       <News />
       <Story />
+      
       <Work />
     </div>
   );

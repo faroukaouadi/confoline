@@ -1,6 +1,7 @@
 "use client";
 
-import { ChevronRight, Users, MessageCircle, Handshake, MonitorPlay } from "lucide-react";
+import { useState } from "react";
+import { ChevronRight, Users, MessageCircle, Handshake, MonitorPlay, CheckCircle, XCircle, Loader2 } from "lucide-react";
 
 const items = [
   { title: "Contact us", desc: "Speak with a Confoline expert to see how Vision, our AI-Driven Advisor, can help you make the right decision.", Icon: MessageCircle },
@@ -10,6 +11,57 @@ const items = [
 ];
 
 export default function Work() {
+  const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState(null); // success or error text
+  const [error, setError] = useState(null);
+
+  const isValidEmail = (value) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setMessage(null);
+    setError(null);
+
+    if (!isValidEmail(email)) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      // ⚠️ en dev on appelle le serveur PHP local ; en prod adapte la base URL
+      const API_BASE = process.env.NODE_ENV === 'development'
+        ? 'http://127.0.0.1:8000/admin/confoline-Api/subscribe.php' // ton serveur PHP local
+        : '/admin/confoline-Api/subscribe.php'; // chemin relatif en production
+
+      // Ajouter un délai pour voir le loading
+      await new Promise(resolve => setTimeout(resolve, 2000)); // 2 secondes de délai
+
+      const res = await fetch(`${API_BASE}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      const json = await res.json();
+
+      if (!res.ok) {
+        setError(json?.error || 'Server error');
+      } else {
+        setMessage(json?.message || 'Subscribed successfully.');
+        setEmail('');
+      }
+    } catch (err) {
+      console.error(err);
+      setError('Network error — could not reach server.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section className="py-12 bg-[linear-gradient(180deg,#0C1B46_0%,#0065A1_30.76%,#0C1B46_100%)]" >
       <div className="max-w-7xl 2xl:max-w-[90%] mx-auto px-4 2xl:my-10">
@@ -23,17 +75,49 @@ export default function Work() {
               <p className="mt-3 text-sm sm:text-base text-blue-100 max-w-md 2xl:text-lg">
               Explore all the ways Confoline can put AI to increase your business outcomes.
               </p>
-                {/* Email input with button inside */}
-                <div className="mt-6 relative">
+              
+              {/* Email subscription form */}
+              <form onSubmit={handleSubmit} className="mt-6">
+                <div className="relative">
                   <input 
                     type="email" 
                     placeholder="Email" 
-                    className="w-full px-4 py-3 pr-24 bg-white text-gray-900 rounded-lg border-0 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={loading}
+                    className="w-full px-4 py-3 pr-24 bg-white text-gray-900 rounded-lg border-0 focus:outline-none focus:ring-2 focus:ring-cyan-400 disabled:opacity-50 disabled:cursor-not-allowed"
+                    required
                   />
-                  <button className="absolute right-1 top-2 bottom-2 px-4 bg-cyan-500 hover:bg-cyan-400 text-white font-medium rounded-md transition-colors">
-                    Subscribe
+                  <button 
+                    type="submit"
+                    disabled={loading}
+                    className="absolute right-1 top-2 bottom-2 px-4 bg-cyan-500 hover:bg-cyan-400 disabled:bg-cyan-600 disabled:cursor-not-allowed text-white font-medium rounded-md transition-colors flex items-center gap-2"
+                  >
+                    {loading ? (
+                      <>
+                        <Loader2 size={16} className="animate-spin" />
+                        <span className="hidden sm:inline">Subscribing...</span>
+                      </>
+                    ) : (
+                      "Subscribe"
+                    )}
                   </button>
                 </div>
+                
+                {/* Message display */}
+                {error && (
+                  <div className="mt-3 flex items-center gap-2 text-sm text-red-400">
+                    <XCircle size={16} />
+                    <span>{error}</span>
+                  </div>
+                )}
+                {message && (
+                  <div className="mt-3 flex items-center gap-2 text-sm text-green-400">
+                    <CheckCircle size={16} />
+                    <span>{message}</span>
+                  </div>
+                )}
+              </form>
               
               <div className="absolute right-0 top-1/8 bottom-1/8 w-0.5 bg-white"></div>
             </div>
