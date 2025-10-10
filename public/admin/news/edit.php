@@ -174,7 +174,6 @@ $msg = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
         <a href="../partners/index.php" class="menu-item">Partners</a>
         <a href="./index.php" class="menu-item active">News</a>
         <a href="../gallery/index.php" class="menu-item">Gallery</a>
-        <a href="../index.php" class="menu-item">Statistics</a>
         <a href="../opportunities/index.php" class="menu-item">Career Opportunities</a
       </nav>
       <form action="../logout.php" method="post">

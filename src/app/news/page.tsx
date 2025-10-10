@@ -3,8 +3,9 @@
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { useNewsById } from '../../hooks/useNews'
+import { Suspense } from 'react'
 
-export default function NewsDetail() {
+function NewsContent() {
   const searchParams = useSearchParams()
   const id = searchParams.get('id')
   const newsId = id ? parseInt(id, 10) : 0
@@ -66,5 +67,13 @@ export default function NewsDetail() {
         </div>
       </div>
     </main>
+  )
+}
+
+export default function NewsDetail() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <NewsContent />
+    </Suspense>
   )
 }

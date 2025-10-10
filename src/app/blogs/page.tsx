@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useNews } from "../../hooks/useNews";
 
@@ -23,7 +23,7 @@ const TAB_DATA = {
   }
 };
 
-export default function BlogPage() {
+function BlogContent() {
   const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState<TabType>("blog");
   const [showAll, setShowAll] = useState(false);
@@ -235,6 +235,14 @@ export default function BlogPage() {
         </div>
       </section>
     </main>
+  );
+}
+
+export default function BlogPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <BlogContent />
+    </Suspense>
   );
 }
 

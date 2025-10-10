@@ -6,6 +6,7 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 }
 
 $username = isset($_SESSION['admin_username']) ? $_SESSION['admin_username'] : 'admin';
+$userRole = isset($_SESSION['admin_role']) ? $_SESSION['admin_role'] : 'user';
 ?>
 <!doctype html>
 <html lang="en">
@@ -25,7 +26,9 @@ $username = isset($_SESSION['admin_username']) ? $_SESSION['admin_username'] : '
         <a href="news/index.php" class="menu-item">News</a>
         <a href="gallery/index.php" class="menu-item">Gallery</a>
         <a href="opportunities/index.php" class="menu-item">Career Opportunities</a>
-        <a href="#" class="menu-item">Settings</a>
+        <?php if ($userRole === 'admin'): ?>
+        <a href="users/index.php" class="menu-item">Users</a>
+        <?php endif; ?>
       </nav>
       <form action="logout.php" method="post">
         <button class="btn-logout" type="submit">Logout</button>

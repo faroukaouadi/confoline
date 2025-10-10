@@ -203,8 +203,7 @@ try {
             <a href="../partners/index.php" class="menu-item">Partners</a>
             <a href="../news/index.php" class="menu-item">News</a>
             <a href="../gallery/index.php" class="menu-item">Gallery</a>
-            <a href="index.php" class="menu-item active">Career Opportunities</a>
-            <a href="#" class="menu-item">Settings</a>
+            <a href="index.php" class="menu-item active">Career Opportunities</a> 
         </nav>
         <form action="../logout.php" method="post">
             <button class="btn-logout" type="submit">Logout</button>

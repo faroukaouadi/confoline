@@ -17,7 +17,152 @@ $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Manage News</title>
     <link rel="stylesheet" href="../styles.css" />
-    <style>table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255,255,255,.08);padding:10px;text-align:left}th{color:#94a3b8;font-weight:600}.thumb{height:60px;width:80px;object-fit:cover;border-radius:4px}.featured{color:#22d3ee;font-weight:600}</style>
+    <style>
+        .search-filters {
+            background: rgba(17,24,39,.7);
+            border: 1px solid rgba(255,255,255,.06);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .filter-row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: end;
+        }
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            min-width: 150px;
+        }
+        .filter-group label {
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+        .filter-group input,
+        .filter-group select,
+        .filter-group textarea {
+            background: #0b1220;
+            border: 1px solid rgba(255,255,255,.08);
+            color: var(--text);
+            padding: 10px 12px;
+            border-radius: 8px;
+            outline: none;
+            transition: border .2s;
+        }
+        .filter-group input:focus,
+        .filter-group select:focus,
+        .filter-group textarea:focus {
+            border: 1px solid var(--acc);
+        }
+        .news-card {
+            background: rgba(17,24,39,.7);
+            border: 1px solid rgba(255,255,255,.06);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        .news-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: var(--text);
+            margin: 0 0 10px 0;
+        }
+        .news-meta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+        .meta-item {
+            background: rgba(255,255,255,.08);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            color: var(--muted);
+        }
+        .category-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+        .category-report { background: rgba(34,197,94,.2); color: #22c55e; }
+        .category-blog { background: rgba(59,130,246,.2); color: #3b82f6; }
+        .category-news { background: rgba(168,85,247,.2); color: #a855f7; }
+        .featured-badge {
+            background: rgba(245,158,11,.2);
+            color: #f59e0b;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+        .news-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 0.9em;
+            transition: transform .05s ease-in;
+        }
+        .btn:active { transform: translateY(1px); }
+        .btn-primary { background: linear-gradient(90deg,var(--acc),var(--acc-2)); color: white; }
+        .btn-success { background: #22c55e; color: white; }
+        .btn-warning { background: #f59e0b; color: white; }
+        .btn-danger { background: #ef4444; color: white; }
+        .btn-secondary { background: rgba(255,255,255,.1); color: var(--text); border: 1px solid rgba(255,255,255,.2); }
+        .btn-sm { padding: 6px 12px; font-size: 0.8em; }
+        .results-count {
+            color: var(--muted);
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .alert {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+        .alert-success {
+            background: rgba(34,197,94,.1);
+            border: 1px solid rgba(34,197,94,.3);
+            color: #22c55e;
+        }
+        .alert-danger {
+            background: rgba(239,68,68,.1);
+            border: 1px solid rgba(239,68,68,.3);
+            color: #ef4444;
+        }
+        .alert-info {
+            background: rgba(59,130,246,.1);
+            border: 1px solid rgba(59,130,246,.3);
+            color: #3b82f6;
+        }
+        .news-image {
+            height: 60px;
+            width: 80px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        .news-content {
+            max-height: 100px;
+            overflow: hidden;
+            color: var(--muted);
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+    </style>
     <link href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css" rel="stylesheet">
     <style>
       .ql-toolbar.ql-snow{border:1px solid rgba(255,255,255,.18);border-radius:8px 8px 0 0;background:#0b1220}
@@ -108,7 +253,6 @@ $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
         <a href="../partners/index.php" class="menu-item">Partners</a>
         <a href="./index.php" class="menu-item active">News</a>
         <a href="../gallery/index.php" class="menu-item">Gallery</a>
-        <a href="../index.php" class="menu-item">Statistics</a>
         <a href="../opportunities/index.php" class="menu-item">Career Opportunities</a>
       </nav>
       <form action="../logout.php" method="post">
@@ -118,96 +262,124 @@ $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
 
     <main class="content">
       <header class="topbar">
-        <h1>News</h1>
+        <h1>Manage News</h1>
+        <div class="header-actions">
+          <button onclick="showAddNewsForm()" class="btn btn-success">Add New Article</button>
+        </div>
       </header>
 
       <?php if ($flash): ?>
-        <div class="alert-error" style="border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.12);color:#bbf7d0;">
-          <?php echo $flash; ?>
-        </div>
+        <div class="alert alert-success"><?php echo $flash; ?></div>
       <?php endif; ?>
 
-      <section class="panel">
-        <div class="panel-header">Add a news item</div>
-        <div class="panel-body">
-          <form action="add.php" method="post" enctype="multipart/form-data" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:end">
-            <div>
-              <label>Title</label>
-              <input type="text" name="title" required placeholder="News title" />
+      <!-- Add New News Form -->
+      <div id="addNewsForm" class="search-filters" style="display: none;">
+        <h3 style="color: var(--text); margin-bottom: 20px;">Add New Article</h3>
+        <form action="add.php" method="post" enctype="multipart/form-data">
+          <div class="filter-row">
+            <div class="filter-group">
+              <label for="title">Title</label>
+              <input type="text" id="title" name="title" required placeholder="News title" />
             </div>
-            <div>
-              <label>Category</label>
-              <select name="category" required>
+            <div class="filter-group">
+              <label for="category">Category</label>
+              <select id="category" name="category" required>
                 <option value="Report">Report</option>
                 <option value="Blog">Blog</option>
                 <option value="News">News</option>
               </select>
             </div>
-            <div>
-              <label>Link (optional)</label>
-              <input type="url" name="link" placeholder="https://..." />
+            <div class="filter-group">
+              <label for="link">Link (optional)</label>
+              <input type="url" id="link" name="link" placeholder="https://..." />
             </div>
-            <div style="grid-column:span 3">
-              <label>Excerpt (short summary)</label>
-              <textarea name="excerpt" placeholder="Short paragraph shown on cards" rows="3"></textarea>
+            <div class="filter-group">
+              <label for="image">Cover Image (optional)</label>
+              <input type="file" id="image" name="image" accept="image/png,image/jpeg,image/jpg" />
             </div>
-            <div style="grid-column:span 3">
-              <label>Content</label>
-              <textarea name="content" placeholder="News content" rows="6"></textarea>
-            </div>
-            <div>
-              <label>Cover image (optional)</label>
-              <input type="file" name="image" accept="image/png,image/jpeg,image/jpg" />
-            </div>
-            <div>
+            <div class="filter-group">
               <label>
                 <input type="checkbox" name="is_featured" value="1" /> Featured
               </label>
             </div>
-            <div>
-              <button type="submit" class="btn-primary">Add</button>
+          </div>
+          <div class="filter-row">
+            <div class="filter-group" style="flex: 1;">
+              <label for="excerpt">Excerpt (short summary)</label>
+              <textarea id="excerpt" name="excerpt" placeholder="Short paragraph shown on cards" rows="3"></textarea>
             </div>
-          </form>
-        </div>
-      </section>
+          </div>
+          <div class="filter-row">
+            <div class="filter-group" style="flex: 1;">
+              <label for="content">Content</label>
+              <textarea id="content" name="content" placeholder="News content" rows="6"></textarea>
+            </div>
+          </div>
+          <div class="filter-row">
+            <div class="filter-group">
+              <button type="submit" class="btn btn-primary">Add Article</button>
+              <button type="button" class="btn btn-secondary" onclick="hideAddNewsForm()">Cancel</button>
+            </div>
+          </div>
+        </form>
+      </div>
 
-      <section class="panel" style="margin-top:16px;">
-        <div class="panel-header">List</div>
-        <div class="panel-body">
-          <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Image</th>
-                <th>Title</th>
-                <th>Category</th>
-                <th>Featured</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php foreach ($news as $n): ?>
-              <tr>
-                <td><?php echo (int)$n['id']; ?></td>
-                <td><img class="thumb" src="<?php echo htmlspecialchars($n['image']); ?>" alt="image" /></td>
-                <td><?php echo htmlspecialchars($n['title']); ?></td>
-                <td><?php echo htmlspecialchars($n['category']); ?></td>
-                <td class="<?php echo $n['is_featured'] ? 'featured' : ''; ?>">
-                  <?php echo $n['is_featured'] ? '★' : '○'; ?>
-                </td>
-                <td>
-                  <a href="edit.php?id=<?php echo (int)$n['id']; ?>" class="btn-logout" style="margin-right:8px;">Edit</a>
-                  <form action="delete.php" method="post" onsubmit="return confirm('Delete this news item?');" style="display:inline">
-                    <input type="hidden" name="id" value="<?php echo (int)$n['id']; ?>" />
-                    <button class="btn-logout" type="submit">Delete</button>
-                  </form>
-                </td>
-              </tr>
-              <?php endforeach; ?>
-            </tbody>
-          </table>
+      <!-- News List -->
+      <div class="results-count">Found <?php echo count($news); ?> article(s)</div>
+      
+      <div class="news-list">
+        <?php foreach ($news as $n): ?>
+        <div class="news-card">
+          <div class="news-title"><?php echo htmlspecialchars($n['title']); ?></div>
+          <div class="news-meta">
+            <div class="meta-item">ID: <?php echo (int)$n['id']; ?></div>
+            <div class="meta-item">Created: <?php echo date('Y-m-d H:i', strtotime($n['created_at'])); ?></div>
+            <?php if ($n['link']): ?>
+            <div class="meta-item">
+              <a href="<?php echo htmlspecialchars($n['link']); ?>" target="_blank" style="color: var(--acc); text-decoration: none;">
+                External Link
+              </a>
+            </div>
+            <?php endif; ?>
+          </div>
+          <div style="display: flex; gap: 10px; margin-bottom: 15px; align-items: center;">
+            <span class="category-badge category-<?php echo strtolower($n['category']); ?>">
+              <?php echo htmlspecialchars($n['category']); ?>
+            </span>
+            <?php if ($n['is_featured']): ?>
+            <span class="featured-badge">★ Featured</span>
+            <?php endif; ?>
+          </div>
+          <?php if ($n['image']): ?>
+          <div style="margin-bottom: 15px;">
+            <img class="news-image" src="<?php echo htmlspecialchars($n['image']); ?>" alt="<?php echo htmlspecialchars($n['title']); ?>" />
+          </div>
+          <?php endif; ?>
+          <?php if ($n['content']): ?>
+          <div class="news-content">
+            <?php echo htmlspecialchars(substr(strip_tags($n['content']), 0, 200)) . '...'; ?>
+          </div>
+          <?php endif; ?>
+          <div class="news-actions">
+            <a href="edit.php?id=<?php echo (int)$n['id']; ?>" class="btn btn-secondary btn-sm">Edit</a>
+            <form action="delete.php" method="post" onsubmit="return confirm('Delete this article?');" style="display:inline">
+              <input type="hidden" name="id" value="<?php echo (int)$n['id']; ?>" />
+              <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+            </form>
+          </div>
         </div>
-      </section>
+        <?php endforeach; ?>
+      </div>
     </main>
+
+    <script>
+      function showAddNewsForm() {
+        document.getElementById('addNewsForm').style.display = 'block';
+      }
+
+      function hideAddNewsForm() {
+        document.getElementById('addNewsForm').style.display = 'none';
+      }
+    </script>
   </body>
 </html>
