@@ -22,8 +22,18 @@ export default function News() {
             </h2>
           </div>
           <div className="hidden sm:flex items-center gap-3">
-            <button className="bg-blue-400 hover:bg-blue-300 cursor-pointer text-white px-8 py-3 rounded-full font-medium transition-colors 2xl:text-[24px]">View Blogs</button>
-            <button className="border-2 border-cyan-300/60 text-white cursor-pointer hover:bg-cyan-300/10 hover:text-white px-8 py-3 rounded-full font-medium transition-colors 2xl:text-[24px]">View Analyst Reports</button>
+            <Link
+              href="/blogs"
+              className="bg-blue-400 hover:bg-blue-300 cursor-pointer text-white px-8 py-3 rounded-full font-medium transition-colors 2xl:text-[24px]"
+            >
+              View Blogs
+            </Link>
+            <Link
+              href="/blogs?activeTab=report"
+              className="border-2 border-cyan-300/60 text-white cursor-pointer hover:bg-cyan-300/10 hover:text-white px-8 py-3 rounded-full font-medium transition-colors 2xl:text-[24px]"
+            >
+              View Analyst Reports
+            </Link>
           </div>
         </div>
 
@@ -45,7 +55,7 @@ export default function News() {
                 </div>
                 <div className="p-6 sm:p-8 2xl:p-10 h-full flex flex-col">
                   <span className="text-xs 2xl:text-lg uppercase tracking-widest text-white/70">{featuredNews[0].category}</span>
-                  <h3 className="mt-2 text-sm sm:text-xl md:text-2xl 2xl:text-4xl font-semibold">
+                  <h3 className="mt-2 text-sm sm:text-xl md:text-2xl 2xl:text-3xl font-semibold">
                     {featuredNews[0].title}
                   </h3>
                   {featuredNews[0].excerpt ? (
@@ -75,7 +85,7 @@ export default function News() {
                   </div>
                   <div className="p-6 2xl:p-8 h-full flex flex-col flex-1">
                     <span className="text-xs 2xl:text-lg uppercase tracking-widest text-white/70">{item.category}</span>
-                    <h3 className="mt-2 text-xs sm:text-lg 2xl:text-3xl font-semibold">
+                    <h3 className="mt-2 text-xs sm:text-lg 2xl:text-2xl font-semibold">
                       {item.title}
                     </h3>
                     {item.excerpt ? (

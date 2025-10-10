@@ -79,7 +79,7 @@ export default function Services() {
             </div>
 
             {/* Desktop: Pyramid layout */}
-            <div className="hidden md:block 2xl:space-y-8">
+            <div className="hidden md:block 2xl:space-y-4">
               {/* Row 1: 6 items */}
               <div className="flex justify-center gap-6">
                 {items.slice(0, 6).map(({ label, Icon }, idx) => (

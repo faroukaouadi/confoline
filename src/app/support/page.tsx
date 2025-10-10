@@ -26,10 +26,10 @@ export default function SupportPage() {
                     </div>
                     <div className="hidden sm:block">
                         <Link
-                            href="#"
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 text-sm 2xl:text-xl"
+                            href="#learn-more"
+                            className="inline-block rounded-full bg-blue-400 px-4 py-2 text-sm 2xl:text-xl font-medium text-white hover:bg-blue-300"
                         >
-                            Learn more
+                            Read More
                         </Link>
                     </div>
                 </div>

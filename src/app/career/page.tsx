@@ -191,7 +191,8 @@ export default function Career() {
             <select 
               value={selectedDepartment}
               onChange={(e) => setSelectedDepartment(e.target.value)}
-              className="w-full lg:w-48 px-4 py-3 bg-white border border-gray-600 rounded-lg text-[#60646C] focus:outline-none focus:border-[#4A90E2]"
+              className="w-full lg:w-48 px-4 py-3 bg-white border border-gray-600 rounded-lg text-[#60646C] focus:outline-none focus:border-[#4A90E2] cursor-pointer"
+              style={{ appearance: 'none' , backgroundImage: 'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'24\' height=\'24\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\' class=\'lucide lucide-chevron-down\'><path d=\'m6 9 6 6 6-6\'/></svg>")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center' }} 
             >
               <option value="">All Departments</option>
               {departments.map((dept) => (
@@ -201,7 +202,8 @@ export default function Career() {
             <select 
               value={selectedLocation}
               onChange={(e) => setSelectedLocation(e.target.value)}
-              className="w-full lg:w-48 px-4 py-3 bg-white border border-gray-600 rounded-lg text-[#60646C] focus:outline-none focus:border-[#4A90E2]"
+              className="w-full lg:w-48 px-4 py-3 bg-white border border-gray-600 rounded-lg text-[#60646C] focus:outline-none focus:border-[#4A90E2] cursor-pointer"
+              style={{ appearance: 'none' , backgroundImage: 'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'24\' height=\'24\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\' class=\'lucide lucide-chevron-down\'><path d=\'m6 9 6 6 6-6\'/></svg>")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center' }} 
             >
               <option value="">All Locations</option>
               {locations.map((location) => (
@@ -211,7 +213,8 @@ export default function Career() {
             <select 
               value={selectedWorkType}
               onChange={(e) => setSelectedWorkType(e.target.value)}
-              className="w-full lg:w-48 px-4 py-3 bg-white border border-gray-600 rounded-lg text-[#60646C] focus:outline-none focus:border-[#4A90E2]"
+              className="w-full lg:w-48 px-4 py-3 bg-white border border-gray-600 rounded-lg text-[#60646C] focus:outline-none focus:border-[#4A90E2] cursor-pointer"
+              style={{ appearance: 'none' , backgroundImage: 'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'24\' height=\'24\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\' class=\'lucide lucide-chevron-down\'><path d=\'m6 9 6 6 6-6\'/></svg>")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center' }} 
             >
               <option value="">All Work Types</option>
               {workTypes.map((type) => (

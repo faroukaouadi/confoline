@@ -13,16 +13,16 @@ export default function PartnersPage() {
         <div className="flex items-start justify-between">
           <div>
             <h1 className="text-2xl sm:text-4xl 2xl:text-5xl font-extrabold">Partners</h1>
-            <p className="mt-2 text-sm sm:text-base 2xl:text-2xl text-blue-200 max-w-2xl">
+            <p className="mt-2 text-sm sm:text-base 2xl:text-2xl text-blue-200 max-w-2xl lg:max-w-none">
               Proud to collaborate with industry-leading partners driving innovation and value.
             </p>
           </div>
           <div className="hidden sm:block ">
             <Link
-              href="#"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 text-sm 2xl:text-xl"
+              href="#learn-more"
+              className="inline-block rounded-full bg-blue-400 px-4 py-2 text-sm 2xl:text-xl font-medium text-white hover:bg-blue-300"
             >
-              Learn more
+              Read More
             </Link>
           </div>
         </div>

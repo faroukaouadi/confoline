@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { useNews } from "../../hooks/useNews";
 
 type TabType = "blog" | "report" | "news";
@@ -23,9 +24,24 @@ const TAB_DATA = {
 };
 
 export default function BlogPage() {
+  const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState<TabType>("blog");
+  const [showAll, setShowAll] = useState(false);
   const { data: news = [], isLoading: loading, error } = useNews();
   const currentData = TAB_DATA[activeTab];
+
+  // Initialize activeTab from URL parameter
+  useEffect(() => {
+    const tabParam = searchParams.get('activeTab');
+    if (tabParam && ['blog', 'report', 'news'].includes(tabParam)) {
+      setActiveTab(tabParam as TabType);
+    }
+  }, [searchParams]);
+
+  // Reset showAll when activeTab changes
+  useEffect(() => {
+    setShowAll(false);
+  }, [activeTab]);
 
   // Filter news by category based on active tab
   const filteredNews = news.filter(item => {
@@ -46,6 +62,10 @@ export default function BlogPage() {
         return true;
     }
   });
+
+  // Display posts (max 6 initially, all if showAll is true)
+  const displayedNews = showAll ? filteredNews : filteredNews.slice(0, 6);
+  const hasMorePosts = filteredNews.length > 6;
 
   // Helper function to format date
   const formatDate = (dateString: string) => {
@@ -72,33 +92,33 @@ export default function BlogPage() {
         <div className="mx-auto max-w-7xl 2xl:max-w-[90%] px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
           {/* Tabs */}
           <div className="flex justify-center">
-            <div className="inline-flex items-center gap-1 rounded-full border border-[#51A2FF] p-1 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25)] backdrop-blur-sm">
+            <div className="inline-flex items-center gap-1 rounded-full border border-[#51A2FF] p-1 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25)] backdrop-blur-sm ">
               <button
                 onClick={() => setActiveTab("blog")}
-                className={`rounded-full px-4 py-2 text-xs sm:text-sm font-medium transition-all ${
+                className={`rounded-full px-4 2xl:px-8 py-2 text-xs sm:text-sm 2xl:text-lg font-medium transition-all ${
                   activeTab === "blog"
                     ? "bg-[#1A337D] text-white shadow-inner ring-1 ring-white/30"
-                    : "text-[#8C8C8C]    hover:bg-white/10"
+                    : "text-white    hover:bg-white/10"
                 }`}
               >
                 blog
               </button>
               <button
                 onClick={() => setActiveTab("report")}
-                className={`rounded-full px-4 py-2 text-xs sm:text-sm font-medium transition-all ${
+                className={`rounded-full px-4 2xl:px-8 py-2 text-xs sm:text-sm 2xl:text-lg font-medium transition-all ${
                   activeTab === "report"
                    ? "bg-[#1A337D] text-white shadow-inner ring-1 ring-white/30"
-                    : "text-[#8C8C8C]    hover:bg-white/10"
+                    : "text-white    hover:bg-white/10"
                 }`}
               >
                 Report
               </button>
               <button
                 onClick={() => setActiveTab("news")}
-                className={`rounded-full px-4 py-2 text-xs sm:text-sm font-medium transition-all ${
+                className={`rounded-full px-4 2xl:px-8 py-2 text-xs sm:text-sm 2xl:text-lg font-medium transition-all ${
                   activeTab === "news"
                     ? "bg-[#1A337D] text-white shadow-inner ring-1 ring-white/30"
-                    : "text-[#8C8C8C]    hover:bg-white/10"
+                    : "text-white    hover:bg-white/10"
                 }`}
               >
                 News
@@ -138,9 +158,9 @@ export default function BlogPage() {
             <div className="text-center text-red-500">{error?.message || "Error loading posts"}</div>
           )}
 
-          {!loading && !error && filteredNews.length > 0 && (
+          {!loading && !error && displayedNews.length > 0 && (
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {filteredNews.map((post) => (
+              {displayedNews.map((post) => (
                 <article
                   key={post.id}
                   className="group overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow"
@@ -175,10 +195,27 @@ export default function BlogPage() {
             <div className="text-center text-gray-500">No posts found for this category.</div>
           )}
 
-          {/* See more button */}
-          {!loading && !error && filteredNews.length > 0 && (
+          {/* See more button - only show if there are more than 6 posts and not all are shown */}
+          {!loading && !error && hasMorePosts && !showAll && (
             <div className="mt-10 flex justify-center">
-              <button className="rounded-full bg-white px-6 py-2 text-sm font-medium text-black border border-black">See more</button>
+              <button 
+                onClick={() => setShowAll(true)}
+                className="rounded-full bg-white px-6 py-2 text-sm font-medium text-black border border-black hover:bg-gray-50 transition-colors"
+              >
+                See more
+              </button>
+            </div>
+          )}
+
+          {/* Show less button - only show if all posts are displayed and there are more than 6 */}
+          {!loading && !error && hasMorePosts && showAll && (
+            <div className="mt-10 flex justify-center">
+              <button 
+                onClick={() => setShowAll(false)}
+                className="rounded-full bg-white px-6 py-2 text-sm font-medium text-black border border-black hover:bg-gray-50 transition-colors"
+              >
+                Show less
+              </button>
             </div>
           )}
         </div>

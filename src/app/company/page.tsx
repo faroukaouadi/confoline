@@ -51,7 +51,7 @@ export default function Company() {
              </div>  
              <div className="col-span-3 order-1 lg:order-2">
               <h2 className="text-4xl lg:text-5xl font-bold mb-8">Our Story</h2>
-              <div className="space-y-6 text-gray-300">
+              <div className="space-y-6 text-gray-300 2xl:text-xl">
                 <p>
                   Founded in 2008 as a small startup with a vision to democratize technology, we began our journey with just two passionate individuals working from a garage. What started as a dream to make technology accessible to everyone has grown into a leading technology consultancy that serves clients across various industries.
                 </p>
@@ -77,7 +77,7 @@ export default function Company() {
                 <Image src="/images/covid_transmission-virus.png" alt="confoLogo" width={0} height={0} unoptimized className="w-auto h-auto" />
               </div>
               <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
-              <p className="text-gray-300">
+              <p className="text-gray-300 2xl:text-xl">
                 To empower businesses with innovative technology solutions that drive growth, efficiency, and competitive advantage. We believe technology should be a catalyst for success, not a barrier.
               </p>
             </div>
@@ -86,7 +86,7 @@ export default function Company() {
               <Image src="/images/hugeicons_vision.png" alt="confoLogo" width={0} height={0} unoptimized className="w-auto h-auto"/>
               </div>
               <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
-              <p className="text-gray-300">
+              <p className="text-gray-300 2xl:text-xl">
                 To be the world&apos;s most trusted technology partner, known for delivering exceptional results and fostering long-term relationships built on innovation, integrity, and excellence.
               </p>
             </div>
@@ -108,7 +108,7 @@ export default function Company() {
                <Image src="/images/streamline-plump_industry-innovation-and-infrastructure.png" alt="cofoLogo" width={0} height={0} unoptimized className="w-auto h-auto"/>
               </div>
               <h3 className="text-xl font-bold mb-3">Innovation</h3>
-              <p className="text-gray-300 text-sm">
+              <p className="text-gray-300 text-sm 2xl:text-lg">
                 We constantly push boundaries and embrace new technologies to deliver cutting-edge solutions.
               </p>
             </div>
@@ -117,7 +117,7 @@ export default function Company() {
               <Image src="/images/arcticons_play-integrity-api-checker.png" alt="cofoLogo" width={0} height={0} unoptimized className="w-auto h-auto"/>
               </div>
               <h3 className="text-xl font-bold mb-3">Integrity</h3>
-              <p className="text-gray-300 text-sm">
+              <p className="text-gray-300 text-sm 2xl:text-lg">
                 We conduct business with honesty, transparency, and ethical practices in all our interactions.
               </p>
             </div>
@@ -126,7 +126,7 @@ export default function Company() {
                 <Image src="/images/material-symbols_star-rounded.png" alt="confoLogo" width={0} height={0} unoptimized className="w-auto h-auto"/>
               </div>
               <h3 className="text-xl font-bold mb-3">Excellence</h3>
-              <p className="text-gray-300 text-sm">
+              <p className="text-gray-300 text-sm 2xl:text-lg">
                 We strive for perfection in every project, delivering quality that exceeds expectations.
               </p>
             </div>
@@ -135,7 +135,7 @@ export default function Company() {
                 <Image src="/images/streamline_collaborations-idea.png" alt="confoLogo" width={0} height={0} unoptimized className="w-auto h-auto" />
               </div>
               <h3 className="text-xl font-bold mb-3">Collaboration</h3>
-              <p className="text-gray-300 text-sm">
+              <p className="text-gray-300 text-sm 2xl:text-lg">
                 We believe in the power of teamwork and building strong partnerships with our clients.
               </p>
             </div>
@@ -161,9 +161,9 @@ export default function Company() {
                 <div className="w-8 h-8 rounded flex items-center justify-center">
                 <Image src="/images/linkedin.svg" alt="linkedin" width={0} height={0} unoptimized className="w-auto h-auto" />
                 </div>
-                <div className="w-8 h-8  rounded flex items-center justify-center">
+                {/* <div className="w-8 h-8  rounded flex items-center justify-center">
                 <Image src="/images/youtube.svg" alt="linkedin" width={0} height={0} unoptimized className="w-auto h-auto" />
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="text-center">
@@ -176,9 +176,9 @@ export default function Company() {
                 <div className="w-8 h-8  rounded flex items-center justify-center">
                 <Image src="/images/linkedin.svg" alt="linkedin" width={0} height={0} unoptimized className="w-auto h-auto" />
                 </div>
-                <div className="w-8 h-8  rounded flex items-center justify-center">
+                {/* <div className="w-8 h-8  rounded flex items-center justify-center">
                 <Image src="/images/youtube.svg" alt="linkedin" width={0} height={0} unoptimized className="w-auto h-auto" />
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="text-center">
@@ -191,9 +191,9 @@ export default function Company() {
                 <div className="w-8 h-8  rounded flex items-center justify-center">
                 <Image src="/images/linkedin.svg" alt="linkedin" width={0} height={0} unoptimized className="w-auto h-auto" />
                 </div>
-                <div className="w-8 h-8  rounded flex items-center justify-center">
+                {/* <div className="w-8 h-8  rounded flex items-center justify-center">
                 <Image src="/images/youtube.svg" alt="linkedin" width={0} height={0} unoptimized className="w-auto h-auto" />
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="text-center">
@@ -206,9 +206,9 @@ export default function Company() {
                 <div className="w-8 h-8  rounded flex items-center justify-center">
                 <Image src="/images/linkedin.svg" alt="linkedin" width={0} height={0} unoptimized className="w-auto h-auto"/>
                 </div>
-                <div className="w-8 h-8  rounded flex items-center justify-center">
+                {/* <div className="w-8 h-8  rounded flex items-center justify-center">
                   <Image src="/images/youtube.svg" alt="linkedin" width={0} height={0} unoptimized className="w-auto h-auto" />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

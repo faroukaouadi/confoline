@@ -101,7 +101,7 @@ export default function LocationsPage() {
     <main className="min-h-screen">
       {/* Header Banner */}
       <section className="bg-[linear-gradient(180deg,#0C1B46_0%,#0065A1_30.76%,#0C1B46_100%)] py-6">
-        <div className="mx-auto max-w-[90%] px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[90%] px-4 sm:px-6 lg:px-8 ">
           <div className="flex flex-col sm:flex-row items-center justify-center">
             <p className="text-white text-center text-sm sm:text-xl 2xl:text-3xl">
               See the AI experience by ServiceNow—the UI for Enterprise AI.
@@ -114,8 +114,8 @@ export default function LocationsPage() {
       </section>
 
        {/* Main Content */}
-       <section className="bg-[#0C1B46] py-10 sm:py-10">
-        <div className="mx-auto max-w-[90%] px-4 sm:px-6 lg:px-8">
+       <section className="bg-[#0C1B46] py-10 sm:py-10 2xl:py-16">
+        <div className="mx-auto max-w-[90%] px-4 sm:px-6 lg:px-8 ">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-center">
             {/* Left Column - Text Content */}
             <div className="space-y-8 lg:col-span-2">
@@ -141,7 +141,7 @@ export default function LocationsPage() {
 
             {/* Right Column - Image */}
             <div className="relative lg:col-span-1">
-              <div className="relative w-full h-60 sm:h-70 lg:h-80 rounded-2xl overflow-hidden">
+              <div className="relative w-full h-60 sm:h-70 lg:h-80 2xl:h-96 rounded-2xl overflow-hidden">
                 <Image
                   src="/images/employee2.jpg"
                   alt="Train crossing a stone viaduct"
@@ -164,7 +164,7 @@ export default function LocationsPage() {
                <button
                  key={tab}
                  onClick={() => setActiveTab(tab)}
-                 className={`px-1 lg:px-15 2xl:px-30 py-3 text-xs lg:text-lg 2xl:text-2xl font-medium transition-colors duration-300 border-b-2 cursor-pointer ${
+                 className={`px-1 lg:px-15 2xl:px-20 py-3 text-xs lg:text-lg 2xl:text-2xl font-medium transition-colors duration-300 border-b-2 cursor-pointer ${
                    activeTab === tab
                      ? "text-[#51A2FF] border-[#51A2FF]"
                      : "text-gray-500 border-transparent hover:text-gray-700"
@@ -176,7 +176,7 @@ export default function LocationsPage() {
            </div>
 
            {/* Section Title */}
-           <h2 className="text-center text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-16">
+           <h2 className="text-center text-3xl sm:text-4xl lg:text-5xl 2xl:text-6xl font-bold text-gray-900 mb-16">
              {activeTab}
            </h2>
 

@@ -18,8 +18,8 @@ export default function Partners() {
 
   return (
     <section className="">
-      <div className="max-w-[90%] mx-auto px-4 py-10 2xl:py-14">
-        <h2  className=" text-white text-2xl sm:text-3xl md:text-4xl 2xl:text-5xl font-bold text-center mb-8">
+      <div className="max-w-[90%] mx-auto px-4 py-12 2xl:py-16">
+        <h2  className=" text-white text-2xl sm:text-3xl md:text-4xl 2xl:text-5xl font-bold text-center mb-20">
         Trusted by partners across the globe
         </h2>
         {loading && (

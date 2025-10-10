@@ -61,8 +61,8 @@ const TESTIMONIALS = [
 export default function Testimonials() {
 
   return (
-    <section className="relative py-16 sm:py-20">
-      <div className="mx-auto max-w-[90%] py-15 rounded-4xl bg-[linear-gradient(180deg,#0C1B46_0%,#0065A1_30.76%,#0C1B46_100%)] px-6 sm:px-8 lg:px-10">
+    <section className="relative py-16 sm:py-20 2xl:py-24">
+      <div className="mx-auto max-w-[90%] py-15 2xl:py-20 rounded-4xl bg-[linear-gradient(180deg,#0C1B46_0%,#0065A1_30.76%,#0C1B46_100%)] px-6 sm:px-8 lg:px-10">
         {/* Title */}
         <h2 className="text-center text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-12">
           What Our Customers are Saying
