@@ -121,7 +121,7 @@ export default function LocationsPage() {
             <div className="space-y-8 lg:col-span-2">
               <div>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#51A2FF] mb-4">
-                  Service Now Locations
+                Confoline Locations
                 </h1>
                 <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white">
                   TODAY
@@ -130,8 +130,9 @@ export default function LocationsPage() {
               
               <div className="space-y-2 text-white">
                 <p className="text-lg sm:text-xl">Headquarters</p>
-                <p className="text-lg sm:text-xl">2225 Lawson Lane</p>
-                <p className="text-lg sm:text-xl">Santa Clara, CA 95054</p>
+                <p className="text-lg sm:text-xl">6 Rue des Bateliers</p>
+                <p className="text-lg sm:text-xl">92110 Clichy</p>
+                <p className="text-lg sm:text-xl">France</p>
               </div>
               
               <button className="bg-[#51A2FF] hover:bg-[#4A90E2] text-white px-8 py-3 rounded-full font-medium text-lg transition-colors duration-300">
@@ -143,7 +144,7 @@ export default function LocationsPage() {
             <div className="relative lg:col-span-1">
               <div className="relative w-full h-60 sm:h-70 lg:h-80 2xl:h-96 rounded-2xl overflow-hidden">
                 <Image
-                  src="/images/employee2.jpg"
+                  src="/images/location-logo.jpg"
                   alt="Train crossing a stone viaduct"
                   fill
                   className="object-cover"
@@ -213,12 +214,12 @@ export default function LocationsPage() {
              <div className="text-center space-y-6">
                {/* Title */}
                <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white">
-                 Get the latest ServiceNow updates
+               Stay Ahead with Confoline Insights
                </h2>
                
                {/* Subtitle */}
                <p className="text-blue-200 text-sm sm:text-xl max-w-2xl mx-auto">
-                 Get a free 30-minute strategy session with our lead designer.
+               Join our mailing list and get a free assessment package, personalized strategy review.
                </p>
                
                {/* Email Form */}
