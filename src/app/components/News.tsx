@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useNews } from "../../hooks/useNews";
 
 export default function News() {
@@ -51,7 +52,13 @@ export default function News() {
             {featuredNews.length > 0 && featuredNews[0] && (
               <article className="md:col-span-1 md:row-span-2 rounded-2xl overflow-hidden bg-blue-800">
                 <div className="bg-[linear-gradient(180deg,#0C1B46_0%,#0065A1_30.76%,#0C1B46_100%)] h-46 sm:h-56 2xl:h-86 flex justify-center items-center">
-                  <img src={featuredNews[0].image} alt={featuredNews[0].title} className="w-10/12 h-9/12 object-cover" />
+                  <Image 
+                    src={featuredNews[0].image} 
+                    alt={featuredNews[0].title} 
+                    width={400}
+                    height={300}
+                    className="w-10/12 h-9/12 object-cover" 
+                  />
                 </div>
                 <div className="p-6 sm:p-8 2xl:p-10 h-full flex flex-col">
                   <span className="text-xs 2xl:text-lg uppercase tracking-widest text-white/70">{featuredNews[0].category}</span>
@@ -77,11 +84,17 @@ export default function News() {
             )}
 
             {/* Regular news cards */}
-            {regularNews.slice(0, 2).map((item, index) => (
+            {regularNews.slice(0, 2).map((item) => (
               <article key={item.id} className="rounded-2xl overflow-hidden bg-blue-800">
                 <div className="h-full flex">
                   <div className="w-5/12 h-full flex justify-center items-center bg-[linear-gradient(180deg,#0C1B46_0%,#0065A1_30.76%,#0C1B46_100%)]">
-                    <img src={item.image} alt={item.title} className="w-10/12 h-9/12 object-cover" />
+                    <Image 
+                      src={item.image} 
+                      alt={item.title} 
+                      width={200}
+                      height={150}
+                      className="w-10/12 h-9/12 object-cover" 
+                    />
                   </div>
                   <div className="p-6 2xl:p-8 h-full flex flex-col flex-1">
                     <span className="text-xs 2xl:text-lg uppercase tracking-widest text-white/70">{item.category}</span>

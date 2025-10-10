@@ -2,6 +2,7 @@
 
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useNewsById } from '../../hooks/useNews'
 import { Suspense } from 'react'
 
@@ -54,7 +55,13 @@ function NewsContent() {
         </div>
         {item.image && (
           <div className="rounded-xl overflow-hidden bg-white/5 border border-white/10 mb-6">
-            <img src={item.image} alt={item.title} className="w-full h-auto" />
+            <Image 
+              src={item.image} 
+              alt={item.title} 
+              width={800}
+              height={400}
+              className="w-full h-auto" 
+            />
           </div>
         )}
         <article className="prose prose-invert max-w-none bg-white text-black rounded-lg p-6">
