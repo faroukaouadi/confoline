@@ -324,7 +324,6 @@ try {
             <a href="../gallery/index.php" class="menu-item">Gallery</a>
             <a href="../opportunities/index.php" class="menu-item">Career Opportunities</a>
             <a href="index.php" class="menu-item active">Users</a>
-            <a href="#" class="menu-item">Settings</a>
         </nav>
         <form action="../logout.php" method="post">
             <button class="btn-logout" type="submit">Logout</button>

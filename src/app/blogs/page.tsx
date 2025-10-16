@@ -27,16 +27,24 @@ function BlogContent() {
   const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState<TabType>("blog");
   const [showAll, setShowAll] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const { data: news = [], isLoading: loading, error } = useNews();
   const currentData = TAB_DATA[activeTab];
 
+  // Initialize client-side rendering
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   // Initialize activeTab from URL parameter
   useEffect(() => {
-    const tabParam = searchParams.get('activeTab');
-    if (tabParam && ['blog', 'report', 'news'].includes(tabParam)) {
-      setActiveTab(tabParam as TabType);
+    if (isClient) {
+      const tabParam = searchParams.get('activeTab');
+      if (tabParam && ['blog', 'report', 'news'].includes(tabParam)) {
+        setActiveTab(tabParam as TabType);
+      }
     }
-  }, [searchParams]);
+  }, [searchParams, isClient]);
 
   // Reset showAll when activeTab changes
   useEffect(() => {
@@ -66,6 +74,20 @@ function BlogContent() {
   // Display posts (max 6 initially, all if showAll is true)
   const displayedNews = showAll ? filteredNews : filteredNews.slice(0, 6);
   const hasMorePosts = filteredNews.length > 6;
+
+  // Prevent hydration mismatch by not rendering until client-side
+  if (!isClient) {
+    return (
+      <main className="bg-gradient-to-br from-blue-950 to-blue-900 text-white min-h-screen">
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold mb-4">Loading...</h1>
+            <p className="text-blue-200">Please wait while we load the content.</p>
+          </div>
+        </div>
+      </main>
+    );
+  }
 
   // Helper function to format date
   const formatDate = (dateString: string) => {
@@ -101,7 +123,7 @@ function BlogContent() {
                     : "text-white    hover:bg-white/10"
                 }`}
               >
-                blog
+                Blog
               </button>
               <button
                 onClick={() => setActiveTab("report")}
@@ -240,7 +262,16 @@ function BlogContent() {
 
 export default function BlogPage() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={
+      <main className="bg-gradient-to-br from-blue-950 to-blue-900 text-white min-h-screen">
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold mb-4">Loading...</h1>
+            <p className="text-blue-200">Please wait while we load the content.</p>
+          </div>
+        </div>
+      </main>
+    }>
       <BlogContent />
     </Suspense>
   );

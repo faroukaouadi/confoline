@@ -46,7 +46,7 @@ function NewsContent() {
 
   return (
     <main className="bg-gradient-to-br from-blue-950 to-blue-900 text-white min-h-screen">
-      <div className="max-w-5xl mx-auto px-4 py-16">
+      <div className="max-w-[90%] mx-auto px-4 py-16">
         <div className="mb-6">
           <span className="text-xs uppercase tracking-widest text-white/70">
             {item.category}
@@ -54,7 +54,7 @@ function NewsContent() {
           <h1 className="text-3xl sm:text-4xl font-extrabold mt-2">{item.title}</h1>
         </div>
         {item.image && (
-          <div className="rounded-xl overflow-hidden bg-white/5 border border-white/10 mb-6">
+          <div className="rounded-xl w-2/3 mx-auto overflow-hidden bg-white/5 border border-white/10 mb-6">
             <Image 
               src={item.image} 
               alt={item.title} 
@@ -65,7 +65,10 @@ function NewsContent() {
           </div>
         )}
         <article className="prose prose-invert max-w-none bg-white text-black rounded-lg p-6">
-          <div dangerouslySetInnerHTML={{ __html: item.content }} />
+          <div
+            className="prose max-w-none bg-white text-black rounded-lg p-6 article-content"
+          dangerouslySetInnerHTML={{ __html: item.content }} 
+          />
         </article>
         <div className="mt-8">
           <Link href="/" className="underline">

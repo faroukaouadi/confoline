@@ -97,13 +97,17 @@ export default function DemoPopup({ open, onClose }) {
     >
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={handleClose} />
 
-      <div className="relative z-10 mx-3 w-full max-w-lg sm:max-w-3xl rounded-2xl border border-white/20 bg-white p-4 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <div className="relative z-10 mx-3 w-full max-w-lg sm:max-w-3xl rounded-2xl border border-white/20 bg-[#1A337D] p-4 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto scrollbar-hide">
+        {/* Shadow top right */}
+        <div className="absolute top-0 right-0 w-32 h-32 bg-[#51A2FF] rounded-full blur-[114px]"></div>
+        {/* Shadow bottom left */}
+        <div className="absolute bottom-0 left-0 w-32 h-32 bg-[#51A2FF] rounded-full blur-[114px]"></div>
         <div className="mb-6 flex items-start justify-between gap-4">
           <div>
-            <h2 id="demo-title" className="text-xl sm:text-3xl font-semibold text-blue-950 text-center sm:text-left">
+            <h2 id="demo-title" className="text-xl sm:text-3xl font-semibold text-white text-center sm:text-left">
               Want a demo?
             </h2>
-            <p className="mt-1 text-xs sm:text-sm text-slate-600 text-center sm:text-left">
+            <p className="mt-1 text-xs sm:text-sm text-white text-center sm:text-left">
               Fill this out and we’ll send you one.
             </p>
           </div>
@@ -111,7 +115,7 @@ export default function DemoPopup({ open, onClose }) {
             type="button"
             onClick={handleClose}
             aria-label="Close"
-            className="rounded-full p-2 text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition"
+            className="rounded-full p-2 text-white hover:bg-slate-100 z-50 hover:text-slate-900 transition"
           >
             <X className="h-5 w-5" />
           </button>
@@ -119,7 +123,7 @@ export default function DemoPopup({ open, onClose }) {
 
         <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
           <div className="grid gap-1.5">
-            <label htmlFor="topic" className="text-xs sm:text-sm font-medium text-slate-700">
+            <label htmlFor="topic" className="text-xs sm:text-sm font-medium text-white">
               How can we help you? <span className="text-red-500">*</span>
             </label>
             <div className="relative">
@@ -144,7 +148,7 @@ export default function DemoPopup({ open, onClose }) {
           </div>
 
           <div className="grid gap-1.5">
-            <label htmlFor="persona" className="text-xs sm:text-sm font-medium text-slate-700">
+            <label htmlFor="persona" className="text-xs sm:text-sm font-medium text-white">
               What describes you best? <span className="text-red-500">*</span>
             </label>
             <div className="relative">
@@ -168,7 +172,7 @@ export default function DemoPopup({ open, onClose }) {
             )}
           </div>
           <div className="grid gap-1.5">
-            <label htmlFor="fullName" className="text-xs sm:text-sm font-medium text-slate-700">
+            <label htmlFor="fullName" className="text-xs sm:text-sm font-medium text-white">
               Name <span className="text-red-500">*</span>
             </label>
             <input
@@ -191,7 +195,7 @@ export default function DemoPopup({ open, onClose }) {
           </div>
 
           <div className="grid gap-1.5">
-            <label htmlFor="email" className="text-xs sm:text-sm font-medium text-slate-700">
+            <label htmlFor="email" className="text-xs sm:text-sm font-medium text-white">
               Email Address <span className="text-red-500">*</span>
             </label>
             <input
@@ -214,7 +218,7 @@ export default function DemoPopup({ open, onClose }) {
           </div>
 
           <div className="grid gap-1.5">
-            <label htmlFor="company" className="text-xs sm:text-sm font-medium text-slate-700">
+            <label htmlFor="company" className="text-xs sm:text-sm font-medium text-white">
               Company <span className="text-red-500">*</span>
             </label>
             <input
@@ -236,7 +240,7 @@ export default function DemoPopup({ open, onClose }) {
           </div>
 
           <div className="grid gap-1.5">
-            <label htmlFor="source" className="text-xs sm:text-sm font-medium text-slate-700">
+            <label htmlFor="source" className="text-xs sm:text-sm font-medium text-white">
               How’d you hear about us? <span className="text-red-500">*</span>
             </label>
             <div className="relative">
@@ -262,7 +266,7 @@ export default function DemoPopup({ open, onClose }) {
           </div>
 
           <div className="sm:col-span-2 grid gap-1.5">
-            <label htmlFor="message" className="text-xs sm:text-sm font-medium text-slate-700">
+            <label htmlFor="message" className="text-xs sm:text-sm font-medium text-white">
               What would you like to see?
             </label>
             <textarea
@@ -287,7 +291,7 @@ export default function DemoPopup({ open, onClose }) {
             <button
               type="submit"
               disabled={isSubmitting || hasErrors}
-              className="inline-flex items-center gap-2 rounded-xl border-2 border-cyan-500 bg-white text-cyan-700 px-6 py-2.5 sm:px-8 sm:py-3 font-semibold text-sm sm:text-base shadow-md transition hover:bg-cyan-50 disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex items-center gap-2 rounded-xl border-2 border-transparent bg-cyan-500 px-4 py-2 sm:px-5 sm:py-2.5 font-semibold text-white text-sm sm:text-base shadow-md transition hover:bg-cyan-600 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {isSubmitting ? "Sending..." : "Send"}
             </button>

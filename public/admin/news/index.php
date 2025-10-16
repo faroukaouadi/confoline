@@ -165,7 +165,7 @@ $flash = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
     </style>
     <link href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css" rel="stylesheet">
     <style>
-      .ql-toolbar.ql-snow{border:1px solid rgba(255,255,255,.18);border-radius:8px 8px 0 0;background:#0b1220}
+      .ql-toolbar.ql-snow{border:1px solid #111827;border-radius:8px 8px 0 0;background:#ffffff}
       .ql-container.ql-snow{border:1px solid rgba(255,255,255,.18);border-top:0;border-radius:0 0 8px 8px}
       .ql-container .ql-editor{background:#ffffff;color:#111827;min-height:220px}
     </style>

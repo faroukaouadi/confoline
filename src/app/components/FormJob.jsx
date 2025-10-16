@@ -144,7 +144,7 @@ export default function FormJob({ open, onClose, jobTitle = "Senior Backend Engi
        
        {/* Modal container - 90% of screen */}
        <div 
-         className=" w-[90%] h-[90%] bg-[#1A337D]  rounded-2xl overflow-y-auto "
+         className=" w-[90%] h-[90%] bg-[#1A337D]  rounded-2xl overflow-y-auto scrollbar-hide "
          onClick={(e) => e.stopPropagation()}
        >
        

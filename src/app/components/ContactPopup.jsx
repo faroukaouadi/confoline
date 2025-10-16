@@ -107,13 +107,18 @@ export default function ContactPopup({ open, onClose }) {
 
       {/* Popup centered */
       }
-      <div className="relative z-10 mx-3 w-full max-w-sm sm:max-w-lg rounded-2xl border border-white/20 bg-white p-4 sm:p-6 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <div className="relative z-10 mx-3 w-full max-w-sm sm:max-w-lg rounded-2xl border border-white/20 bg-[#1A337D]  p-4 sm:p-6 shadow-2xl max-h-[90vh] overflow-y-auto scrollbar-hide">
+        {/* Shadow top right */}
+        <div className="absolute top-0 right-0 w-32 h-32 bg-[#51A2FF] rounded-full blur-[114px]"></div>
+        {/* Shadow bottom left */}
+        <div className="absolute bottom-0 left-0 w-32 h-32 bg-[#51A2FF] rounded-full blur-[114px]"></div>
+     
         <div className="mb-4 flex items-start justify-between gap-4">
           <div>
-            <h2 id="contact-title" className="text-lg sm:text-2xl font-semibold text-blue-950">
+            <h2 id="contact-title" className="text-lg sm:text-2xl font-semibold text-white">
               Contact us
             </h2>
-            <p className="mt-1 text-xs sm:text-sm text-slate-600">
+            <p className="mt-1 text-xs sm:text-sm text-white">
               Fill out the form and we\'ll get back to you shortly.
             </p>
           </div>
@@ -121,7 +126,7 @@ export default function ContactPopup({ open, onClose }) {
             type="button"
             onClick={handleClose}
             aria-label="Close"
-            className="rounded-full p-2 text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition"
+            className="rounded-full p-2 text-white hover:bg-white hover:text-black transition z-50"
           >
             <X className="h-5 w-5" />
           </button>
@@ -129,7 +134,7 @@ export default function ContactPopup({ open, onClose }) {
 
         <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-3 sm:gap-4">
           <div className="grid gap-1.5">
-            <label htmlFor="fullName" className="text-xs sm:text-sm font-medium text-slate-700">
+            <label htmlFor="fullName" className="text-xs sm:text-sm font-medium text-white">
               Full name
             </label>
             <input
@@ -152,7 +157,7 @@ export default function ContactPopup({ open, onClose }) {
           </div>
 
           <div className="grid gap-1.5">
-            <label htmlFor="email" className="text-xs sm:text-sm font-medium text-slate-700">
+            <label htmlFor="email" className="text-xs sm:text-sm font-medium text-white">
               Email
             </label>
             <input
@@ -175,7 +180,7 @@ export default function ContactPopup({ open, onClose }) {
           </div>
 
           <div className="grid gap-1.5">
-            <label htmlFor="subject" className="text-xs sm:text-sm font-medium text-slate-700">
+            <label htmlFor="subject" className="text-xs sm:text-sm font-medium text-white">
               Subject
             </label>
             <input
@@ -197,7 +202,7 @@ export default function ContactPopup({ open, onClose }) {
           </div>
 
           <div className="grid gap-1.5">
-            <label htmlFor="message" className="text-xs sm:text-sm font-medium text-slate-700">
+            <label htmlFor="message" className="text-xs sm:text-sm font-medium text-white">
               Message
             </label>
             <textarea
