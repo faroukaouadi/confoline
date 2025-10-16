@@ -64,10 +64,10 @@ function NewsContent() {
             />
           </div>
         )}
-        <article className="prose prose-invert max-w-none bg-white text-black rounded-lg p-6">
+        <article className="max-w-none bg-white text-black rounded-lg p-6">
           <div
-            className="prose max-w-none bg-white text-black rounded-lg p-6 article-content"
-          dangerouslySetInnerHTML={{ __html: item.content }} 
+            className="quill-content max-w-none bg-white text-black rounded-lg p-6"
+            dangerouslySetInnerHTML={{ __html: item.content }} 
           />
         </article>
         <div className="mt-8">

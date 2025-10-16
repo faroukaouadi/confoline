@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
+import "./quill-content.css";
 import Header from "./components/Header";
 import FloatingButtons from "./components/FloatingButtons";
 import Footer from "./components/Footer";

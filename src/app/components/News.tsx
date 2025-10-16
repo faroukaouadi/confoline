@@ -66,9 +66,9 @@ export default function News() {
                     {featuredNews[0].title}
                   </h3>
                   {featuredNews[0].excerpt ? (
-                    <div className="mt-3 text-white/80 prose prose-invert max-w-none text-xs lg:text-base 2xl:text-lg" dangerouslySetInnerHTML={{ __html: featuredNews[0].excerpt }} />
+                    <div  className="mt-3 text-white/80 prose prose-invert max-w-none text-xs lg:text-base 2xl:text-lg line-clamp-3 break-words whitespace-normal" dangerouslySetInnerHTML={{ __html: featuredNews[0].excerpt }} />
                   ) : (
-                    <div className="mt-3 text-white/80 prose prose-invert max-w-none text-xs lg:text-base 2xl:text-lg" dangerouslySetInnerHTML={{ __html: featuredNews[0].content }} />
+                    <div  className="mt-3 text-white/80 prose prose-invert max-w-none text-xs lg:text-base 2xl:text-lg line-clamp-3 break-words whitespace-normal" dangerouslySetInnerHTML={{ __html: featuredNews[0].content }} />
                   )}
                   <div className="pt-4">
                     <Link 
@@ -102,9 +102,9 @@ export default function News() {
                       {item.title}
                     </h3>
                     {item.excerpt ? (
-                      <div className="mt-3 text-white/80 prose prose-invert prose max-w-none text-xs lg:text-base 2xl:text-lg line-clamp-3" dangerouslySetInnerHTML={{ __html: item.excerpt }} />
+                      <div  className="mt-3 text-white/80 prose prose-invert max-w-none text-xs lg:text-base 2xl:text-lg line-clamp-3 break-words whitespace-normal" dangerouslySetInnerHTML={{ __html: item.excerpt }} />
                     ) : (
-                      <div className="mt-3 text-white/80 prose prose-invert text-xs lg:text-base 2xl:text-lg prose max-w-none line-clamp-3" dangerouslySetInnerHTML={{ __html: item.content }} />
+                      <div  className="mt-3 text-white/80 prose prose-invert max-w-none text-xs lg:text-base 2xl:text-lg line-clamp-3 break-words whitespace-normal" dangerouslySetInnerHTML={{ __html: item.content }} />
                     )}
                     <div className="mt-auto pt-4">
                       <Link 

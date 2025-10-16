@@ -137,8 +137,25 @@ $msg = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
           input.onchange = async function(){
             var file = input.files && input.files[0];
             if (!file) return;
+            
+            // Show size options dialog
+            var sizeOptions = prompt('Choose image size:\n1. Small (300px)\n2. Medium (600px)\n3. Large (900px)\n4. Original size\n\nEnter 1, 2, 3, or 4:');
+            var maxWidth = null;
+            
+            switch(sizeOptions) {
+              case '1': maxWidth = 300; break;
+              case '2': maxWidth = 600; break;
+              case '3': maxWidth = 900; break;
+              case '4': maxWidth = null; break;
+              default: 
+                alert('Invalid option. Using original size.');
+                maxWidth = null;
+            }
+            
             var form = new FormData();
             form.append('image', file);
+            if (maxWidth) form.append('max_width', maxWidth);
+            
             try {
               const res = await fetch('../news/upload-image.php', { method: 'POST', body: form, credentials: 'same-origin' });
               if (!res.ok) throw new Error('upload failed');
