@@ -14,80 +14,49 @@ const LOCATIONS_DATA = {
     },
     {
       id: 2,
-      title: "Canada, Montreal",
-      address: ["6650 St Urbain Street, Suite 500", "Montreal, QC H2S 3G9"]
+      title: "USA, New York (WeWork)",
+      address: ["60 E 42nd St #4600, New York", "NY 10165, United States"]
     },
-    {
-      id: 3,
-      title: "Canada, Toronto",
-      address: ["161 Bay Street, Suite 1300", "Toronto, ON M5J 2S1"]
-    },
-    {
-      id: 4,
-      title: "USA, California, Pleasanton",
-      address: ["4305 Hacienda Drive, Suite 200", "Pleasanton, CA 94588"]
-    },
-    {
-      id: 5,
-      title: "USA, California, San Diego",
-      address: ["4810 Eastgate Mall", "San Diego, CA 92121"]
-    },
-    {
-      id: 6,
-      title: "USA, California, San Francisco",
-      address: ["101 Green Street, Floor 5", "San Francisco, CA 94111"]
-    },
-    {
-      id: 7,
-      title: "USA, Colorado, Denver (Venture X)",
-      address: ["1800 Wazee St, Suite 300", "Denver, CO 80202"]
-    },
-    {
-      id: 8,
-      title: "USA, Florida, Orlando",
-      address: ["12900 Science Drive, Suite 100", "Orlando, FL 32826"]
-    }
   ],
   "Latin America": [
     {
-      id: 9,
-      title: "Brazil, São Paulo",
-      address: ["Av. Paulista, 1000", "São Paulo, SP 01310-100"]
+      id: 3,
+      title: "Coming Soon",
+      address: [""]
     },
-    {
-      id: 10,
-      title: "Mexico, Mexico City",
-      address: ["Paseo de la Reforma 250", "Ciudad de México, 06600"]
-    }
+
   ],
   "Middle East, and Africa": [
     {
-      id: 11,
+      id: 4,
       title: "UAE, Dubai",
       address: ["Sheikh Zayed Road", "Dubai, UAE"]
     },
     {
-      id: 12,
-      title: "South Africa, Cape Town",
-      address: ["V&A Waterfront", "Cape Town, 8001"]
+      id: 5,
+      title: "Tunisia, Tunis",
+      address: ["015 Av. Abdelhamid Ibn Badis", "Tunis"]
+    },
+    {
+      id: 6,
+      title: "KSA, Ryadh ",
+      address: ["Coming Soon"]
+    },
+    {
+      id: 7,
+      title: "Algeria, Algers",
+      address: ["Coming Soon"]
     }
   ],
   "Asia Pacific and Japan": [
     {
-      id: 13,
-      title: "Japan, Tokyo",
-      address: ["Shibuya Crossing", "Tokyo, Japan"]
+      id: 8,
+      title: "Coming Soon",
+      address: [""]
     },
-    {
-      id: 14,
-      title: "Singapore",
-      address: ["Marina Bay Sands", "Singapore 018956"]
-    }
   ]
 };
-
 const TABS = ["North America", "Latin America", "Middle East, and Africa", "Asia Pacific and Japan"];
-
 export default function LocationsPage() {
   const [activeTab, setActiveTab] = useState("North America");
   const [email, setEmail] = useState("");
@@ -149,10 +118,10 @@ export default function LocationsPage() {
         <div className="mx-auto max-w-[90%] px-4 sm:px-6 lg:px-8 ">
           <div className="flex flex-col sm:flex-row items-center justify-center">
             <p className="text-white text-center text-sm sm:text-xl 2xl:text-3xl">
-              See the AI experience by ServiceNow—the UI for Enterprise AI.
+            See the AI experience by Confoline, Start your AI-Driven Assessment Experience
             </p>
             <button className="ml-4 bg-[#51A2FF] hover:bg-[#4A90E2] text-white px-6 py-3 rounded-full font-medium text-xs sm:text-sm 2xl:text-2xl transition-colors duration-300">
-              Explore AI Experience
+            Explore Vision Exeprience
             </button>
           </div>
         </div>
@@ -257,11 +226,11 @@ export default function LocationsPage() {
 
        {/* CTA Subscription Section */}
        <section className="bg-[#0C1B46] py-10 2xl:py-28">
-         <div className="mx-auto max-w-[70%] px-4 sm:px-6 lg:px-8">
+         <div className="mx-auto md:max-w-[70%] px-4 sm:px-6 lg:px-8">
            <div className="bg-[#1A337D] rounded-3xl p-8 sm:p-12 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12)] border border-white/10">
              <div className="text-center space-y-6">
                {/* Title */}
-               <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white">
+               <h2 className="text-xl sm:text-4xl lg:text-5xl font-bold text-white">
                Stay Ahead with Confoline Insights
                </h2>
                
@@ -279,13 +248,13 @@ export default function LocationsPage() {
                    placeholder="Email"
                    disabled={loading}
                    required
-                   className="flex-1 px-4 py-3 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
-                 />
+                   className="w-full px-4 py-3 pr-24 bg-white text-gray-900 rounded-lg border-0 focus:outline-none focus:ring-2 focus:ring-cyan-400 disabled:opacity-50 disabled:cursor-not-allowed"
+                   />
                  <button
                    type="submit"
                    disabled={loading}
-                   className="sm:absolute right-1 top-2 bottom-2 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-800 disabled:cursor-not-allowed text-white sm:px-8 rounded-lg font-medium transition-colors duration-300 whitespace-nowrap flex items-center gap-2"
-                 >
+                   className="absolute right-1 top-2 bottom-2 px-4 bg-cyan-500 hover:bg-cyan-400 disabled:bg-cyan-600 disabled:cursor-not-allowed text-white font-medium rounded-md transition-colors flex items-center gap-2"
+                   >
                    {loading ? (
                      <>
                        <Loader2 size={16} className="animate-spin" />

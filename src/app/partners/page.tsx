@@ -56,9 +56,11 @@ export default function PartnersPage() {
           )}
         </div>
 
-        <div className="mt-6 text-center text-xs sm:text-sm 2xl:text-xl text-blue-200">
-          Watch today’s vision demo. Our Next generation of Presales Architect.{' '}
-          <Link href="#" className="underline hover:text-white">
+        <div className="mt-10 text-center text-xs sm:text-sm 2xl:text-xl text-blue-200">
+          <span>
+          Watch today’s vision demo. Our Next generation of AI-Driven Business Value Assessment.
+          </span>{" "}
+          <Link href="#watch" className="text-cyan-300 hover:underline">
             Watch.
           </Link>
         </div>

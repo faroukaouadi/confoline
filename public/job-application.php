@@ -80,7 +80,7 @@ if (!empty($errors)) {
 }
 
 // Configure destination (recipient) and sender
-$to = getenv('CONTACT_TO') ?: 'farouk.aouadi1@gmail.com';
+$to = getenv('CONTACT_TO') ?: 'contact@confoline.com';
 $from = getenv('CONTACT_FROM') ?: 'no-reply@confoline.com';
 
 // Build message

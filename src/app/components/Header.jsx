@@ -5,96 +5,21 @@ import { usePathname, useRouter } from "next/navigation";
 import { Menu, X, Search, ChevronDown, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { useNews } from "../../hooks/useNews";
-import { useOpportunities } from "../../hooks/useOpportunities";
+import { useSearch } from "../../hooks/useSearch";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [companyOpen, setCompanyOpen] = useState(false);
   const [companyMobileOpen, setCompanyMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
   const searchRef = useRef(null);
   const pathname = usePathname();
   const router = useRouter();
   
-  // Data hooks
-  const { data: news = [] } = useNews();
-  const { data: opportunities = [] } = useOpportunities();
+  // Search hook
+  const { searchQuery, setSearchQuery, searchResults, setSearchResults } = useSearch();
 
 
-  // Search functionality
-  useEffect(() => {
-    if (searchQuery.length > 2) {
-      const results = [];
-      
-      // Static pages data with keywords
-      const staticPages = [
-        { title: 'Services', url: '/services', category: 'Services', type: 'page', keywords: ['service', 'services'] },
-        { title: 'Industries', url: '/industries', category: 'Industries', type: 'page', keywords: ['industry', 'industries', 'sector', 'sectors'] },
-        { title: 'Customers', url: '/customers', category: 'Customers', type: 'page', keywords: ['customer', 'customers', 'client', 'clients'] },
-        { title: 'Support', url: '/support', category: 'Support', type: 'page', keywords: ['support', 'help', 'assistance'] },
-        { title: 'Partners', url: '/partners', category: 'Partners', type: 'page', keywords: ['partner', 'partners', 'collaboration'] },
-        { title: 'Company Story', url: '/company', category: 'Company', type: 'page', keywords: ['company', 'about', 'story', 'team'] },
-        { title: 'Blogs', url: '/blogs', category: 'Blogs', type: 'page', keywords: ['blog', 'blogs', 'article', 'articles', 'report', 'reports'] },
-        { title: 'Career', url: '/career', category: 'Career', type: 'page', keywords: ['career', 'careers', 'job', 'jobs', 'opportunity', 'opportunities', 'employment', 'hiring', 'work'] },
-        { title: 'Locations', url: '/locations', category: 'Locations', type: 'page', keywords: ['location', 'locations', 'office', 'offices', 'address'] },
-        { title: 'News', url: '/news', category: 'News', type: 'page', keywords: ['news', 'update', 'updates', 'announcement'] }
-      ];
-      
-      // Search in static pages
-      staticPages.forEach(page => {
-        const query = searchQuery.toLowerCase();
-        const titleMatch = page.title.toLowerCase().includes(query);
-        const categoryMatch = page.category.toLowerCase().includes(query);
-        const keywordMatch = page.keywords.some(keyword => keyword.toLowerCase().includes(query));
-        
-        if (titleMatch || categoryMatch || keywordMatch) {
-          results.push({
-            type: 'page',
-            title: page.title,
-            category: page.category,
-            url: page.url
-          });
-        }
-      });
-      
-      // Search in news
-      news.forEach(item => {
-        if (item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            item.content.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            item.category.toLowerCase().includes(searchQuery.toLowerCase())) {
-          results.push({
-            type: 'news',
-            title: item.title,
-            category: item.category,
-            id: item.id,
-            url: `/news?id=${item.id}`
-          });
-        }
-      });
-      
-      // Search in opportunities
-      opportunities.forEach(item => {
-        if (item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            item.department.toLowerCase().includes(searchQuery.toLowerCase())) {
-          results.push({
-            type: 'opportunity',
-            title: item.title,
-            category: item.department,
-            id: item.id,
-            url: `/career/opportunity?id=${item.id}`
-          });
-        }
-      });
-      
-      setSearchResults(results.slice(0, 8)); // Increased limit to 8 results
-    } else {
-      setSearchResults([]);
-    }
-  }, [searchQuery, news, opportunities]);
 
   // Close search when clicking outside
   useEffect(() => {
@@ -153,9 +78,9 @@ export default function Header() {
           <Link href={navHref("/customers")} className={navLinkClass("/customers")}>
             Customers {isActive("/customers") ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
           </Link>
-          <Link href={navHref("/support")} className={navLinkClass("/support")}>
+          {/* <Link href={navHref("/support")} className={navLinkClass("/support")}>
             Support {isActive("/support") ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
-          </Link>
+          </Link> */}
           <Link href={navHref("/partners")} className={navLinkClass("/partners")}>
             Partners {isActive("/partners") ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
           </Link>
@@ -253,8 +178,8 @@ export default function Header() {
           <button className="text-white hover:text-blue-300 font-medium text-xs sm:text-sm 2xl:text-base">
             Sign In
           </button> */}
-          <button className=" w-31 h-11 2xl:w-51 2xl:h-18 bg-[#51A2FF] hover:bg-blue-300 rounded-full font-medium cursor-pointer transition-colors text-sm 2xl:text-[24px]">
-            Get Started
+          <button className="bg-blue-400 hover:bg-blue-300 cursor-pointer text-white px-8 py-3 rounded-full font-medium transition-colors 2xl:text-[24px]">
+          Start AI-Driven Assessment
           </button>
         </div>
 
@@ -313,7 +238,7 @@ export default function Header() {
           <Link href={navHref("/services")} className={`block py-2 ${pathname && pathname.startsWith("/services") ? "text-blue-300" : ""}`} onClick={() => setOpen(!open)}>Services</Link>
           <Link href={navHref("/industries")} className={`block py-2 ${pathname && pathname.startsWith("/industries") ? "text-blue-300" : ""}`} onClick={() => setOpen(!open)}>Industries</Link>
           <Link href={navHref("/customers")} className={`block py-2 ${pathname && pathname.startsWith("/customers") ? "text-blue-300" : ""}`} onClick={() => setOpen(!open)}>Customers</Link>
-          <Link href={navHref("/support")} className={`block py-2 ${pathname && pathname.startsWith("/support") ? "text-blue-300" : ""}`} onClick={() => setOpen(!open)}>Support</Link>
+          {/* <Link href={navHref("/support")} className={`block py-2 ${pathname && pathname.startsWith("/support") ? "text-blue-300" : ""}`} onClick={() => setOpen(!open)}>Support</Link> */}
           <Link href={navHref("/partners")} className={`block py-2 ${pathname && pathname.startsWith("/partners") ? "text-blue-300" : ""}`} onClick={() => setOpen(!open)}>Partners</Link>
           <div>
       <button
@@ -343,7 +268,7 @@ export default function Header() {
       )}
     </div>
           <button className="w-full mt-3 bg-blue-400 px-6 py-2 rounded-md hover:bg-blue-300 cursor-pointer">
-            Get Started
+          Start AI-Driven Assessment
           </button>
         </div>
       )}

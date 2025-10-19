@@ -16,11 +16,11 @@ export default function Company() {
                </p>
                <div className="grid grid-cols-3 gap-4 lg:gap-8">
                  <div className="text-center lg:text-left">
-                   <div className="text-3xl lg:text-4xl font-bold text-white mb-2">15+</div>
+                   <div className="text-3xl lg:text-4xl font-bold text-white mb-2">5+</div>
                    <div className="text-xs lg:text-sm text-white">Years Experience</div>
                  </div>
                  <div className="text-center lg:text-left">
-                   <div className="text-3xl lg:text-4xl font-bold text-white mb-2">500+</div>
+                   <div className="text-3xl lg:text-4xl font-bold text-white mb-2">50+</div>
                    <div className="text-xs lg:text-sm text-white">Projects Completed</div>
                  </div>
                  <div className="text-center lg:text-left">
@@ -32,7 +32,7 @@ export default function Company() {
              <div className="flex justify-center lg:justify-end">
                 <div className="w-full max-w-lg lg:w-[28rem] h-80 lg:h-96 bg-gradient-to-br from-stone-300 to-stone-500 rounded-3xl flex items-center justify-center relative overflow-hidden">
                  <div className="absolute inset-0 bg-gradient-to-b from-stone-200 to-stone-400 rounded-lg">
-                 <Image src="/images/team.jpg" alt="company" width={0} height={0} unoptimized className="object-cover w-full h-full" />
+                 <Image src="/images/storyConfiline.jfif" alt="company" width={0} height={0} unoptimized className="object-cover w-full h-full" />
                  </div>
                </div>
              </div>
@@ -44,8 +44,8 @@ export default function Company() {
       <section className="py-20 px-4">
          <div className="max-w-[90%] mx-auto">
            <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center">
-             <div className="flex justify-center col-span-2 order-2 lg:order-1">
-               <div className="w-full max-w-md lg:max-w-none h-80 bg-gradient-to-br from-gray-600 to-gray-800 rounded-lg overflow-hidden flex items-center justify-center">
+             <div className="flex justify-center col-span-3 md:col-span-2 order-2 lg:order-1">
+               <div className="w-full max-w-md lg:max-w-none md:h-80 bg-gradient-to-br from-gray-600 to-gray-800 rounded-lg overflow-hidden flex items-center justify-center">
                   <Image src="/images/story-page-2.png" alt="company" width={0} height={0} unoptimized className="w-full h-full object-cover" />
                </div>
              </div>  
@@ -53,11 +53,10 @@ export default function Company() {
               <h2 className="text-4xl lg:text-5xl font-bold mb-8">Our Story</h2>
               <div className="space-y-6 text-gray-300 2xl:text-xl">
                 <p>
-                  Founded in 2008 as a small startup with a vision to democratize technology, we began our journey with just two passionate individuals working from a garage. What started as a dream to make technology accessible to everyone has grown into a leading technology consultancy that serves clients across various industries.
+                Founded in 2019 as a small startup with a vision to democratize technology, we began our journey with just two passionate innovators. What started as a dream to make technology accessible to everyone has evolved into a leading technology consultancy, empowering clients across diverse industries to harness the power of digital transformation.
                 </p>
                 <p>
-                  Today, we serve clients from innovative startups to Fortune 500 companies, helping them navigate the complex digital landscape and achieve their business objectives through innovative technology solutions. Our commitment to excellence and innovation continues to drive us forward as we shape the future of technology.
-                </p>
+                Today, we partner with clients ranging from innovative startups to Fortune 500 companies, helping them navigate the complex digital landscape and achieve their business goals through cutting-edge technology solutions. Our unwavering commitment to excellence and innovation drives us forward as we continue to shape the future of technology.                </p>
               </div>
             </div>
           </div>
@@ -144,7 +143,8 @@ export default function Company() {
       </section>
 
       {/* Leadership Team Section */}
-      <section className="py-20 px-4">
+      
+      {/* <section className="py-20 px-4">
         <div className="max-w-[90%] mx-auto text-center">
           <h2 className="text-4xl lg:text-5xl font-bold mb-6">Leadership Team</h2>
           <p className="text-xl text-gray-300 mb-16">
@@ -161,9 +161,9 @@ export default function Company() {
                 <div className="w-8 h-8 rounded flex items-center justify-center">
                 <Image src="/images/linkedin.svg" alt="linkedin" width={0} height={0} unoptimized className="w-auto h-auto" />
                 </div>
-                {/* <div className="w-8 h-8  rounded flex items-center justify-center">
+                <div className="w-8 h-8  rounded flex items-center justify-center">
                 <Image src="/images/youtube.svg" alt="linkedin" width={0} height={0} unoptimized className="w-auto h-auto" />
-                </div> */}
+                </div>
               </div>
             </div>
             <div className="text-center">
@@ -176,9 +176,9 @@ export default function Company() {
                 <div className="w-8 h-8  rounded flex items-center justify-center">
                 <Image src="/images/linkedin.svg" alt="linkedin" width={0} height={0} unoptimized className="w-auto h-auto" />
                 </div>
-                {/* <div className="w-8 h-8  rounded flex items-center justify-center">
+                <div className="w-8 h-8  rounded flex items-center justify-center">
                 <Image src="/images/youtube.svg" alt="linkedin" width={0} height={0} unoptimized className="w-auto h-auto" />
-                </div> */}
+                </div>
               </div>
             </div>
             <div className="text-center">
@@ -191,9 +191,9 @@ export default function Company() {
                 <div className="w-8 h-8  rounded flex items-center justify-center">
                 <Image src="/images/linkedin.svg" alt="linkedin" width={0} height={0} unoptimized className="w-auto h-auto" />
                 </div>
-                {/* <div className="w-8 h-8  rounded flex items-center justify-center">
+                <div className="w-8 h-8  rounded flex items-center justify-center">
                 <Image src="/images/youtube.svg" alt="linkedin" width={0} height={0} unoptimized className="w-auto h-auto" />
-                </div> */}
+                </div>
               </div>
             </div>
             <div className="text-center">
@@ -206,14 +206,14 @@ export default function Company() {
                 <div className="w-8 h-8  rounded flex items-center justify-center">
                 <Image src="/images/linkedin.svg" alt="linkedin" width={0} height={0} unoptimized className="w-auto h-auto"/>
                 </div>
-                {/* <div className="w-8 h-8  rounded flex items-center justify-center">
+                <div className="w-8 h-8  rounded flex items-center justify-center">
                   <Image src="/images/youtube.svg" alt="linkedin" width={0} height={0} unoptimized className="w-auto h-auto" />
-                </div> */}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

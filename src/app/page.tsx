@@ -4,7 +4,7 @@ import Services from "./components/Services";
 import News from "./components/News";
 import Story from "./components/Story";
 import Work from "./components/Work";
-import Testimonials from "./components/Testimonials";
+// import Testimonials from "./components/Testimonials";
 
 export default function Home() {
   return (
@@ -14,7 +14,7 @@ export default function Home() {
       <Partners />
       </div>
       <Services />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <News />
       <Story />
       

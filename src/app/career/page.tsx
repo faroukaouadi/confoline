@@ -76,11 +76,11 @@ export default function Career() {
           <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#51A2FF] blur-[114px] rounded-full transform -translate-x-1/2 translate-y-1/2"></div>
 
           <div className="relative z-10 p-4">
-            <h1 className="text-5xl lg:text-6xl 2xl:text-7xl font-bold mb-6">
+            <h1 className="text-2xl lg:text-6xl 2xl:text-7xl font-bold mb-6">
               Build the Future of Intelligent <br /> Automation with Us
 
             </h1>
-            <p className="text-xl mb-12 text-gray-300">
+            <p className="text-sm md:text-xl mb-12 text-gray-300">
               Join a team where innovation, AI, and human creativity come together.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

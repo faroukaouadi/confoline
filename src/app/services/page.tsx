@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 export default function ServicesPage() {
   return (
     <main className="relative min-h-screen bg-gradient-to-b from-blue-950 to-blue-900 text-white">
@@ -44,14 +46,14 @@ export default function ServicesPage() {
           />
         </div>
 
-        <p className="mt-10 text-center text-xs sm:text-sm 2xl:text-xl text-blue-300">
-          Watch today’s vision demo. Our next generation of Presales Architect: <a
-            href="#watch"
-            className="underline hover:text-white"
-          >
-            Watch
-          </a>
-        </p>
+    <div className="mt-10 text-center text-xs sm:text-sm 2xl:text-xl text-blue-200">
+          <span>
+          Watch today’s vision demo. Our Next generation of AI-Driven Business Value Assessment.
+          </span>{" "}
+          <Link href="#watch" className="text-cyan-300 hover:underline">
+            Watch.
+          </Link>
+        </div>
       </section>
 
 
@@ -68,7 +70,7 @@ function ServiceCard({ title, description }: CardProps) {
   return (
     <article className="rounded-xl border border-blue-700/50 bg-blue-900/30 p-5 shadow-md shadow-blue-950/40 backdrop-blur-sm">
       <h3 className="text-base sm:text-lg 2xl:text-2xl font-semibold text-white">{title}</h3>
-      <p className="mt-2 text-xs sm:text-sm 2xl:text-xl leading-relaxed text-blue-200">{description}</p>
+      <p className="mt-2 text-xs sm:text-sm 2xl:text-xl leading-relaxed text-blue-200 text-justify">{description}</p>
     </article>
   );
 }

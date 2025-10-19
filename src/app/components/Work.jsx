@@ -72,12 +72,12 @@ export default function Work() {
               <h3 className="text-2xl sm:text-3xl md:text-4xl 2xl:text-5xl font-extrabold">
               Stay ahead of the curve
               </h3>
-              <p className="mt-3 text-sm sm:text-base text-blue-100 max-w-md 2xl:text-lg">
+              <p className="mt-3 text-sm sm:text-base 2xl:text-lg text-blue-100 max-w-none ">
               Explore all the ways Confoline can put AI to increase your business outcomes.
               </p>
               
               {/* Email subscription form */}
-              <form onSubmit={handleSubmit} className="mt-6">
+              <form onSubmit={handleSubmit} className="mt-6 flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
                 <div className="relative">
                   <input 
                     type="email" 
