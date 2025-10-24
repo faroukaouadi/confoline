@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useNews } from "../../hooks/useNews";
+import ContactPopup from "../components/ContactPopup";
 
 type TabType = "blog" | "report" | "news";
 
@@ -30,6 +31,8 @@ function BlogContent() {
   const [isClient, setIsClient] = useState(false);
   const { data: news = [], isLoading: loading, error } = useNews();
   const currentData = TAB_DATA[activeTab];
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
 
   // Initialize client-side rendering
   useEffect(() => {
@@ -251,10 +254,15 @@ function BlogContent() {
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold">Meet the Minds Behind the Magic</h2>
               <p className="text-blue-200 text-sm sm:text-base">Get a free 30-minute strategy session with our lead designer.</p>
-              <button className="mt-5 rounded-full bg-[#51A2FF] px-5 py-4 text-sm font-medium text-white">Book a Free Call</button>
+              <button onClick={() => setIsContactModalOpen(true)} className="mt-5 rounded-full bg-[#51A2FF] px-5 py-4 text-sm font-medium text-white cursor-pointer">Book a Free Call</button>
             </div>
           </div>
         </div>
+               {/* Contact Modal */}
+       <ContactPopup 
+         open={isContactModalOpen} 
+         onClose={() => setIsContactModalOpen(false)} 
+       />
       </section>
     </main>
   );

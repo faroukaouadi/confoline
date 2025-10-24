@@ -72,12 +72,12 @@ export default function Work() {
               <h3 className="text-2xl sm:text-3xl md:text-4xl 2xl:text-5xl font-extrabold">
               Stay ahead of the curve
               </h3>
-              <p className="mt-3 text-sm sm:text-base 2xl:text-lg text-blue-100 max-w-none ">
+              <p className="mt-3 text-sm sm:text-base 2xl:text-lg text-blue-100 max-w-md lg:max-w-none ">
               Explore all the ways Confoline can put AI to increase your business outcomes.
               </p>
               
               {/* Email subscription form */}
-              <form onSubmit={handleSubmit} className="mt-6 flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              <form onSubmit={handleSubmit} className="mt-6">
                 <div className="relative">
                   <input 
                     type="email" 
@@ -125,7 +125,7 @@ export default function Work() {
             {/* Right list */}
             <div className="divide-y divide-white/10">
               {items.map(({ title, desc, Icon }, i) => (
-                <a key={title} href="#" className="group flex items-start gap-4 p-6 md:p-7 2xl:p-8 hover:bg-white/5 transition-colors">
+                <div key={title}  className="group flex items-start gap-4 p-6 md:p-7 2xl:p-8 hover:bg-white/5 transition-colors">
                   <div className="mt-1 flex h-9 w-9 2xl:h-11 2xl:w-11 items-center justify-center rounded-full bg-blue-700/60 ring-1 ring-white/20">
                     <Icon size={18} className="text-white 2xl:size-6" />
                   </div>
@@ -138,7 +138,7 @@ export default function Work() {
                     </div>
                     <p className="mt-1 text-sm 2xl:text-lg text-blue-100 leading-relaxed">{desc}</p>
                   </div>
-                </a>
+                </div>
               ))}
             </div>
           </div>

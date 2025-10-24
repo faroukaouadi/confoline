@@ -2,7 +2,7 @@
 export const API_CONFIG = {
   baseUrl: {
     development: "http://127.0.0.1:8000",
-    production: ""
+    production: "https://confoline.com"
   },
   endpoints: {
     partners: "/admin/confoline-Api/partners.php",

@@ -108,7 +108,7 @@ export default function FormJob({ open, onClose, jobTitle = "Senior Backend Engi
         }
       });
       
-      const endpoint = process.env.NEXT_PUBLIC_JOB_APPLICATION_ENDPOINT || 'https://www.confoline.com/job-application.php';
+      const endpoint = process.env.NEXT_PUBLIC_JOB_ENDPOINT || '/job-application.php';
       const res = await fetch(endpoint, {
         method: 'POST',
         body: formData,
@@ -161,17 +161,17 @@ export default function FormJob({ open, onClose, jobTitle = "Senior Backend Engi
         </div>
 
         {/* Title */}
-        <div className="relative z-10 text-center mb-6">
-          <h2 id="job-title" className="text-2xl lg:text-5xl font-bold text-white">
+        <div className="relative z-10 text-center mb-4 sm:mb-6 px-4 sm:px-0">
+          <h2 id="job-title" className="text-xl sm:text-2xl lg:text-5xl font-bold text-white">
             {jobTitle}
           </h2>
         </div>
 
         {/* Form Container */}
-        <div className="relative z-10 max-w-5xl mx-auto pb-8">
-          <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-6 sm:gap-8">
+        <div className="relative z-10 max-w-5xl mx-auto pb-8 px-4 sm:px-0">
+          <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4 sm:gap-6 lg:gap-8">
           {/* Personal Information - Two Columns */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div className="grid gap-2">
               <label htmlFor="firstName" className="text-sm font-medium text-white">
                 Name
@@ -183,7 +183,7 @@ export default function FormJob({ open, onClose, jobTitle = "Senior Backend Engi
                 autoComplete="given-name"
                 value={formValues.firstName}
                 onChange={handleChange}
-                className="w-full rounded-xl border border-white/20 bg-white px-4 py-3 text-slate-900 placeholder-slate-400 shadow-sm outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30"
+                className="w-full rounded-xl border border-white/20 bg-white px-3 py-2 sm:px-4 sm:py-3 text-slate-900 placeholder-slate-400 shadow-sm outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 text-sm sm:text-base"
                 placeholder="First"
                 aria-invalid={Boolean(formErrors.firstName)}
                 aria-describedby={formErrors.firstName ? "firstName-error" : undefined}
@@ -206,7 +206,7 @@ export default function FormJob({ open, onClose, jobTitle = "Senior Backend Engi
                 autoComplete="family-name"
                 value={formValues.lastName}
                 onChange={handleChange}
-                className="w-full rounded-xl border border-white/20 bg-white px-4 py-3 text-slate-900 placeholder-slate-400 shadow-sm outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30"
+                className="w-full rounded-xl border border-white/20 bg-white px-3 py-2 sm:px-4 sm:py-3 text-slate-900 placeholder-slate-400 shadow-sm outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 text-sm sm:text-base"
                 placeholder="Last"
                 aria-invalid={Boolean(formErrors.lastName)}
                 aria-describedby={formErrors.lastName ? "lastName-error" : undefined}
@@ -219,7 +219,7 @@ export default function FormJob({ open, onClose, jobTitle = "Senior Backend Engi
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div className="grid gap-2">
               <label htmlFor="email" className="text-sm font-medium text-white">
                 Email
@@ -231,7 +231,7 @@ export default function FormJob({ open, onClose, jobTitle = "Senior Backend Engi
                 autoComplete="email"
                 value={formValues.email}
                 onChange={handleChange}
-                className="w-full rounded-xl border border-white/20 bg-white px-4 py-3 text-slate-900 placeholder-slate-400 shadow-sm outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30"
+                className="w-full rounded-xl border border-white/20 bg-white px-3 py-2 sm:px-4 sm:py-3 text-slate-900 placeholder-slate-400 shadow-sm outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 text-sm sm:text-base"
                 placeholder="Email"
                 aria-invalid={Boolean(formErrors.email)}
                 aria-describedby={formErrors.email ? "email-error" : undefined}
@@ -254,7 +254,7 @@ export default function FormJob({ open, onClose, jobTitle = "Senior Backend Engi
                 autoComplete="tel"
                 value={formValues.phone}
                 onChange={handleChange}
-                className="w-full rounded-xl border border-white/20 bg-white px-4 py-3 text-slate-900 placeholder-slate-400 shadow-sm outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30"
+                className="w-full rounded-xl border border-white/20 bg-white px-3 py-2 sm:px-4 sm:py-3 text-slate-900 placeholder-slate-400 shadow-sm outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 text-sm sm:text-base"
                 placeholder="### ### ###"
                 aria-invalid={Boolean(formErrors.phone)}
                 aria-describedby={formErrors.phone ? "phone-error" : undefined}
@@ -268,7 +268,7 @@ export default function FormJob({ open, onClose, jobTitle = "Senior Backend Engi
           </div>
 
           {/* Position and Start Date - Two Columns */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div className="grid gap-2">
               <label htmlFor="position" className="text-sm font-medium text-white">
                 What Position Are You Applying For
@@ -283,7 +283,7 @@ export default function FormJob({ open, onClose, jobTitle = "Senior Backend Engi
                   list="position-options"
                   placeholder="Type or select a position"
                   disabled={!!predefinedPosition}
-                  className={`w-full rounded-xl border border-white/20 bg-white px-4 py-3 text-slate-900 shadow-sm outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 ${
+                  className={`w-full rounded-xl border border-white/20 bg-white px-3 py-2 sm:px-4 sm:py-3 text-slate-900 shadow-sm outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 text-sm sm:text-base ${
                     predefinedPosition ? 'bg-gray-100 cursor-not-allowed' : ''
                   }`}
                   aria-invalid={Boolean(formErrors.position)}
@@ -345,7 +345,7 @@ export default function FormJob({ open, onClose, jobTitle = "Senior Backend Engi
             <label className="text-sm font-medium text-white">
               What Is Your Current Employment Status?
             </label>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
               {[
                 { value: "employed", label: "Employed" },
                 { value: "unemployed", label: "Unemployed" },
@@ -354,7 +354,7 @@ export default function FormJob({ open, onClose, jobTitle = "Senior Backend Engi
               ].map((option) => (
                 <label
                   key={option.value}
-                  className="flex items-center gap-3 rounded-xl border border-white/20 bg-white px-4 py-3 cursor-pointer hover:bg-slate-50 transition"
+                  className="flex items-center gap-2 sm:gap-3 rounded-xl border border-white/20 bg-white px-3 py-2 sm:px-4 sm:py-3 cursor-pointer hover:bg-slate-50 transition"
                 >
                   <input
                     type="radio"
@@ -364,7 +364,7 @@ export default function FormJob({ open, onClose, jobTitle = "Senior Backend Engi
                     onChange={handleChange}
                     className="h-4 w-4 text-cyan-600 focus:ring-cyan-500"
                   />
-                  <span className="text-slate-900 font-medium">{option.label}</span>
+                  <span className="text-slate-900 font-medium text-sm sm:text-base">{option.label}</span>
                 </label>
               ))}
             </div>
@@ -386,10 +386,10 @@ export default function FormJob({ open, onClose, jobTitle = "Senior Backend Engi
                 aria-invalid={Boolean(formErrors.resume)}
                 aria-describedby={formErrors.resume ? "resume-error" : undefined}
               />
-              <div className="w-full rounded-xl border-2 border-dashed border-white/30 bg-white/10 px-6 py-8 text-center hover:bg-white/20 transition">
+              <div className="w-full rounded-xl border-2 border-dashed border-white/30 bg-white/10 px-4 py-6 sm:px-6 sm:py-8 text-center hover:bg-white/20 transition">
                 <Upload className="mx-auto h-8 w-8 text-white mb-2" />
-                <p className="text-white font-medium">Choose Files Or Drag Here</p>
-                <p className="text-white/70 text-sm mt-1">PDF, DOC, DOCX up to 10MB</p>
+                <p className="text-white font-medium text-sm sm:text-base">Choose Files Or Drag Here</p>
+                <p className="text-white/70 text-xs sm:text-sm mt-1">PDF, DOC, DOCX up to 10MB</p>
               </div>
               {formValues.resume && (
                 <p className="text-white text-sm mt-2">Selected: {formValues.resume.name}</p>
@@ -407,7 +407,7 @@ export default function FormJob({ open, onClose, jobTitle = "Senior Backend Engi
             <button
               type="submit"
               disabled={isSubmitting || hasErrors}
-              className="inline-flex items-center gap-2 rounded-xl bg-cyan-500 px-8 py-4 font-semibold text-white text-lg shadow-lg transition hover:bg-cyan-600 disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex items-center gap-2 rounded-xl bg-cyan-500 px-6 py-3 sm:px-8 sm:py-4 font-semibold text-white text-base sm:text-lg shadow-lg transition hover:bg-cyan-600 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {isSubmitting ? "Submitting..." : "Submit"}
             </button>

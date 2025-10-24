@@ -15,7 +15,7 @@ const geistSans = Geist({
 
 
 export const metadata: Metadata = {
-  title: "Confoline Software",
+  title: "Confoline",
   description: "Confoline.com",
   icons: {
     icon: "/favicon.svg",

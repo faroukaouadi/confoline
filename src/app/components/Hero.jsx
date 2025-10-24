@@ -127,7 +127,7 @@ export default function Hero() {
                 {/* Actions à droite */}
                 <div className="flex flex-col sm:flex-row items-center gap-2.5 sm:gap-4 2xl:gap-5">
                   <button className="  border-2 border-cyan-300/60 text-white hover:bg-cyan-300/10 hover:text-white cursor-pointer px-5 sm:px-8 py-2.5 sm:py-3 2xl:px-10 2xl:py-4 rounded-full font-medium transition-colors text-sm 2xl:text-[24px] w-[180] h-[56]  2xl:h-18 sm:w-auto"
-                  onClick={()=> window.open("https://vision.confoline.com", "_blank", "noopener,noreferrer")}>
+                  onClick={()=> window.open("http://vision.confoline.com", "_blank", "noopener,noreferrer")}>
                     Explore Vision
                   </button>
                   <button className="bg-[#51A2FF] hover:bg-blue-300 text-white px-5 sm:px-8 py-2.5 sm:py-3 2xl:px-10 2xl:py-4 rounded-full font-medium transition-colors cursor-pointer text-sm 2xl:text-[24px]  w-[180] h-[56] 2xl:h-18 sm:w-auto"

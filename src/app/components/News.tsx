@@ -128,8 +128,8 @@ export default function News() {
 
         {/* Mobile buttons */}
         <div className="mt-6 flex sm:hidden items-center justify-center gap-3">
-          <button className="px-4 py-2 rounded-full bg-cyan-500 text-white hover:bg-cyan-400 transition-colors text-sm font-medium">View Blogs</button>
-          <button className="px-4 py-2 rounded-full bg-cyan-500 text-white hover:bg-cyan-400 transition-colors text-sm font-medium">View Analyst Reports</button>
+          <Link href="/blogs" className="px-4 py-2 rounded-full bg-cyan-500 text-white hover:bg-cyan-400 transition-colors text-sm font-medium">View Blogs</Link>
+          <Link href="/blogs?activeTab=report" className="px-4 py-2 rounded-full bg-cyan-500 text-white hover:bg-cyan-400 transition-colors text-sm font-medium">View Analyst Reports</Link>
         </div>
       </div>
     </section>

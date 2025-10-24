@@ -2,11 +2,11 @@
 // Configure your local MySQL connection
 // Create DB first (see partners.sql) then update credentials below if needed
 
-define('DB_HOST', '127.0.0.1');
+define('DB_HOST', 'confolinvztn1970.mysql.db');
 define('DB_PORT', 3306);
-define('DB_NAME', 'confoline_admin');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_NAME', 'confolinvztn1970');
+define('DB_USER', 'confolinvztn1970');
+define('DB_PASS', 'BPzrwZ8wL8jAdg8');
 
 // Upload settings
 define('PARTNERS_UPLOAD_DIR', __DIR__ . '/../images/partners');

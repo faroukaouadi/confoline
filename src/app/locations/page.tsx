@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { CheckCircle, XCircle, Loader2 } from "lucide-react";
 import ContactPopup from "../components/ContactPopup";
+import Link from "next/link";
 
 const LOCATIONS_DATA = {
   "North America": [
@@ -120,9 +121,9 @@ export default function LocationsPage() {
             <p className="text-white text-center text-sm sm:text-xl 2xl:text-3xl">
             See the AI experience by Confoline, Start your AI-Driven Assessment Experience
             </p>
-            <button className="ml-4 bg-[#51A2FF] hover:bg-[#4A90E2] text-white px-6 py-3 rounded-full font-medium text-xs sm:text-sm 2xl:text-2xl transition-colors duration-300">
-            Explore Vision Exeprience
-            </button>
+            <Link href="http://vision.confoline.com/" target="_blank" rel="noopener noreferrer" className="ml-4 bg-[#51A2FF] hover:bg-[#4A90E2] text-white px-6 py-3 rounded-full font-medium text-xs sm:text-sm 2xl:text-2xl transition-colors duration-300">
+            Explore Vision Experience
+            </Link>
           </div>
         </div>
       </section>

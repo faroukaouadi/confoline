@@ -73,7 +73,7 @@ export default function ContactPopup({ open, onClose }) {
     try {
       setIsSubmitting(true);
       const params = new URLSearchParams(formValues);
-      const endpoint = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || '/contactt.php';
+      const endpoint = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || '/contact.php';
       const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },

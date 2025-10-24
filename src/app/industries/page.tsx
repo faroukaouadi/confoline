@@ -86,74 +86,161 @@ export default function IndustriesPage() {
         {/* Divider */}
         <div className="mt-6 h-px w-full bg-white/10" />
 
-        {/* Grid */}
+        {/* Grid with independent columns */}
         <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {INDUSTRIES.map((item) => (
-            <div
-              key={item.label}
-              onClick={() => handleIndustryClick(item.label)}
-              className={
-                "rounded-md border border-white/15 bg-white/5 px-4 py-3 text-sm 2xl:text-2xl font-semibold text-blue-100 cursor-pointer transition-all duration-200 " +
-                (selectedIndustry === item.label
-                  ? "ring-2 ring-cyan-400/60 bg-cyan-500/10"
-                  : "hover:bg-white/10")
-              }
-            >
-              <div className="flex items-center gap-2">
-                <span className="text-cyan-300">•</span>
-                <span>{item.label}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Popup Modal */}
-        {selectedIndustry && (
-          <div 
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs"
-            onClick={() => setSelectedIndustry(null)}
-          >
-            <div 
-              className="relative max-w-2xl mx-4 bg-gradient-to-br from-blue-900 to-blue-800 rounded-2xl border border-white/20 shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Close button */}
-              <button
-                onClick={() => setSelectedIndustry(null)}
-                className="absolute top-4 right-4 text-white/70 hover:text-white transition-colors"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-              
-              {/* Content */}
-              <div className="p-8">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-3 h-3 bg-cyan-400 rounded-full mt-2"></div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl 2xl:text-3xl font-bold text-white mb-4">
-                      {INDUSTRIES.find(item => item.label === selectedIndustry)?.label}
-                    </h3>
-                    <p className="text-blue-100 text-lg 2xl:text-xl leading-relaxed">
-                      {INDUSTRIES.find(item => item.label === selectedIndustry)?.description}
-                    </p>
+          {/* Column 1 */}
+          <div className="flex flex-col gap-4">
+            {INDUSTRIES.filter((_, index) => index % 3 === 0).map((item) => (
+              <div key={item.label}>
+                <div
+                  onClick={() => handleIndustryClick(item.label)}
+                  className={
+                    "rounded-md border border-white/15 bg-white/5 px-4 py-3 text-sm 2xl:text-2xl font-semibold text-blue-100 cursor-pointer transition-all duration-200 " +
+                    (selectedIndustry === item.label
+                      ? "ring-2 ring-cyan-400/60 bg-cyan-500/10"
+                      : "hover:bg-white/10")
+                  }
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="text-cyan-300">•</span>
+                      <span>{item.label}</span>
+                    </div>
+                    <svg 
+                      className={`w-5 h-5 text-cyan-300 transition-transform duration-200 ${
+                        selectedIndustry === item.label ? 'rotate-180' : ''
+                      }`}
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
                   </div>
                 </div>
                 
-                {/* Action buttons */}
-                <div className="mt-8 flex gap-4 justify-end">
-                  <button
-                    onClick={() => setSelectedIndustry(null)}
-                    className="px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors"
-                  >
-                    Close
-                  </button>
-                </div>
+                {/* Accordion Content */}
+                {selectedIndustry === item.label && (
+                  <div className="mt-4 p-6 bg-white/5  rounded-lg border border-white/20 shadow-lg animate-in fade-in-0 slide-in-from-top-2 duration-300">
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-3 h-3 bg-cyan-400 rounded-full mt-2"></div>
+                      <div className="flex-1">
+                        <h3 className="text-xl 2xl:text-2xl font-bold text-white mb-3">
+                          {item.label}
+                        </h3>
+                        <p className="text-blue-100 text-base 2xl:text-lg leading-relaxed">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
-            </div>
+            ))}
           </div>
-        )}
+
+          {/* Column 2 */}
+          <div className="flex flex-col gap-4">
+            {INDUSTRIES.filter((_, index) => index % 3 === 1).map((item) => (
+              <div key={item.label}>
+                <div
+                  onClick={() => handleIndustryClick(item.label)}
+                  className={
+                    "rounded-md border border-white/15 bg-white/5 px-4 py-3 text-sm 2xl:text-2xl font-semibold text-blue-100 cursor-pointer transition-all duration-200 " +
+                    (selectedIndustry === item.label
+                      ? "ring-2 ring-cyan-400/60 bg-cyan-500/10"
+                      : "hover:bg-white/10")
+                  }
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="text-cyan-300">•</span>
+                      <span>{item.label}</span>
+                    </div>
+                    <svg 
+                      className={`w-5 h-5 text-cyan-300 transition-transform duration-200 ${
+                        selectedIndustry === item.label ? 'rotate-180' : ''
+                      }`}
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </div>
+                
+                {/* Accordion Content */}
+                {selectedIndustry === item.label && (
+                  <div className="mt-4 p-6 bg-white/5 rounded-lg border border-white/20 shadow-lg animate-in fade-in-0 slide-in-from-top-2 duration-300">
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-3 h-3 bg-cyan-400 rounded-full mt-2"></div>
+                      <div className="flex-1">
+                        <h3 className="text-xl 2xl:text-2xl font-bold text-white mb-3">
+                          {item.label}
+                        </h3>
+                        <p className="text-blue-100 text-base 2xl:text-lg leading-relaxed">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Column 3 */}
+          <div className="flex flex-col gap-4">
+            {INDUSTRIES.filter((_, index) => index % 3 === 2).map((item) => (
+              <div key={item.label}>
+                <div
+                  onClick={() => handleIndustryClick(item.label)}
+                  className={
+                    "rounded-md border border-white/15 bg-white/5 px-4 py-3 text-sm 2xl:text-2xl font-semibold text-blue-100 cursor-pointer transition-all duration-200 " +
+                    (selectedIndustry === item.label
+                      ? "ring-2 ring-cyan-400/60 bg-cyan-500/10"
+                      : "hover:bg-white/10")
+                  }
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="text-cyan-300">•</span>
+                      <span>{item.label}</span>
+                    </div>
+                    <svg 
+                      className={`w-5 h-5 text-cyan-300 transition-transform duration-200 ${
+                        selectedIndustry === item.label ? 'rotate-180' : ''
+                      }`}
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </div>
+                
+                {/* Accordion Content */}
+                {selectedIndustry === item.label && (
+                  <div className="mt-4 p-6 bg-white/5 rounded-lg border border-white/20 shadow-lg animate-in fade-in-0 slide-in-from-top-2 duration-300">
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-3 h-3 bg-cyan-400 rounded-full mt-2"></div>
+                      <div className="flex-1">
+                        <h3 className="text-xl 2xl:text-2xl font-bold text-white mb-3">
+                          {item.label}
+                        </h3>
+                        <p className="text-blue-100 text-base 2xl:text-lg leading-relaxed">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
 
         {/* Bottom note */}
         <div className="mt-10 text-center text-xs sm:text-sm 2xl:text-xl text-blue-200">

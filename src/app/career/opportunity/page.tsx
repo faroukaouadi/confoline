@@ -225,7 +225,7 @@ function OpportunityContent() {
                     <div className="text-sm text-gray-300">Enterprise Clients</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-[#4A90E2] mb-2">200+</div>
+                    <div className="text-3xl font-bold text-[#4A90E2] mb-2">50+</div>
                     <div className="text-sm text-gray-300">Team Members</div>
                   </div>
                   <div className="text-center">

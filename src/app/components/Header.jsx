@@ -178,9 +178,9 @@ export default function Header() {
           <button className="text-white hover:text-blue-300 font-medium text-xs sm:text-sm 2xl:text-base">
             Sign In
           </button> */}
-          <button className="bg-blue-400 hover:bg-blue-300 cursor-pointer text-white px-8 py-3 rounded-full font-medium transition-colors 2xl:text-[24px]">
+          <Link href="http://vision.confoline.com/" target="_blank" rel="noopener noreferrer" className="bg-blue-400 hover:bg-blue-300 cursor-pointer text-white px-8 py-3 rounded-full font-medium transition-colors 2xl:text-[24px]">
           Start AI-Driven Assessment
-          </button>
+          </Link>
         </div>
 
         {/* Mobile menu */}
@@ -267,9 +267,9 @@ export default function Header() {
         </div>
       )}
     </div>
-          <button className="w-full mt-3 bg-blue-400 px-6 py-2 rounded-md hover:bg-blue-300 cursor-pointer">
+          <Link href="http://vision.confoline.com/" target="_blank" rel="noopener noreferrer" className="w-full mt-3 bg-blue-400 px-6 py-2 rounded-md hover:bg-blue-300 cursor-pointer">
           Start AI-Driven Assessment
-          </button>
+          </Link>
         </div>
       )}
     </header>

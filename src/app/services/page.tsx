@@ -14,12 +14,14 @@ export default function ServicesPage() {
               accelerate business outcomes.
             </p>
           </div>
-          <a
-            href="#details"
-            className="inline-block rounded-full bg-blue-400 px-4 py-2 text-sm 2xl:text-xl font-medium text-white hover:bg-blue-300"
-          >
-            Read More
-          </a>
+         <div className="shrink-0">
+          <Link
+              href="#details"
+              className="inline-block rounded-full bg-blue-400 px-4 py-2 text-sm 2xl:text-xl font-medium text-white hover:bg-blue-300"
+            >
+              Read More
+            </Link>
+         </div>
         </div>
 
         <hr className="mt-6 border-blue-700/60" />
